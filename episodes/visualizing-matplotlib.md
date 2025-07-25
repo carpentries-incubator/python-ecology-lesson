@@ -48,313 +48,159 @@ We are not importing the entire matplotlib library, we are only importing the fr
 But we are just starting, we don't want to confuse you with more details.
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Putting it all together
+## Loading and exploring data
 
-Up to this point, we have walked through tasks that are often
-involved in handling and processing data using the workshop-ready cleaned
-files that we have provided. In this wrap-up exercise, we will perform
-many of the same tasks with real data sets. This lesson also covers data
-visualization.
+For this lesson, we will be using the Portal Teaching data, a subset of the data
+from Ernst et al.
+[Long-term monitoring and experimental manipulation of a Chihuahuan Desert ecosystem near Portal, Arizona, USA](https://www.esapubs.org/archive/ecol/E090/118/default.htm).
 
-As opposed to the previous ones, this lesson does not give step-by-step
-directions to each of the tasks. Use the lesson materials you've already gone
-through as well as the Python documentation to help you along.
+We will be using files from the
+[Portal Project Teaching Database](https://figshare.com/articles/Portal_Project_Teaching_Database/1314459).
+This section will use the `combined.csv` file that can be downloaded here:
+[https://ndownloader.figshare.com/files/2292172](https://ndownloader.figshare.com/files/2292172)
 
-## Obtain data
+We are studying the weight, hindfoot lenght, and sex of animals caught in sites of our study
+area.
+The data is stored as a `.csv` file: each row holds information for a single animal, and the columns represent:
 
-There are many repositories online from which you can obtain data. We are
-providing you with one data file to use with these exercises, but feel free to
-use any data that is relevant to your research. The file
-[`bouldercreek_09_2013.txt`](data/bouldercreek_09_2013.txt)
-contains stream discharge data, summarized at
-15 minute intervals (in cubic feet per second) for a streamgage on Boulder
-Creek at North 75th Street (USGS gage06730200) for 1-30 September 2013. If you'd
-like to use this dataset, please find it in the data folder.
+| Column            | Description                                 |
+| ----------------- | -----------------------------               |
+| record\_id        | Unique id for the observation               |
+| month             | month of observation                        |
+| day               | day of observation                          | 
+| year              | year of observation                         | 
+| plot\_id          | ID of a particular site                     | 
+| species\_id       | 2-letter code                               | 
+| sex               | sex of animal ("M", "F")                    | 
+| hindfoot\_length  | length of the hindfoot in mm                | 
+| weight            | weight of the animal in grams               | 
+| genus             | the genus of the species                    |
+| species           | the latin species name                      |
+| taxa              | general taxonomic category                  |
+| plot_type         | type of experimental manipulation conducted |
 
-## Clean up your data and open it using Python and Pandas
-
-To begin, import your data file into Python using Pandas. Did it fail? Your data
-file probably has a header that Pandas does not recognize as part of the data
-table. Remove this header, but do not simply delete it in a text editor! Use
-either a shell script or Python to do this - you wouldn't want to do it by hand
-if you had many files to process.
-
-If you are still having trouble importing the data as a table using Pandas,
-check the documentation. You can open the docstring in a Jupyter Notebook using
-a question mark. For example:
+We'll load the data in the csv into Python and name this new object `complete_old`.
+For this, we can use the `pandas` library and its `.read_csv()` function, like shown here:
 
 ```python
-import pandas as pd
-pd.read_csv?
+complete_old = pd.read_csv("combined.csv")
 ```
 
-Look through the function arguments to see if there is a default value that is
-different from what your file requires (Hint: the problem is most likely the
-delimiter or separator. Common delimiters are `','` for comma, `' '` for space,
-and `'\t'` for tab).
-
-Create a DataFrame that includes only the values of the data that are useful to
-you. In the streamgage file, those values might be the date, time, and discharge
-measurements. Convert any measurements in imperial units into SI units. You can
-also change the name of the columns in the DataFrame like this:
+Here we have created a new object that we can reference later in our code.
+All objects in Python have a `type`, which determine what is possible to do with them.
+To know the type of an object, we can use the `type()` function.
 
 ```python
-df = pd.DataFrame({'1stcolumn':[100,200], '2ndcolumn':[10,20]}) # this just creates a DataFrame for the example!
-print('With the old column names:\n') # the \n makes a new line, so it's easier to see
-print(df)
+type(complete_old)
+```
+```output
+pandas.core.frame.DataFrame
+```
 
-df.columns = ['FirstColumn', 'SecondColumn'] # rename the columns!
-print('\n\nWith the new column names:\n')
-print(df)
+From this we can read that `complete_old` is an object of Pandas DataFrame type.
+We'll explore in depth what a DataFrame is in the next episode.
+For now, we only need to keep in mind that our data is now contained in a DataFrame.
+And this is important as the methods we'll cover now -`.head()`, `.info()`, and `.plot()`-
+are only available to DataFrame objects.
+
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## TODO: Add here a little explanation on functions and methods?
+
+Thinking about where to introduce functions and methods.
+I realize this can be a lot, not beneficial for cognitive load.
+But how can a novice understand the syntax on when you do library.function() and when you need object.method() or object.property ?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+Now that our data is in Python, we can start working with it.
+A good place to start is taking a look at the data.
+With the `.head()` method, we can see the first five rows of the data set.
+
+```python
+complete_old.head()
 ```
 
 ```output
-With the old column names:
-
-   1stcolumn  2ndcolumn
-0        100         10
-1        200         20
-
-
-With the new column names:
-
-   FirstColumn  SecondColumn
-0          100            10
-1          200            20
+	record_id	month	day	year	plot_id	species_id	sex	hindfoot_length	weight	genus	species	taxa	plot_type
+0	1	7	16	1977	2	NL	M	32.0	NaN	Neotoma	albigula	Rodent	Control
+1	72	8	19	1977	2	NL	M	31.0	NaN	Neotoma	albigula	Rodent	Control
+2	224	9	13	1977	2	NL	NaN	NaN	NaN	Neotoma	albigula	Rodent	Control
+3	266	10	16	1977	2	NL	NaN	NaN	NaN	Neotoma	albigula	Rodent	Control
+4	349	11	12	1977	2	NL	NaN	NaN	NaN	Neotoma	albigula	Rodent	Control
 ```
 
-## Matplotlib package
-
-[Matplotlib](https://matplotlib.org/) is a Python package that is widely used throughout the scientific Python community to create high-quality and publication-ready graphics. It supports a wide range of raster and vector graphics formats including PNG, PostScript, EPS, PDF and SVG.
-
-Moreover, matplotlib is the actual engine behind the plotting capabilities of both Pandas and plotnine packages. For example, when we call the `.plot` method on Pandas data objects, we actually use the matplotlib package.
-
-First, import the pyplot toolbox:
+Another useful method to get a glimpse of the data is `.info()`.
+This tells us how many rows the data set has (# of entries),  the number of columns, and for each of the columns it says its name, the number of non-null (or non-empty) rows it contains, and its data type.
 
 ```python
-import matplotlib.pyplot as plt
+complete_old.info()
 ```
 
-Now, let's read data and plot it!
+```output
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 34786 entries, 0 to 34785
+Data columns (total 13 columns):
+ #   Column           Non-Null Count  Dtype  
+---  ------           --------------  -----  
+ 0   record_id        34786 non-null  int64  
+ 1   month            34786 non-null  int64  
+ 2   day              34786 non-null  int64  
+ 3   year             34786 non-null  int64  
+ 4   plot_id          34786 non-null  int64  
+ 5   species_id       34786 non-null  object 
+ 6   sex              33038 non-null  object 
+ 7   hindfoot_length  31438 non-null  float64
+ 8   weight           32283 non-null  float64
+ 9   genus            34786 non-null  object 
+ 10  species          34786 non-null  object 
+ 11  taxa             34786 non-null  object 
+ 12  plot_type        34786 non-null  object 
+dtypes: float64(2), int64(5), object(6)
+memory usage: 3.5+ MB
+```
+
+## Basic plotting with Pandas
+
+Pandas makes it simple to start plotting your data, using the `.plot()` function.
+In order to tell it what data to use, we need to specify the data argument.
+An **argument** is an input that a function takes, and you set arguments using the `=` sign.
+As arguments in this function, we add the kind of plot we want, and how our data is mapped in the plot.
+
+With the following code, we will make a scatter plot (argument `kind = "scatter"`) to analyze the relationship between the weight (which will plot in the x axis, argument `x = "weight"`) and the hindfoot length (in the y axis, argument `y = "hindfoot_length"`) of the animals sampled at the study site.
 
 ```python
-surveys = pd.read_csv("data/surveys.csv")
-my_plot = surveys.plot("hindfoot_length", "weight", kind="scatter")
-plt.show() # not necessary in Jupyter Notebooks
+scatter_plot = complete_old.plot(x = "weight", y = "hindfoot_length", kind="scatter")
 ```
 
-![](fig/08_scatter_surveys.png){alt='Scatter plot of survey data set'}
+This scatter plot shows there seems to be a positive relation between weight and hindfoot length, were heavier animal tend to have bigger hindfoots.
 
-:::::::::::::::::::::::::::::::::::::::::  callout
-
-## Tip
-
-By default, matplotlib creates a figure in a separate window. When using
-Jupyter notebooks, we can make figures appear in-line within the notebook by
-executing:
+Similarly, we could make a [box plot](https://en.wikipedia.org/wiki/Box_plot) to explore the distribution of the hindfoot length across all samples.
+In this case, Pandas wants us to use different arguments.
+We'll use the `column` argument to specify what is the column we want to analyze.
 
 ```python
-%matplotlib inline
+box_plot = complete_old.plot(column = "hindfoot_length", kind = "box")
 ```
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+The boxplot shows the median hindfoot length is around 32mm (represented by the line inside the box) and most values lie between 20 and 35 mm (which are the borders of the box, representing the 1st and 3rd quartile of the data, respectively).
 
-The returned object is a matplotlib object (check it yourself with `type(my_plot)`),
-to which we may make further adjustments and refinements using other matplotlib methods.
-
-:::::::::::::::::::::::::::::::::::::::::  callout
-
-## Tip
-
-Matplotlib itself can be overwhelming, so a useful strategy is to
-do as much as you easily can in a convenience layer, *i.e.* start
-creating the plot in Pandas or plotnine, and then use matplotlib
-for the rest.
-
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-We will cover a few basic commands for creating and formatting plots with matplotlib in this lesson.
-A great resource for help creating and styling your figures is the [matplotlib gallery](https://matplotlib.org/stable/gallery/), which includes plots in many different styles and the source codes that create them.
-
-### `plt` pyplot versus object-based matplotlib
-
-Matplotlib integrates nicely with the NumPy package and can use NumPy arrays
-as input to the available plot functions. Consider the following example data,
-created with NumPy by drawing 1000 samples from a normal distribution with a mean value of 0 and
-a standard deviation of 0.1:
+We could further expand this analysis, and see the distribution of this variable across different plot types.
+We can add an additional `by` argument, saying by which variable we want do disaggregate the box plot.
 
 ```python
-import numpy as np
-sample_data = np.random.normal(0, 0.1, 1000)
-
+box_plot_type = complete_old.plot(column = "hindfoot_length", by = "plot_type", kind = "box")
 ```
 
-To plot a histogram of our draws from the normal distribution, we can use the `hist` function directly:
-
-```python
-plt.hist(sample_data)
-```
-
-![](fig/08-normal-distribution.png){alt='Histogram of 1000 samples from normal distribution'}
-
-:::::::::::::::::::::::::::::::::::::::::  callout
-
-## Tip: Cross-Platform Visualization of Figures
-
-Jupyter Notebooks make many aspects of data analysis and visualization much simpler. This includes
-doing some of the labor of visualizing plots for you. But, not every one of your collaborators
-will be using a Jupyter Notebook. The `.show()` command allows you to visualize plots
-when working at the command line, with a script, or at the IPython interpreter. In the
-previous example, adding  `plt.show()` after the creation of the plot will enable your
-colleagues who aren't using a Jupyter notebook to reproduce your work on their platform.
+As shown in the previous image, the x-axis labels overlap with each other, which makes them unreadable.
+At this point we realize a more fine-grained control over our graph is needed, and here is where Matplotlib shows in the picture.
 
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+## Advanced plots with Matplotlib
 
-or create matplotlib `figure` and `axis` objects first and subsequently add a histogram with 30
-data bins:
+[Matplotlib](https://matplotlib.org/) is a Python library that is widely used throughout the scientific Python community to create high-quality and publication-ready graphics. It supports a wide range of raster and vector graphics formats including PNG, PostScript, EPS, PDF and SVG.
 
-```python
-fig, ax = plt.subplots()  # initiate an empty figure and axis matplotlib object
-ax.hist(sample_data, 30)
-```
-
-Although the latter approach requires a little bit more code to create the same plot,
-the advantage is that it gives us **full control** over the plot and we can add new items
-such as labels, grid lines, title, and other visual elements. For example, we can add
-additional axes to the figure and customize their labels:
-
-```python
-# prepare a matplotlib figure
-fig, ax1 = plt.subplots()
-ax1.hist(sample_data, 30)
-# add labels
-ax1.set_ylabel('density')
-ax1.set_xlabel('value')
-
-# define and sample beta distribution
-a = 5
-b = 10
-beta_draws = np.random.beta(a, b)
-
-# add additional axes to the figure to plot beta distribution
-ax2 = fig.add_axes([0.125, 0.575, 0.3, 0.3])  # number coordinates correspond to left, bottom, width, height, respectively
-ax2.hist(beta_draws)
-```
-
-![](fig/08-dualdistribution.png){alt='Plot with additional axes'}
-
-:::::::::::::::::::::::::::::::::::::::  challenge
-
-## Challenge - Drawing from distributions
-
-Have a look at [`numpy.random` documentation](https://docs.scipy.org/doc/numpy/reference/random/index.html).
-Choose a distribution you have no familiarity with, and try to sample from and visualize it.
-
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-### Link matplotlib, Pandas and plotnine
-
-When we create a plot using pandas or plotnine, both libraries use matplotlib
-to create those plots. The plots created in pandas or plotnine are matplotlib
-objects, which enables us to use some of the advanced plotting options available
-in the matplotlib library. Because the objects output by pandas and plotnine
-can be read by matplotlib, we have many more options than any one library can
-provide, offering a consistent environment to make publication-quality visualizations.
-
-```python
-fig, ax1 = plt.subplots() # prepare a matplotlib figure
-
-surveys.plot("hindfoot_length", "weight", kind="scatter", ax=ax1)
-
-# Provide further adaptations with matplotlib:
-ax1.set_xlabel("Hindfoot length")
-ax1.tick_params(labelsize=16, pad=8)
-fig.suptitle('Scatter plot of weight versus hindfoot length', fontsize=15)
-```
-
-![](fig/08_scatter_surveys_extended.png){alt='Extended version of scatter plot surveys'}
-
-To retrieve the matplotlib figure object from plotnine for customization, use the `draw()` function in plotnine:
-
-```python
-import plotnine as p9
-myplot = (p9.ggplot(data=surveys,
-                    mapping=p9.aes(x='hindfoot_length', y='weight')) +
-              p9.geom_point())
-
-# convert output plotnine to a matplotlib object
-my_plt_version = myplot.draw()
-
-# Provide further adaptations with matplotlib:
-p9_ax = my_plt_version.axes[0] # each subplot is an item in a list
-p9_ax.set_xlabel("Hindfoot length")
-p9_ax.tick_params(labelsize=16, pad=8)
-p9_ax.set_title('Scatter plot of weight versus hindfoot length', fontsize=15)
-plt.show() # not necessary in Jupyter Notebooks
-```
-
-![](fig/08_scatter_surveys_plotnine.png){alt='Extended version of plotnine scatter plot'}
-
-:::::::::::::::::::::::::::::::::::::::  challenge
-
-## Challenge - Pandas and matplotlib
-
-Load the streamgage data set with Pandas, subset the week of the 2013 Front Range flood
-(September 11 through 15) and create a hydrograph (line plot) of the discharge data using
-Pandas, linking it to an empty maptlotlib `ax` object. Create a second axis that displays the
-whole dataset. Adapt the title and axes' labels using matplotlib.
-
-:::::::::::::::  solution
-
-## Answers
-
-```python
-import pandas as pd
-import matplotlib.pyplot as plt
-
-discharge = pd.read_csv("data/bouldercreek_09_2013.txt",
-                        skiprows=27, delimiter="\t",
-                        names=["agency", "site_id", "datetime",
-                               "timezone", "flow_rate", "discharge_cd"])
-discharge["datetime"] = pd.to_datetime(discharge["datetime"])
-flood = discharge[(discharge["datetime"] >= "2013-09-11") &
-                  (discharge["datetime"] <= "2013-09-15")]
-
-fig, ax = plt.subplots()
-
-flood.plot(x="datetime", y="flow_rate", ax=ax)
-ax.set_xlabel("")  # no label
-ax.set_ylabel("Discharge, cubic feet per second")
-ax.legend().set_visible(False)
-ax.set_title("Front Range flood event 2013")
-
-ax2 = fig.add_axes([0.65, 0.575, 0.25, 0.3])
-# DataFrame.plot raises an error with an inset axis object,
-# so we use matplotlib's plot method instead
-ax2.plot("datetime", "flow_rate", data=discharge)
-plt.xticks(rotation=90)
-```
-
-![](fig/08_flood_event.png){alt='Flood event plot'}
-
-
-
-:::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-### Saving matplotlib figures
-
-Once satisfied with the resulting plot, you can save the plot with the `.savefig(*args)` method from matplotlib:
-
-```python
-fig.savefig("my_plot_name.png")
-```
-
-which will save the `fig` created using Pandas/matplotlib as a png file with the name `my_plot_name`
+Moreover, matplotlib is the actual engine behind the plotting capabilities of Pandas, and other plotting libraries like seaborn and plotnine. For example, when we call the `.plot()` methods on Pandas data objects, we are actually using the matplotlib library in the backstage.
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
