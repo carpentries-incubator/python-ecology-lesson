@@ -14,20 +14,20 @@ carpentry: 'dc'
 title: 'Data Analysis and Visualization in Python for Ecologists'
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
-created: '2015-03-19'
+created: '2025-08-08'
 
 # Comma-separated list of keywords for the lesson
 keywords: 'software, data, lesson, The Carpentries'
 
 # Life cycle stage of the lesson
 # possible values: pre-alpha, alpha, beta, stable
-life_cycle: 'stable'
+life_cycle: 'pre-alpha'
 
 # License of the lesson materials (recommended CC-BY 4.0)
 license: 'CC-BY 4.0'
 
 # Link to the source repository for this lesson
-source: 'https://github.com/datacarpentry/python-ecology-lesson'
+source: 'https://github.com/carpentries-incubator/python-ecology-lesson'
 
 # Default branch of your lesson
 branch: 'main'
@@ -59,16 +59,7 @@ contact: 'team@carpentries.org'
 
 # Order of episodes in your lesson
 episodes: 
-- 00-before-we-start.md
-- 01-short-introduction-to-Python.md
-- 02-starting-with-data.md
-- 03-index-slice-subset.md
-- 04-data-types-and-format.md
-- 05-merging-data.md
-- 06-loops-and-functions.md
-- 07-visualization-ggplot-python.md
-- 08-putting-it-all-together.md
-- 09-working-with-sql.md
+- 003-data-structures.md
 
 # Information for Learners
 learners: 
@@ -85,6 +76,6 @@ profiles:
 # sandpaper and varnish versions) should live
 
 
-url: 'https://datacarpentry.github.io/python-ecology-lesson'
+url: 'https://carpentries-incubator.github.io/python-ecology-lesson'
 analytics: carpentries
 lang: en
