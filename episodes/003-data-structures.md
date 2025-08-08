@@ -1,7 +1,7 @@
 ---
 title: Exploring and understanding data
-teaching: 45
-exercises: 30
+teaching: 80
+exercises: 20
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
