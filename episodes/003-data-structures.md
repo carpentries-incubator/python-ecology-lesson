@@ -50,15 +50,15 @@ complete_old.describe()
 ```
 
 ```output
-                month 	        day          year       plot_id  hindfoot_length        weight
-count    35549.000000  35549.000000  35549.000000  35549.000000     31438.000000  32283.000000
-mean         6.474022     16.105966   1990.475231     11.397001 	   29.287932     42.672428
-std          3.396583      8.256691      7.493355      6.799406 	    9.564759     36.631259
-min          1.000000      1.000000   1977.000000      1.000000 	    2.000000      4.000000
-25%          4.000000      9.000000   1984.000000      5.000000 	   21.000000     20.000000
-50%          6.000000     16.000000   1990.000000     11.000000 	   32.000000     37.000000
-75%          9.000000     23.000000   1997.000000     17.000000 	   36.000000     48.000000
-max         12.000000     31.000000   2002.000000     24.000000 	   70.000000    280.000000
+              month           day 	       year       plot_id  hindfoot_length 	      weight
+count  16878.000000  16878.000000  16878.000000  16878.000000     14145.000000  15186.000000
+mean       6.382214     15.595805   1983.582119     11.471442        31.982114     53.216647
+std        3.411215      8.428180      3.492428      6.865875        10.709841     44.265878
+min        1.000000      1.000000   1977.000000      1.000000         6.000000      4.000000
+25%        3.000000      9.000000   1981.000000      5.000000        21.000000     24.000000
+50%        6.000000     15.000000   1983.000000     11.000000        35.000000     42.000000
+75%        9.000000     23.000000   1987.000000     17.000000        37.000000     53.000000
+max       12.000000     31.000000   1989.000000     24.000000        70.000000    278.000000
 ```
 
 These summary statistics give an immediate impression of the distribution of the data.
@@ -72,29 +72,33 @@ complete_old.info()
 
 ```output
 <class 'pandas.core.frame.DataFrame'>
-Index: 35549 entries, 1 to 35549
-Data columns (total 8 columns):
+Index: 16878 entries, 1 to 16878
+Data columns (total 12 columns):
  #   Column           Non-Null Count  Dtype  
 ---  ------           --------------  -----  
- 0   month            35549 non-null  int64  
- 1   day              35549 non-null  int64  
- 2   year             35549 non-null  int64  
- 3   plot_id          35549 non-null  int64  
- 4   species_id       34786 non-null  object 
- 5   sex              33038 non-null  object 
- 6   hindfoot_length  31438 non-null  float64
- 7   weight           32283 non-null  float64
-dtypes: float64(2), int64(4), object(2)
-memory usage: 2.4+ MB
+ 0   month            16878 non-null  int64  
+ 1   day              16878 non-null  int64  
+ 2   year             16878 non-null  int64  
+ 3   plot_id          16878 non-null  int64  
+ 4   species_id       16521 non-null  object 
+ 5   sex              15578 non-null  object 
+ 6   hindfoot_length  14145 non-null  float64
+ 7   weight           15186 non-null  float64
+ 8   genus            16521 non-null  object 
+ 9   species          16521 non-null  object 
+ 10  taxa             16521 non-null  object 
+ 11  plot_type        16878 non-null  object 
+dtypes: float64(2), int64(4), object(6)
+memory usage: 1.7+ MB
 ```
 
 We get quite a bit of useful information here too. 
-First, we are told that we have a `DataFrame` of 35549 entries, or rows, and 8 variables, or columns.
+First, we are told that we have a `DataFrame` of 16878 entries, or rows, and 12 variables, or columns.
 
 Next, we get a bit of information on each variable, including its column title, a count of the _non-null_ values (that is, values that are not missing), and something called the `dtype` of the column.
 
 ### Data types
-The `Dtype` property of a dataframe column describes the _data type_ of the values stored in that column.
+The `dtype` property of a dataframe column describes the _data type_ of the values stored in that column.
 There are three in the example above: 
 
 * `int64`: this column contains integer (whole number) values.
@@ -104,7 +108,7 @@ There are three in the example above:
 The `64` after `int` and `float` represents the level of precision with which the values in the column are stored in the computer's memory.
 Other types with lower levels of precision are available for numeric values, e.g. `int32` and `float16`, which will take up less memory on your system but limit the size and level of precision of the numbers they can store.
 
-The `Ddype` of a column is important because it determines the kinds of operation that can be performed on the values in that column.
+The `dtype` of a column is important because it determines the kinds of operation that can be performed on the values in that column.
 Let's work with a couple of the columns independently to demonstrate this.
 
 ### The `Series` object
@@ -122,18 +126,18 @@ complete_old.species_id # this only works if there are no spaces in the column n
 
 ```output
 record_id
-1          NL
-2          NL
-3          DM
-4          DM
-5          DM
-         ... 
-35545      AH
-35546      AH
-35547      RM
-35548      DO
-35549     NaN
-Name: species_id, Length: 35549, dtype: object
+1        NL
+2        NL
+3        DM
+4        DM
+5        DM
+         ..
+16874    RM
+16875    RM
+16876    DM
+16877    DM
+16878    DM
+Name: species_id, Length: 16878, dtype: object
 ```
 
 :::::::::::::::::::::::::::::::::::::::::: callout
@@ -156,18 +160,18 @@ complete_old['weight']
 
 ```output
 record_id
-1          NaN
-2          NaN
-3          NaN
-4          NaN
-5          NaN
+1         NaN
+2         NaN
+3         NaN
+4         NaN
+5         NaN
          ... 
-35545      NaN
-35546      NaN
-35547     14.0
-35548     51.0
-35549      NaN
-Name: weight, Length: 35549, dtype: float64
+16874    15.0
+16875     9.0
+16876    31.0
+16877    50.0
+16878    42.0
+Name: weight, Length: 16878, dtype: float64
 ```
 
 The data type of the series influences the things that can be done with/to it.
@@ -179,18 +183,18 @@ complete_old['weight'].sort_values()
 
 ```output
 record_id
-9909       4.0
-4290       4.0
-9794       4.0
-9790       4.0
-5346       4.0
-         ... 
-35531      NaN
-35544      NaN
-35545      NaN
-35546      NaN
-35549      NaN
-Name: weight, Length: 35549, dtype: float64
+9790     4.0
+5346     4.0
+4052     4.0
+9853     4.0
+7084     4.0
+        ... 
+16772    NaN
+16777    NaN
+16808    NaN
+16846    NaN
+16860    NaN
+Name: weight, Length: 16878, dtype: float64
 ```
 
 ```python
@@ -199,18 +203,18 @@ complete_old['species_id'].sort_values()
 
 ```output
 record_id
-28959     AB
-12211     AB
-5256      AB
-14055     AB
-14054     AB
+12345     AB
+9861      AB
+10970     AB
+10963     AB
+5759      AB
         ... 
-34757    NaN
-34970    NaN
-35188    NaN
-35385    NaN
-35549    NaN
-Name: species_id, Length: 35549, dtype: object
+16453    NaN
+16454    NaN
+16488    NaN
+16489    NaN
+16539    NaN
+Name: species_id, Length: 16878, dtype: object
 ```
 
 This pattern of behaviour, where the type of an object determines what can be done with it and influences how it is done, is a defining characteristic of Python.
@@ -686,18 +690,19 @@ complete_old['plot_id']
 
 ```output
 record_id
+record_id
 1         2.0
 2         3.0
 3         2.0
 4         7.0
 5         3.0
          ... 
-35545    15.0
-35546    15.0
-35547    10.0
-35548     7.0
-35549     5.0
-Name: plot_id, Length: 35549, dtype: float64
+16874    16.0
+16875     5.0
+16876     4.0
+16877    11.0
+16878     8.0
+Name: plot_id, Length: 16878, dtype: float64
 ```
 
 But the string values of `species_id` cannot be converted to numeric data:
@@ -747,7 +752,7 @@ ValueError: invalid literal for int() with base 10: 'NL'
 ::::::::::::::::::::::: solution
 
 ```python
-surveys_df['plot_id'].astype("int")
+complete_old['plot_id'].astype("int")
 ```
 
 ```output
@@ -758,12 +763,12 @@ record_id
 4         7
 5         3
          ..
-35545    15
-35546    15
-35547    10
-35548     7
-35549     5
-Name: plot_id, Length: 35549, dtype: int64
+16874    16
+16875     5
+16876     4
+16877    11
+16878     8
+Name: plot_id, Length: 16878, dtype: int64
 ```
 
 ```python
@@ -794,13 +799,13 @@ complete_old.head()
 ```
 
 ```output
-           month  day  year  plot_id  species_id  sex  hindfoot_length  weight
-record_id 								
-        1      7   16  1977        2          NL    M             32.0     NaN
-        2      7   16  1977        3          NL    M             33.0     NaN
-        3      7   16  1977        2          DM    F             37.0     NaN
-        4      7   16  1977        7          DM    M             36.0     NaN
-        5      7   16  1977        3          DM    M             35.0     NaN
+           month  day  year  plot_id  species_id  sex  hindfoot_length  weight      genus   species    taxa                 plot_type
+record_id 												
+1              7   16  1977        2          NL    M             32.0     NaN    Neotoma  albigula  Rodent                   Control
+2              7   16  1977        3          NL    M             33.0     NaN    Neotoma  albigula  Rodent  Long-term Krat Exclosure
+3              7   16  1977        2          DM    F             37.0     NaN  Dipodomys  merriami  Rodent                   Control
+4              7   16  1977        7          DM    M             36.0     NaN  Dipodomys  merriami  Rodent          Rodent Exclosure
+5              7   16  1977        3          DM    M             35.0     NaN  Dipodomys  merriami  Rodent  Long-term Krat Exclosure
 ```
 
 The output of the `info` method includes a count of the _non-null_ values -- that is, the values that are _not_ missing -- for each column:
@@ -812,38 +817,45 @@ complete_old.info()
 
 ```output
 <class 'pandas.core.frame.DataFrame'>
-Index: 35549 entries, 1 to 35549
-Data columns (total 8 columns):
+Index: 16878 entries, 1 to 16878
+Data columns (total 12 columns):
  #   Column           Non-Null Count  Dtype  
 ---  ------           --------------  -----  
- 0   month            35549 non-null  int64  
- 1   day              35549 non-null  int64  
- 2   year             35549 non-null  int64  
- 3   plot_id          35549 non-null  int64  
- 4   species_id       34786 non-null  object 
- 5   sex              33038 non-null  object 
- 6   hindfoot_length  31438 non-null  float64
- 7   weight           32283 non-null  float64
-dtypes: float64(2), int64(4), object(2)
-memory usage: 2.4+ MB
+ 0   month            16878 non-null  int64  
+ 1   day              16878 non-null  int64  
+ 2   year             16878 non-null  int64  
+ 3   plot_id          16878 non-null  int64  
+ 4   species_id       16521 non-null  object 
+ 5   sex              15578 non-null  object 
+ 6   hindfoot_length  14145 non-null  float64
+ 7   weight           15186 non-null  float64
+ 8   genus            16521 non-null  object 
+ 9   species          16521 non-null  object 
+ 10  taxa             16521 non-null  object 
+ 11  plot_type        16878 non-null  object 
+dtypes: float64(2), int64(4), object(6)
+memory usage: 1.7+ MB
 ```
 
-This shows that pandas can distinguish these `NaN` values from the actual data and indeed they will be ignored for some tasks, such as calculation of the summary statistics provided by `describe`.
+From this output we can tell that almost 1700 weight measurements and more than 2700 hindfoot length measurements are missing.
+Many of the other columns are also missing data.
+
+The ouput above demonstrates that pandas can distinguish these `NaN` values from the actual data and indeed they will be ignored for some tasks, such as calculation of the summary statistics provided by `describe`.
 
 ```python
 complete_old.describe()
 ```
 
 ```output
-                month 	        day          year       plot_id  hindfoot_length        weight
-count    35549.000000  35549.000000  35549.000000  35549.000000     31438.000000  32283.000000
-mean         6.474022     16.105966   1990.475231     11.397001 	   29.287932     42.672428
-std          3.396583      8.256691      7.493355      6.799406 	    9.564759     36.631259
-min          1.000000      1.000000   1977.000000      1.000000 	    2.000000      4.000000
-25%          4.000000      9.000000   1984.000000      5.000000 	   21.000000     20.000000
-50%          6.000000     16.000000   1990.000000     11.000000 	   32.000000     37.000000
-75%          9.000000     23.000000   1997.000000     17.000000 	   36.000000     48.000000
-max         12.000000     31.000000   2002.000000     24.000000 	   70.000000    280.000000
+              month           day 	       year       plot_id  hindfoot_length 	      weight
+count  16878.000000  16878.000000  16878.000000  16878.000000     14145.000000  15186.000000
+mean       6.382214     15.595805   1983.582119     11.471442        31.982114     53.216647
+std        3.411215      8.428180      3.492428      6.865875        10.709841     44.265878
+min        1.000000      1.000000   1977.000000      1.000000         6.000000      4.000000
+25%        3.000000      9.000000   1981.000000      5.000000        21.000000     24.000000
+50%        6.000000     15.000000   1983.000000     11.000000        35.000000     42.000000
+75%        9.000000     23.000000   1987.000000     17.000000        37.000000     53.000000
+max       12.000000     31.000000   1989.000000     24.000000        70.000000    278.000000
 ```
 
 In some circumstances, like the recasting we attempted in the previous exercise, the missing values can cause trouble.
@@ -855,23 +867,23 @@ complete_old.dropna().head()
 ```
 
 ```output
-           month  day  year  plot_id species_id sex  hindfoot_length  weight
-record_id                                                                   
-63             8   19  1977        3         DM   M             35.0    40.0
-64             8   19  1977        7         DM   M             37.0    48.0
-65             8   19  1977        4         DM   F             34.0    29.0
-66             8   19  1977        4         DM   F             35.0    46.0
-67             8   19  1977        7         DM   M             35.0    36.0
+           month  day  year  plot_id species_id sex  hindfoot_length  weight      genus   species    taxa                 plot_type
+record_id                                                                      
+63             8   19  1977        3         DM   M             35.0    40.0  Dipodomys  merriami  Rodent  Long-term Krat Exclosure
+64             8   19  1977        7         DM   M             37.0    48.0  Dipodomys  merriami  Rodent          Rodent Exclosure
+65             8   19  1977        4         DM   F             34.0    29.0  Dipodomys  merriami  Rodent                   Control
+66             8   19  1977        4         DM   F             35.0    46.0  Dipodomys  merriami  Rodent                   Control
+67             8   19  1977        7         DM   M             35.0    36.0  Dipodomys  merriami  Rodent          Rodent Exclosure
 ```
 
-But we should take note that this removes almost 5000 rows from the dataframe!
+But we should take note that this removes more than 3000 rows from the dataframe!
 
 ```python
 len(complete_old)
 ```
 
 ```output
-35549
+16878
 ```
 
 ```python
@@ -879,7 +891,7 @@ len(complete_old.dropna())
 ```
 
 ```output
-30676
+13773
 ```
 
 Instead, we could _fill_ all of the missing values with something else.
@@ -889,7 +901,18 @@ There are a few parts to that operation, which are tackled one at a time below.
 ```python
 df1 = complete_old.copy() # making a copy to work with so that we do not edit our original data
 mean_weight = complete_old['weight'].mean() # the 'mean' method calculates the mean of the non-null values in the column
-df1['weight'] = complete_old['weight'].fillna(mean_weight) # the 'fillna' method fills all missing values with the provided value
+df1["weight"] = complete_old['weight'].fillna(mean_weight) # the 'fillna' method fills all missing values with the provided value
+df1.head()
+```
+
+```output
+           month  day  year  plot_id species_id sex  hindfoot_length     weight      genus   species    taxa                 plot_type
+record_id                                                              
+1              7   16  1977        2         NL   M             32.0  53.216647    Neotoma  albigula  Rodent                   Control
+2              7   16  1977        3         NL   M             33.0  53.216647    Neotoma  albigula  Rodent  Long-term Krat Exclosure
+3              7   16  1977        2         DM   F             37.0  53.216647  Dipodomys  merriami  Rodent                   Control
+4              7   16  1977        7         DM   M             36.0  53.216647  Dipodomys  merriami  Rodent          Rodent Exclosure
+5              7   16  1977        3         DM   M             35.0  53.216647  Dipodomys  merriami  Rodent  Long-term Krat Exclosure
 ```
 
 The choice to fill in these missing values rather than removing the rows that contain them can have implications for the result of your analysis.
