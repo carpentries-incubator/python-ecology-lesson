@@ -6,19 +6,19 @@ exercises: 30
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- Q1
-- Q2
-- Q3
+- How can I do exploratory data analysis in Python?
+- How do I get help when I am stuck?
+- What impact does an object's type have on what I can do with it?
+- How are expressions evaluated and values assigned to variables?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
 - Explore the structure and content of pandas dataframes
-- Understand data types and missing data
-- Use vectors as function arguments
-- Create and convert factors
-- Understand how Python assigns values to objects
+- Convert data types and handle missing data
+- Interpret error messages and develop strategies to get help with Python
+- Trace how Python assigns values to objects
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -41,67 +41,9 @@ pandas.core.frame.DataFrame
 This output tells us that the `DataFrame` object type is defined by pandas, i.e. it is a special type of object not included in the core functionality of Python.
 
 ### Exploring data in a dataframe
-As we learned previously, the first few rows of a dataframe can be viewed with the `head` _method_. 
-
-```python
-complete_old.head()
-```
-
-```output
-           month  day  year  plot_id  species_id  sex  hindfoot_length  weight
-record_id 								
-        1      7   16  1977        2          NL    M             32.0     NaN
-        2      7   16  1977        3          NL    M             33.0     NaN
-        3      7   16  1977        2          DM    F             37.0     NaN
-        4      7   16  1977        7          DM    M             36.0     NaN
-        5      7   16  1977        3          DM    M             35.0     NaN
-```
-
-Similarly, the last few rows can be viewed with `tail`.
-
-```python
-complete_old.tail()
-```
-
-```output
-           month  day  year  plot_id  species_id  sex  hindfoot_length  weight
-record_id 								
-    35545     12   31  2002       15          AH  NaN              NaN     NaN
-    35546     12   31  2002       15          AH  NaN              NaN     NaN
-    35547     12   31  2002       10          RM    F             15.0    14.0
-    35548     12   31  2002        7          DO    M             36.0    51.0
-    35549     12   31  2002        5         NaN  NaN              NaN     NaN
-```
-
-These methods are functions that the pandas `DataFrame` object carries around with it, containing the instructions for actions that users commonly wish to take when working with tabular data.
-In the case of `head` and `tail`, those actions were looking at the first and last few lines in the dataframe respectively but the objects carries with it many other methods too.
-We saw the `plot` method in the previous epsiode.
-
-As with the other functions we have encountered so far, `head` and `tail` can accept _arguments_ to modify their behaviour. 
-For example, to adjust the number of lines shown.
-
-```python
-complete_old.head(n=10)
-```
-
-```output
-           month  day  year  plot_id  species_id  sex  hindfoot_length  weight
-record_id 								
-        1      7   16  1977        2          NL    M             32.0     NaN
-        2      7   16  1977        3          NL    M             33.0     NaN
-        3      7   16  1977        2          DM    F             37.0     NaN
-        4      7   16  1977        7          DM    M             36.0     NaN
-        5      7   16  1977        3          DM    M             35.0     NaN
-        6      7   16  1977        1          PF 	M     	      14.0     NaN
-        7 	   7   16  1977        2          PE 	F 	           NaN     NaN
-        8 	   7   16  1977        1          DM 	M 	          37.0     NaN
-        9 	   7   16  1977        1          DM 	F 	          34.0     NaN
-        10     7   16  1977        6          PF 	F 	          20.0     NaN
-```
-
-Note that you can also leave out the `n=` and specify the number of rows with an integer value only, e.g. `complete_old.tail(10)`.
-
-`describe` is another useful method when exploring data:
+We encountered the `plot`, `head` and `tail` methods in the previous epsiode. 
+Dataframe objects carry many other methods, including some that are useful when exploring a dataset for the first time.
+Consider the output of `describe`:
 
 ```python
 complete_old.describe()
@@ -119,7 +61,10 @@ min          1.000000      1.000000   1977.000000      1.000000 	    2.000000   
 max         12.000000     31.000000   2002.000000     24.000000 	   70.000000    280.000000
 ```
 
-While `info` provides an overview of the columns included in the dataframe:
+These summary statistics give an immediate impression of the distribution of the data.
+It is always worth performing an initial "sniff test" with these: if there are major issues with the data or its formatting, they may become apparent at this stage.
+
+`info` provides an overview of the columns included in the dataframe:
 
 ```python
 complete_old.info()
@@ -143,7 +88,7 @@ dtypes: float64(2), int64(4), object(2)
 memory usage: 2.4+ MB
 ```
 
-We get quite a bit of useful information here. 
+We get quite a bit of useful information here too. 
 First, we are told that we have a `DataFrame` of 35549 entries, or rows, and 8 variables, or columns.
 
 Next, we get a bit of information on each variable, including its column title, a count of the _non-null_ values (that is, values that are not missing), and something called the `dtype` of the column.
@@ -272,26 +217,364 @@ This pattern of behaviour, where the type of an object determines what can be do
 As you gain more experience with the language, you will become more familiar with this way of working with data.
 For now, as you begin on your learning journey with the language, we recommend using the `type` function frequently to make sure that you know what kind of data/object you are working with, and do not be afraid to ask for help whenever you are unsure or encounter a problem.
 
-## Aside: Getting Help
-* Searching for help
-* Generative AI
-* Anatomy of an error message
 
-## Unexpected data types
-Series objects can be created directly within Python.
-But before we can do that, we need to learn about another type of data in Python: the list.
+## Aside: Getting Help
+We have already encountered several errors while following the lesson and this is a good time to take a step back and discuss good strategies to get help when something goes wrong.
+
+### 1. The built-in `help` function
+Use `help` to view documentation for an object or function.
 
 ```python
-years = pd.Series([2010, 2025, 2019, 2020, 2025])
-years
+help(round)
+```
+
+```output
+Help on built-in function round in module builtins:
+
+round(number, ndigits=None)
+    Round a number to a given precision in decimal digits.
+    
+    The return value is an integer if ndigits is omitted or None.  Otherwise
+    the return value has the same type as the number.  ndigits may be negative.
+```
+
+### The Jupyter Notebook has two ways to get help.
+If you are working in Jupyter (Notebook or Lab), the platform offers some additional ways to see documentation/get help:
+
+* Option 1: Type the function name in a cell with a question mark after it, e.g. `round?`. 
+  Then run the cell.
+* Option 2: (Not available on all systems)
+  Place the cursor near where the function is invoked in a cell
+  (i.e., the function name or its parameters),
+  - Hold down <kbd>Shift</kbd>, and press <kbd>Tab</kbd>.
+  - Do this several times to expand the information returned.
+
+
+### Understanding error messages
+The error messages returned when something goes wrong can be (very) long but contain information about the problem, which can be very useful once you know how to interpret it.
+For example, you might receive a `SyntaxError` if you mistyped a line and the resulting code was invalid:
+
+```python
+# Forgot to close the quote marks around the string.
+name = 'Feng
+```
+
+```error
+  Cell In[129], line 1
+    name = 'Feng
+           ^
+SyntaxError: unterminated string literal (detected at line 1)
+```
+
+There are three parts to this error message:
+
+```error
+  Cell In[129], line 1
+```
+
+This tells us where the error occured.
+This is of limited help in Jupyter, since we know that the error is in the cell we just ran (`Cell In[129]`), but the line number can be helpful especially when the cell is quite long.
+But when running a larger program written in Python, perhaps built up from multiple individual scripts, this can be more useful, e.g.
+
+```error
+  data_visualisation.py, line 42
+```
+
+Next, we see a copy of the line where the error was encountered, often annotated with an arrow pointing out exactly where Python thinks the problem is:
+
+```error
+    name = 'Feng
+           ^
+```
+
+Python is not _exactly_ right in this case: from context you might be able to guess that the issue is really the lack of a closing quotation mark at the end of the line.
+But an arrow pointing to the opening quotation mark can give us a push in the right direction.
+Sometimes Python gets these annotations exactly right. 
+Occasionally, it gets them completely wrong.
+In the vast majority of cases they are at least somewhat helpful.
+
+Finally, we get the error message itself:
+
+```error
+SyntaxError: unterminated string literal (detected at line 1)
+```
+
+This always begins with a statement of the _type_ of error encountered: in this case, a `SyntaxError`.
+That provides a broad categorisation for what went wrong.
+The rest of the message is a description of exactly what the problem was from Python's perspective.
+Error messages can be loaded with jargon and quite difficult to understand when you are first starting out.
+In this example, `unterminated string literal` is a technical way of saying "you opened some quotes, which I think means you were trying to define a string value, but the quotes did not get closed before the end of the line."
+
+It is normal not to understand exactly what these error messages mean the first time you encounter them.
+Since programming involves making lots of mistakes (for everyone!), you will start to become familiar with many of them over time.
+As you continue learning, we recommend that you ask others for help: more experienced programmers have made all of these mistakes before you and will probably be better at spotting what has gone wrong.
+(More on asking for help below.)
+
+#### Error output can get really long!
+Especially when using functions from libraries you have imported into your program, the middle part of the error message (the _traceback_) can get rather long.
+For example, what happens if we try to access a column that does not exist in our dataframe?
+
+```python
+complete_old["wegiht"] # misspelling the 'weight' column name
+```
+
+```error
+---------------------------------------------------------------------------
+KeyError                                  Traceback (most recent call last)
+File ~/miniforge3/envs/carpentries/lib/python3.11/site-packages/pandas/core/indexes/base.py:3812, in Index.get_loc(self, key)
+   3811 try:
+-> 3812     return self._engine.get_loc(casted_key)
+   3813 except KeyError as err:
+
+File pandas/_libs/index.pyx:167, in pandas._libs.index.IndexEngine.get_loc()
+
+File pandas/_libs/index.pyx:196, in pandas._libs.index.IndexEngine.get_loc()
+
+File pandas/_libs/hashtable_class_helper.pxi:7088, in pandas._libs.hashtable.PyObjectHashTable.get_item()
+
+File pandas/_libs/hashtable_class_helper.pxi:7096, in pandas._libs.hashtable.PyObjectHashTable.get_item()
+
+KeyError: 'wegiht'
+
+The above exception was the direct cause of the following exception:
+
+KeyError                                  Traceback (most recent call last)
+Cell In[131], line 1
+----> 1 complete_old["wegiht"]
+
+File ~/miniforge3/envs/carpentries/lib/python3.11/site-packages/pandas/core/frame.py:4107, in DataFrame.__getitem__(self, key)
+   4105 if self.columns.nlevels > 1:
+   4106     return self._getitem_multilevel(key)
+-> 4107 indexer = self.columns.get_loc(key)
+   4108 if is_integer(indexer):
+   4109     indexer = [indexer]
+
+File ~/miniforge3/envs/carpentries/lib/python3.11/site-packages/pandas/core/indexes/base.py:3819, in Index.get_loc(self, key)
+   3814     if isinstance(casted_key, slice) or (
+   3815         isinstance(casted_key, abc.Iterable)
+   3816         and any(isinstance(x, slice) for x in casted_key)
+   3817     ):
+   3818         raise InvalidIndexError(key)
+-> 3819     raise KeyError(key) from err
+   3820 except TypeError:
+   3821     # If we have a listlike key, _check_indexing_error will raise
+   3822     #  InvalidIndexError. Otherwise we fall through and re-raise
+   3823     #  the TypeError.
+   3824     self._check_indexing_error(key)
+
+KeyError: 'wegiht'
+```
+
+(This is still relatively short compared to some errors messages we have seen!)
+
+When you encounter a long error like this one, do not panic!
+Our advice is to focus on the first couple of lines and the last couple of lines. 
+Everything in the middle (as the name traceback suggests) is retracing steps through the program, identifying where problems were encountered along the way.
+That information is only really useful to somebody interested in the inner workings of the pandas library, which is well beyond the scope of this lesson!
+If we ignore everything in the middle, the parts of the error message we want to focus on are:
+
+```error
+---------------------------------------------------------------------------
+KeyError                                  Traceback (most recent call last)
+
+[... skipping these parts ...]
+
+KeyError: 'wegiht'
+```
+
+This tells us that the problem is the "key": the value we used to lookup the column in the dataframe.
+Hopefully, the repetition of the value we provided would be enough to help us realise our mistake.
+
+### Other ways to get help
+There are several other ways that people often get help when they are stuck with their Python code.
+
+* Search the internet: 
+  paste the last line of your error message or the word "python" and a short description of what you want to do into your favourite search engine 
+  and you will usually find several examples where other people have encountered the same problem and came looking for help.
+    * [StackOverflow](https://stackoverflow.com/questions) can be particularly helpful for this: answers to questions are presented as a ranked thread ordered according to how useful other users found them to be.
+    * **Take care:** copying and pasting code written by somebody else is risky unless you understand exactly what it is doing!
+* ask somebody "in the real world". 
+  If you have a colleague or friend with more expertise in Python than you have, show them the problem you are having and ask them for help.
+* Sometimes, the act of articulating your question can help you to identify what is going wrong.
+  This is known as ["rubber duck debugging"](https://en.wikipedia.org/wiki/Rubber_duck_debugging) among programmers.
+
+#### Generative AI
+
+::::::::::::::::::::::::::::: instructor
+
+### Choose how to teach this section
+The section on generative AI is intended to be concise but Instructors may choose to devote more time to the topic in a workshop.
+Depending on your own level of experience and comfort with talking about and using these tools, you could choose to do any of the following:
+
+* Explain how large language models work and are trained, and/or the difference between generative AI, other forms of AI that currently exist, and the limits of what LLMs can do (e.g., they can't "reason").
+* Demonstrate how you recommend that learners use generative AI.
+* Discuss the ethical concerns listed below, as well as others that you are aware of, to help learners make an informed choice about whether or not to use generative AI tools.
+
+This is a fast-moving technology. 
+If you are preparing to teach this section and you feel it has become outdated, please open an issue on the lesson repository to let the Maintainers know and/or a pull request to suggest updates and improvements.
+
+::::::::::::::::::::::::::::::::::::::::
+
+It is increasingly common for people to use _generative AI_ chatbots such as ChatGPT to get help while coding. 
+You will probably receive some useful guidance by presenting your error message to the chatbot and asking it what went wrong. 
+However, the way this help is provided by the chatbot is different. 
+Answers on StackOverflow have (probably) been given by a human as a direct response to the question asked. 
+But generative AI chatbots, which are based on an advanced statistical model, respond by generating the _most likely_ sequence of text that would follow the prompt they are given.
+
+While responses from generative AI tools can often be helpful, they are not always reliable. 
+These tools sometimes generate plausible but incorrect or misleading information, so (just as with an answer found on the internet) it is essential to verify their accuracy.
+You need the knowledge and skills to be able to understand these responses, to judge whether or not they are accurate, and to fix any errors in the code it offers you.
+
+In addition to asking for help, programmers can use generative AI tools to generate code from scratch; extend, improve and reorganise existing code; translate code between programming languages; figure out what terms to use in a search of the internet; and more.
+However, there are drawbacks that you should be aware of.
+
+The models used by these tools have been "trained" on very large volumes of data, much of it taken from the internet, and the responses they produce reflect that training data, and may recapitulate its inaccuracies or biases.
+The environmental costs (energy and water use) of LLMs are a lot higher than other technologies, both during development (known as training) and when an individual user uses one (also called inference). For more information see the [AI Environmental Impact Primer](https://huggingface.co/blog/sasha/ai-environment-primer) developed by researchers at HuggingFace, an AI hosting platform. 
+Concerns also exist about the way the data for this training was obtained, with questions raised about whether the people developing the LLMs had permission to use it.
+Other ethical concerns have also been raised, such as reports that workers were exploited during the training process.
+
+**We recommend that you avoid getting help from generative AI during the workshop** for several reasons:
+
+1. For most problems you will encounter at this stage, help and answers can be found among the first results returned by searching the internet.
+2. The foundational knowledge and skills you will learn in this lesson by writing and fixing your own programs  are essential to be able to evaluate the correctness and safety of any code you receive from online help or a generative AI chatbot. 
+   If you choose to use these tools in the future, the expertise you gain from learning and practising these fundamentals on your own will help you use them more effectively.
+3. As you start out with programming, the mistakes you make will be the kinds that have also been made -- and overcome! -- by everybody else who learned to program before you. 
+  Since these mistakes and the questions you are likely to have at this stage are common, they are also better represented than other, more specialised problems and tasks in the data that was used to train generative AI tools.
+  This means that a generative AI chatbot is _more likely to produce accurate responses_ to questions that novices ask, which could give you a false impression of how reliable they will be when you are ready to do things that are more advanced.
+
+
+## Data input within Python
+Although it is more common (and faster) to input data in another format e.g. a spreadsheet and read it in, Series and DataFrame objects can be created directly within Python.
+Before we can make a new Series, we need to learn about another type of data in Python: the list.
+
+### Lists
+Lists are one of the standard _data structures_ built into Python.
+A data structure is an object that contains more than one piece of information.
+(DataFrames and Series are also data structures.)
+The list is designed to contain multiple values in an ordered sequence: they are a great choice if you want to build up and modify a collection of values over time and/or handle each of those values one at a time.
+We can create a new list in Python by capturing the values we want it to store inside square brackets `[]`:
+
+```python
+years_list = [2020, 2025, 2010]
+years_list
+```
+
+```output
+[2020, 2025, 2010]
+```
+
+New values can be added to the end of a list with the `append` method:
+
+```python
+years_list.append(2015)
+years_list
+```
+
+```output
+[2020, 2025, 2010, 2015]
+```
+
+:::::::::::::::::::::::::::::::::::::::: challenge
+
+### Exploring list methods
+The `append` method allows us to add a value to the end of a list but how could we insert a new value into a given position instead?
+Applying what you have learned about how to find out the methods that an object has, can you figure out how to place the value `2019` into the third position in `years_list`  (shifting the values after it up one more position)?
+Recall that the indexing used to specify positions in a sequence begins at 0 in Python.
+
+::::::::::::::::::::: solution
+
+Using tab completion, the `help` function, or looking up the documentation online, we can discover the `insert` method and learn how it works.
+`insert` takes two arguments: the position for the new list entry and the value to be placed in that position:
+
+```python
+years_list.insert(2, 2019)
+years_list
+```
+
+```output
+[2020, 2025, 2019, 2010, 2015]
+```
+
+::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+Among many other methods is `sort`, which can be used to sort the values in the list:
+
+```python
+years_list.sort()
+years_list
+```
+
+```output
+[2010, 2015, 2019, 2020, 2025]
+```
+
+The easiest way to create a new Series is with a list:
+
+```python
+years_series = pd.Series(years_list)
+years_series
 ```
 
 ```output
 0    2010
-1    2025
+1    2015
 2    2019
 3    2020
 4    2025
+dtype: int64
+```
+
+With the data in a Series, we can no longer do some of the things we were able to do with the list, such as adding new values.
+But we do gain access to some new possibilities, which can be very helpful.
+For example, if we wanted to increase all of the values by 1000, this would be easy with a Series but more complicated with a list:
+
+```python
+years_series + 1000
+```
+
+```output
+0    3010
+1    3015
+2    3019
+3    3020
+4    3025
+dtype: int64
+```
+
+```python
+years_list + 1000
+```
+
+```error
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+Cell In[126], line 1
+----> 1 years_list + 1000
+
+TypeError: can only concatenate list (not "int") to list
+```
+
+This illustrates an important principle of Python: different data structures are suitable for different "modes" of working with data.
+It can be helpful to work with a list when building up an initial set of data from scratch, but when you are ready to begin operating on that dataset as a whole (performing calculations with it, visualising it, etc), you will be rewarded for switching to a more specialised datatype like a Series or DataFrame from pandas.
+
+## Unexpected data types
+Operations like the addition of 1000 we performed on `years_series` work because pandas knows how to add a number to the integer values in the series.
+That behaviour is determind by the `dtype` of the series, which makes that `dtype` really important for how you want to work with your data.
+Let's explore how the `dtype` is chosen.
+Returning to the `years_series` object we created above:
+
+```python
+years_series
+```
+
+```output
+0    3010
+1    3025
+2    3019
+3    3020
+4    3025
 dtype: int64
 ```
 
@@ -299,8 +582,8 @@ The `dtype: int64` was determined automatically based on the values passed in.
 But what if the values provided are of several different types?
 
 ```python
-ages = pd.Series([2, 3, 5.5, 6, 8])
-ages
+ages_series = pd.Series([2, 3, 5.5, 6, 8])
+ages_series
 ```
 
 ```output
@@ -439,46 +722,7 @@ File ~/miniforge3/envs/carpentries/lib/python3.11/site-packages/pandas/core/gene
    6663     res = self._constructor_from_mgr(new_data, axes=new_data.axes)
    6664     return res.__finalize__(self, method="astype")
 
-File ~/miniforge3/envs/carpentries/lib/python3.11/site-packages/pandas/core/internals/managers.py:430, in BaseBlockManager.astype(self, dtype, copy, errors)
-    427 elif using_copy_on_write():
-    428     copy = False
---> 430 return self.apply(
-    431     "astype",
-    432     dtype=dtype,
-    433     copy=copy,
-    434     errors=errors,
-    435     using_cow=using_copy_on_write(),
-    436 )
-
-File ~/miniforge3/envs/carpentries/lib/python3.11/site-packages/pandas/core/internals/managers.py:363, in BaseBlockManager.apply(self, f, align_keys, **kwargs)
-    361         applied = b.apply(f, **kwargs)
-    362     else:
---> 363         applied = getattr(b, f)(**kwargs)
-    364     result_blocks = extend_blocks(applied, result_blocks)
-    366 out = type(self).from_blocks(result_blocks, self.axes)
-
-File ~/miniforge3/envs/carpentries/lib/python3.11/site-packages/pandas/core/internals/blocks.py:784, in Block.astype(self, dtype, copy, errors, using_cow, squeeze)
-    781         raise ValueError("Can not squeeze with more than one column.")
-    782     values = values[0, :]  # type: ignore[call-overload]
---> 784 new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
-    786 new_values = maybe_coerce_values(new_values)
-    788 refs = None
-
-File ~/miniforge3/envs/carpentries/lib/python3.11/site-packages/pandas/core/dtypes/astype.py:237, in astype_array_safe(values, dtype, copy, errors)
-    234     dtype = dtype.numpy_dtype
-    236 try:
---> 237     new_values = astype_array(values, dtype, copy=copy)
-    238 except (ValueError, TypeError):
-    239     # e.g. _astype_nansafe can fail on object-dtype of strings
-    240     #  trying to convert to float
-    241     if errors == "ignore":
-
-File ~/miniforge3/envs/carpentries/lib/python3.11/site-packages/pandas/core/dtypes/astype.py:182, in astype_array(values, dtype, copy)
-    179     values = values.astype(dtype, copy=copy)
-    181 else:
---> 182     values = _astype_nansafe(values, dtype, copy=copy)
-    184 # in pandas we don't store numpy str dtypes, so convert to object
-    185 if isinstance(dtype, np.dtype) and issubclass(values.dtype.type, str):
+[... a lot more lines of traceback ...]
 
 File ~/miniforge3/envs/carpentries/lib/python3.11/site-packages/pandas/core/dtypes/astype.py:133, in _astype_nansafe(arr, dtype, copy, skipna)
     129     raise ValueError(msg)
@@ -805,8 +1049,9 @@ df2 = complete_old.copy()
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- KP1
-- KP2
-- KP3
+- pandas DataFrames carry many methods that can help you explore the properties and distribution of data.
+- Using the `help` function, reading error messages, and asking for help are all good strategies when things go wrong.
+- The type of an object determines what kinds of operations you can perform on and with it.
+- Python evaluates expressions in a line one by one before assigning the final result to a variable.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
