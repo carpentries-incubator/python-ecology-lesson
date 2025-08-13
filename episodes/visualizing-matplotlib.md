@@ -170,7 +170,7 @@ As arguments in this function, we add the kind of plot we want, and how our data
 With the following code, we will make a scatter plot (argument `kind = "scatter"`) to analyze the relationship between the weight (which will plot in the x axis, argument `x = "weight"`) and the hindfoot length (in the y axis, argument `y = "hindfoot_length"`) of the animals sampled at the study site.
 
 ```python
-scatter_plot = complete_old.plot(x = "weight", y = "hindfoot_length", kind="scatter")
+scatter_plot = complete_old.plot(x = "weight", y = "hindfoot_length", kind = "scatter")
 ```
 
 This scatter plot shows there seems to be a positive relation between weight and hindfoot length, were heavier animal tend to have bigger hindfoots.
@@ -196,11 +196,66 @@ As shown in the previous image, the x-axis labels overlap with each other, which
 At this point we realize a more fine-grained control over our graph is needed, and here is where Matplotlib shows in the picture.
 
 
+
+
 ## Advanced plots with Matplotlib
 
-[Matplotlib](https://matplotlib.org/) is a Python library that is widely used throughout the scientific Python community to create high-quality and publication-ready graphics. It supports a wide range of raster and vector graphics formats including PNG, PostScript, EPS, PDF and SVG.
+[Matplotlib](https://matplotlib.org/) is a Python library that is widely used throughout the scientific Python community to create high-quality and publication-ready graphics.
+It supports a wide range of raster and vector graphics formats including PNG, PostScript, EPS, PDF and SVG.
 
-Moreover, matplotlib is the actual engine behind the plotting capabilities of Pandas, and other plotting libraries like seaborn and plotnine. For example, when we call the `.plot()` methods on Pandas data objects, we are actually using the matplotlib library in the backstage.
+Moreover, matplotlib is the actual engine behind the plotting capabilities of Pandas, and other plotting libraries like seaborn and plotnine.
+For example, when we call the `.plot()` methods on Pandas data objects, we are actually using the matplotlib library in the backstage.
+
+Let's start by recreating our scatter plot, but this time, using matplotlib.
+We'll do it one step at a time.
+The first thing we need is to create our figure and our axes (or plots), using the `.subplots()` function.
+The `fig` object we are creating is the entire plot area, which can contain one or multiple axes.
+In this case, we will have only one set of axes, which is the `ax` object.
+Only this line of code will result in an empty plot.
+We show our plot with the `plt.show()` function
+
+```python
+fig, ax = plt.subplots()
+plt.show()
+```
+
+If we want more than one plot in the same figure, we could specify the number of rows (`nrows` argument) and the number of columns (`ncols`) in this function.
+For example, let's say we want two plots (or axes), organized in two columns and one row.
+
+```python
+fig, ax = plt.subplots(nrows = 1, ncols =2)
+plt.show()
+```
+
+Let's focus for now only in making our scatter plot, so just one set of axes.
+For this, in our created `ax` axes, we'll modify it with the `.scatter()` function.
+In the x axis, we'll use the `weight` column, so we use the argument `x = complete_old["weight"]`.
+In the y axis, we'll use the `handfoot_length` column, so we use the argument `y = complete_old["hindfoot_length"]`.
+
+```python
+fig, ax = plt.subplots()
+ax.scatter(x = complete_old["weight"], y = complete_old["hindfoot_length"])
+plt.show()
+```
+
+We could further adjust our scatter plot, by changing the transparency of the points (`alpha` argument)
+
+## Changing aesthetics
+Making plots is often an iterative process, so we’ll continue developing the scatter plot we just made.
+You may have noticed that parts of our scatter plot have many overlapping points, making it difficult to see all the data.
+We can adjust the transparency of the points using the `alpha` argument, which takes a value between 0 and 1.
+Additionally, we could change the color of the points, with the `c` argument.
+
+```python
+fig, ax = plt.subplots()
+ax.scatter(x = complete_old["weight"], y = complete_old["hindfoot_length"], alpha = 0.2, c = "green")
+plt.show()
+```
+
+
+
+## Alternative
+All with pandas.
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
