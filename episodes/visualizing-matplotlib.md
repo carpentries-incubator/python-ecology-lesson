@@ -341,8 +341,6 @@ This will be useful in a minute, when we arrange our scatter plot and box plot i
 fig, axes = plt.subplots(nrows = 1, ncols = 2) # note the variable name is "axes" here rather than "axis" used above
 ```
 
-To increase the level of complexity and show the capabilities of Matplotlib, let's get two subplots into the figure.
-We'll use two columns and one row, so we'll use `fig, axes = plt.subplots(nrows = 1, ncols = 2)`.
 The `axes` object contains two objects, which correspond to the two sets of axes.
 We can access each of the objects inside `axes` using `axes[0]` and `axes[1]`.
 
@@ -427,7 +425,7 @@ Try making each of these one at a time to see how it changes.
 
 - Increase the size of the figure to make it 10in wide and 7in long, just like in the previous challenge.
 - Make the histogram orientation horizontal and hide the legend. For this, add the `orientation='horizontal'` and `legend = False` arguments to your `.plot()` method.
-- As the y-axis of all three subplots is the same, add the `sharey = True` argument to your `plt.subplots()` function.
+- As the y-axis of each subplot is the same, we could use a shared y-axis for all three. Explore the Matplotlib documentation some more to find out which parameter you can use to achieve this.
 - Add a nice title to your third subplot.
 
 
