@@ -23,17 +23,16 @@ exercises: 25
 ## Loading libraries
 
 A great feature in Python is the ability to import **libraries** to extend its capabilities.
-For now, we'll focus on two of the most widely used libraries for data analysis: pandas and matplotlib.
+For now, we'll focus on two of the most widely used libraries for data analysis: pandas and Matplotlib.
 We'll be using pandas for data wrangling and manipulation, and Matplotlib for (you guessed it) making plots.
 
 To be able to use these libraries in our code, we have to **install** and **import** them.
-Installation is needed as pandas and matplotlib are third-party libraries that aren't built into Python.
+Installation is needed as pandas and Matplotlib are third-party libraries that aren't built into Python.
 You should have gone through the installation process during the setup for the workshop (if not, visit the [setup page](../index.md)), so we'll jump straight to showing you how to import libraries.
 
-You only have to install a given library once in your computer, but you need to import it in each of your notebooks or scripts, as Python doesn't load all installed libraries by default.
 To import a library, we use the syntax `import libraryName`.
 If we want to give the library a nickname to shorten the command each time we call it, we can add `as nickNameHere`.
-Here is how you'd import pandas and matplotlib using the common nicknames `pd` and `plt`, respectively.
+Here is how you'd import pandas and Matplotlib using the common nicknames `pd` and `plt`, respectively.
 
 ```python
 import pandas as pd
@@ -43,13 +42,17 @@ import matplotlib.pyplot as plt
 :::::::::::::::::::::::::::::::::::::::::: spoiler
 
 ### Possible questions and errors with the import command
-If you got an error similar to `ModuleNotFoundError: No module named '___'`, check that you have installed the library and you typed it correctly.
+If you got an error similar to `ModuleNotFoundError: No module named '___'`, it means you haven't installed the library. Check the [setup page](../index.md) to install it and double check you typed it correctly.
 
 If you're asking yourself why we used `matplotlib.pyplot` instead of just `matplotlib`, good question!
 We are not importing the entire Matplotlib library, we are only importing the fraction of it we need for plotting, called pyplot.
 We will return to this topic later to explain more about `matplotlib.pyplot` and why that is the part that we need to import.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
+For the purposes of this workshop, you only need to install a library once on your computer. However, you must import it in every notebook or script where you plan to use it, since Python doesn’t automatically load installed libraries.
+
+In your future work with Python, this may not always be the case. You might want to keep different projects separate by using a different Python environment for each one. In that case, you’ll need to install the same library in each environment. We’ll talk more about environments later in the workshop.
 
 ## Loading and exploring data
 
@@ -58,7 +61,7 @@ For this lesson, we will be using the Portal Teaching data, a subset of the data
 
 We will be using files from the [Portal Project Teaching Database](https://figshare.com/articles/Portal_Project_Teaching_Database/1314459).
 This section will use the `surveys_complete_77_89.csv` file that can be downloaded here:
-[https://ndownloader.figshare.com/files/2292172](https://ndownloader.figshare.com/files/2292172)
+[https://datacarpentry.github.io/R-ecology-lesson/data/cleaned/surveys_complete_77_89.csv](https://datacarpentry.github.io/R-ecology-lesson/data/cleaned/surveys_complete_77_89.csv)
 
 We are studying the weight, hindfoot length, and sex of animals caught in sites of our study area.
 The data is stored as a `.csv` file: each row holds information for a single animal, and the columns represent:
@@ -229,6 +232,8 @@ complete_old.plot(x = "weight", y = "hindfoot_length",
                   kind = "scatter", alpha = 0.2)
 ```
 
+With transparency added to the points, we can more clearly observe a clustering of data points into several more densely populated regions of the scatter plot.
+
 There are multiple ways we can learn what other arguments we have available to modify the looks of our plot.
 One of those ways is reading the documentation of the library we are using.
 In the next episode, we'll cover other ways to get help in Python.
@@ -263,7 +268,7 @@ We'll use the `column` argument to specify what is the column we want to analyze
 complete_old.plot(column = "hindfoot_length", kind = "box")
 ```
 
-The boxplot shows the median hindfoot length is around 32mm (represented by the line inside the box) and most values lie between 20 and 35 mm (which are the borders of the box, representing the 1st and 3rd quartile of the data, respectively).
+The box plot shows the median hindfoot length is around 32mm (represented by the line inside the box) and most values lie between 20 and 35 mm (which are the borders of the box, representing the 1st and 3rd quartile of the data, respectively).
 
 We could further expand this analysis, and see the distribution of this variable across different plot types.
 We can add a `by` argument, saying by which variable we want do disaggregate the box plot.
@@ -271,7 +276,6 @@ We can add a `by` argument, saying by which variable we want do disaggregate the
 ```python
 complete_old.plot(column = "hindfoot_length", by = "plot_type", kind = "box")
 ```
-
 
 As shown in the previous image, the x-axis labels overlap with each other, which makes them unreadable.
 Furthermore, we'd like to start customizing the title and the axis labels.
@@ -285,9 +289,9 @@ At this point we realize a more fine-grained control over our graph is needed, a
 It supports a wide range of raster and vector graphics formats including PNG, PostScript, EPS, PDF and SVG.
 
 Moreover, Matplotlib is the actual engine behind the plotting capabilities of Pandas, and other plotting libraries like [seaborn](https://seaborn.pydata.org/) and [plotnine](https://plotnine.org/).
-For example, when we call the `.plot()` methods on pandas data objects, Matplotlib is actually being used  "backstage".
+For example, when we call the `.plot()` methods on pandas data objects, Matplotlib is actually being used "backstage".
 
-The first thing Matplotlib suggests us to do is create our figure and our axes (or plots), using the `plt.subplots()` function.
+Our first step in the process is creating our figure and our axes (or plots), using the `plt.subplots()` function.
 
 ```python
 fig, axis = plt.subplots()
@@ -297,7 +301,7 @@ The `fig` object we are creating is the entire plot area, which can contain one 
 In this case, the function default is to create only one set of axes, which will be referenced as the `axis` object.
 For now, this results in an empty plot like a blank canvas for us to start plotting data on to.
 
-We'll add the previous scatter plot we made to this `axis`, by using the `ax` argument inside the `.plot()` function.
+We'll add the previous box plot we made to this `axis`, by using the `ax` argument inside the `.plot()` function.
 This gives us a plot just as we had it before, but now onto an axis object that we can start customizing.
 
 ```python
@@ -319,7 +323,7 @@ axis.tick_params(axis = 'x', rotation = 90)
 Axis objects have a lot of methods like `.tick_params()`, which can be used to adjust the layout and styling of the plot.
 For example, we can modify the title (the column name is the default) and add the x- and y-axis labels with the `.set_title()`, `.set_xlabel()`, and `.set_ylabel()` methods.
 By now, you may have begun copying and pasting the parts of the code that don't change to save yourself some typing time.
-Some lines might only include subtle changes so take care not to miss anything small and important when reusing lines written previously.
+Some lines might only include subtle changes, so take care not to miss anything small and important when reusing lines written previously.
 
 ```python
 fig, axis = plt.subplots()
@@ -388,19 +392,19 @@ Let's put it into practice.
 
 ## Challenge - Changing figure size
 
-Our plot probably needs more vertical space, so let's change the figure size.
-Take a look at [Matplotlib's figure documentation](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.figure.html).
-In the `figsize` argument, what does it say the default figure size is?
-In which units is the size specified (inches, pixels, centimeters)?
+Our plot probably needs more vertical space, so let's change the figure size. Take a look at [Matplotlib's figure documentation](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.figure.html) and answer:
 
-Now use the `figsize` argument in the `plt.subplots()` function to make the previous figure 7x7 inches in size.
+1. What is the argument we need to make this adjustment?
+1. What is the default figure size if we don't change the argument?
+1. In which units is the size specified (inches, pixels, centimeters)?
+1. Use the argument in the `plt.subplots()` function to make the previous figure 7x7 inches in size.
 
 :::::::::::::::  solution
 
 ## Answers
 
-As the documentation says, figure dimension is specified as (width, height) in inches, and the default figure size is 6.4 inches wide and 4.8 inches tall.
-We can add the `figsize = (7,7)` argument.
+The argument we're looking for is `figsize`. Figure dimension is specified as (width, height) in inches, and the default figure size is 6.4 inches wide and 4.8 inches tall.
+We can add the `figsize = (7,7)` argument like this:
 
 ```python
 fig, axes = plt.subplots(nrows = 1, ncols = 2, figsize = (7,7))
@@ -501,11 +505,11 @@ There is the big community of contributors who all the time are creating new lib
 Some of the libraries you might find useful are:
 
 - [**Plotnine:**](https://plotnine.org/) Inspired by R's ggplot2, it implements the "grammar of graphics" approach.
-  If you come from the Rworld and the tidyverse, you'll definitely want to check it out.
+  If you come from Rworld and the tidyverse, you'll definitely want to check it out.
   
   On a plotnine figure, a Matplotlib figure is returned when you use the `.draw()` method, so you can always start with plotnine and then customize using Matplotlib.
   
-- **[Seaborn:**](https://seaborn.pydata.org/) Focusing on statistical graphics, there's a variety of plot types that will be simpler to make (require fewer lines of code) in seaborn.
+- [**Seaborn:**](https://seaborn.pydata.org/) Focusing on statistical graphics, there's a variety of plot types that will be simpler to make (require fewer lines of code) in seaborn.
 To name a few: statistical representations of averages or of simple linear regression models; plots of categorical data; multivariate plots, etc. 
 Refer to the [introduction to seaborn](https://seaborn.pydata.org/tutorial/introduction.html) to learn more.
 
