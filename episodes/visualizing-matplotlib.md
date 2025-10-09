@@ -6,10 +6,12 @@ exercises: 25
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- Load required libraries for plotting: pandas and Matplotlib.
-- Explore our data set with pandas methods.
-- Make plots combining the pandas and Matplotlib libraries.
-- Use arguments inside functions and methods.
+- Explain the difference between installing a library and importing it.
+- Load data from a CSV file into a pandas DataFrame and inspect its contents and structure.
+- Generate plots, such as scatter plots and box plots, directly from a pandas DataFrame.
+- Construct a Matplotlib figure containing multiple subplots.
+- Customize plot aesthetics like titles, axis labels, colors, and layout by passing arguments to plotting functions.
+- Export a completed figure to a file.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
