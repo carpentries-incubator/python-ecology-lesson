@@ -22,7 +22,7 @@ exercises: 20
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## The pandas `Dataframe`
+## The pandas `DataFrame`
 We just spent quite a bit of time learning how to create visualisations from the `complete_old` data, but we did not talk much about what `complete_old` is.
 You may remember that we loaded the data into Python with the `pandas.read_csv` function.
 The output of `read_csv` is a _data frame_: a common way of representing tabular data in a programming language.
@@ -223,10 +223,11 @@ For now, as you begin on your learning journey with the language, we recommend u
 
 
 ## Aside: Getting Help
-We have already encountered several errors while following the lesson and this is a good time to take a step back and discuss good strategies to get help when something goes wrong.
+You may have already encountered several errors while following the lesson and this is a good time to take a step back and discuss good strategies to get help when something goes wrong.
 
-### 1. The built-in `help` function
-Use `help` to view documentation for an object or function.
+### The built-in `help` function
+Use `help` to view documentation for an object or function. 
+For example, if you want to see documentation for the `round` function:
 
 ```python
 help(round)
@@ -574,11 +575,11 @@ years_series
 ```
 
 ```output
-0    3010
-1    3025
-2    3019
-3    3020
-4    3025
+0    2010
+1    2015
+2    2019
+3    2020
+4    2025
 dtype: int64
 ```
 
@@ -838,7 +839,7 @@ memory usage: 1.7+ MB
 ```
 
 From this output we can tell that almost 1700 weight measurements and more than 2700 hindfoot length measurements are missing.
-Many of the other columns are also missing data.
+Many of the other columns also have missing values.
 
 The ouput above demonstrates that pandas can distinguish these `NaN` values from the actual data and indeed they will be ignored for some tasks, such as calculation of the summary statistics provided by `describe`.
 
@@ -899,9 +900,9 @@ For example, let's make a copy of the `complete_old` dataframe then populate the
 There are a few parts to that operation, which are tackled one at a time below.
 
 ```python
-df1 = complete_old.copy() # making a copy to work with so that we do not edit our original data
 mean_weight = complete_old['weight'].mean() # the 'mean' method calculates the mean of the non-null values in the column
-df1["weight"] = complete_old['weight'].fillna(mean_weight) # the 'fillna' method fills all missing values with the provided value
+df1 = complete_old.copy() # making a copy to work with so that we do not edit our original data
+df1["weight"] = df1['weight'].fillna(mean_weight) # the 'fillna' method fills all missing values with the provided value
 df1.head()
 ```
 
@@ -931,8 +932,8 @@ Stepping away from dataframes for a moment, the time has come to explore the beh
 What is the value of `y` after running the following lines?
 
 ```python
-x = 5
-y = x
+x = 2
+y = x*3
 x = 10
 ```
 
@@ -979,15 +980,15 @@ Python makes each evaluation as it needs to in order to proceed with the next, b
 This means that we could have filled the missing values in the weight column of our dataframe copy in a single line:
 
 ```python
-df1["weight"] = complete_old['weight'].fillna(complete_old["weight"].mean())
+df1["weight"] = df1['weight'].fillna(df1["weight"].mean())
 ```
 
-First, the mean weight is calculated (`complete_old["weight"].mean()` is evaluated).
-Then the result of that evaluation is passed into `fillna` and the result of the filling operation (`complete_old['weight'].fillna(<RESULT OF PREVIOUS>)`) is assigned to `df1["weight"]`.
+First, the mean weight is calculated (`df1["weight"].mean()` is evaluated).
+Then the result of that evaluation is passed into `fillna` and the result of the filling operation (`df1['weight'].fillna(<RESULT OF PREVIOUS>)`) is assigned to `df1["weight"]`.
 
 #### Variable naming
 You are going to name a lot of variables in Python!
-There are some rules you ahve to stick to when doing so, as well as recommendations that will make your life easier.
+There are some rules you have to stick to when doing so, as well as recommendations that will make your life easier.
 
 * Make names clear without being too long
     * `wkg` is probably too short.
@@ -1061,6 +1062,8 @@ some_species
 ```output
 ['NL', 'DM', 'CV', 'PE', 'DS']
 ```
+
+As you can see here, the "PV" value was replaced by "CV" in both lists, even if we didn't intend to make the change in the `some_species` list. 
 
 This takes practice and time to get used to.
 The key thing to remember is that **you should use the `copy` method to make a copy of your dataframes** to avoid accidentally modifying the data in the original.
