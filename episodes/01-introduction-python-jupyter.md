@@ -16,15 +16,12 @@ exercises: 5
 - Describe the advantages of using programming vs. completing repetitive tasks by hand
 - Understand the difference between Python and Jupyter Lab
 - Describe the purpose of Jupyter notebook files
-- Use the help function to get help with Python functions
-- Understand data types in Python
-- Perform mathematical operations in Python
 
 :::::::::::::::::::::::::::::::::::::::
 
 ## What are Python and Jupyter Lab?
 
-Python is an interpreted programming language. It's a general-purpose programming language emphasizing code readability, and it's consistently one of the most popular programming languages used. 
+Python is an interpreted programming language. It's a general-purpose programming language emphasizing code readability, and it's consistently one of the [most popular programming languages](https://www.tiobe.com/tiobe-index/). 
 
 [Jupyter Lab](https://jupyter.org/) is a web-based interactive computing environment compatible across multiple programming languages. This tool allows you to work with documents like Jupyter notebooks, text editors, terminals, and custom components in a flexible way. 
 
