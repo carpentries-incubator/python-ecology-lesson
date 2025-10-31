@@ -397,22 +397,24 @@ Let's put it into practice.
 Our plot probably needs more vertical space, so let's change the figure size. Take a look at [Matplotlib's figure documentation](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.figure.html) and answer:
 
 1. What is the argument we need to make this adjustment?
-1. What is the default figure size if we don't change the argument?
-1. In which units is the size specified (inches, pixels, centimeters)?
-1. Use the argument in the `plt.subplots()` function to make the previous figure 7x7 inches in size.
+2. In which units is the size specified (inches, pixels, centimeters)?
+2. What is the default figure size if we don't change the argument?
+4. Use the argument in the `plt.subplots()` function to make the previous figure 7x7 inches in size.
 
 :::::::::::::::  solution
 
 ## Answers
 
-The argument we're looking for is `figsize`. Figure dimension is specified as (width, height) in inches, and the default figure size is 6.4 inches wide and 4.8 inches tall.
-We can add the `figsize = (7,7)` argument like this:
+1. The argument we're looking for is `figsize`.
+2. Figure dimension is specified as (width, height) in inches
+3. The default figure size is 6.4 inches wide and 4.8 inches tall.
+4. We can add the `figsize = (7,7)` argument like this:
 
-```python
-fig, axes = plt.subplots(nrows = 1, ncols = 2, figsize = (7,7))
-```
-
-And keep the rest of our plot the same.
+  ```python
+  fig, axes = plt.subplots(nrows = 1, ncols = 2, figsize = (7,7))
+  ```
+  
+  And keep the rest of our plot the same.
 
 :::::::::::::::::::::::::
 
