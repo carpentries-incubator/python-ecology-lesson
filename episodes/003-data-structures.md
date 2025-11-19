@@ -23,15 +23,15 @@ exercises: 20
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## The pandas `DataFrame`
-We just spent quite a bit of time learning how to create visualisations from the `complete_old` data, but we did not talk much about what `complete_old` is.
+We just spent quite a bit of time learning how to create visualisations from the `samples` data, but we did not talk much about what `samples` is.
 You may remember that we loaded the data into Python with the `pandas.read_csv` function.
 The output of `read_csv` is a _data frame_: a common way of representing tabular data in a programming language.
-To be precise, `complete_old` is an _object_ of _type_ `DataFrame`.
+To be precise, `samples` is an _object_ of _type_ `DataFrame`.
 In Python, pretty much everything you work with is an object of some type.
 The `type` function can be used to tell you the type of any object you pass to it.
 
 ```python
-type(complete_old)
+type(samples)
 ```
 
 ```output
@@ -46,28 +46,49 @@ Dataframe objects carry many other methods, including some that are useful when 
 Consider the output of `describe`:
 
 ```python
-complete_old.describe()
+samples.describe()
 ```
 
 ```output
-              month           day 	       year       plot_id  hindfoot_length 	      weight
-count  16878.000000  16878.000000  16878.000000  16878.000000     14145.000000  15186.000000
-mean       6.382214     15.595805   1983.582119     11.471442        31.982114     53.216647
-std        3.411215      8.428180      3.492428      6.865875        10.709841     44.265878
-min        1.000000      1.000000   1977.000000      1.000000         6.000000      4.000000
-25%        3.000000      9.000000   1981.000000      5.000000        21.000000     24.000000
-50%        6.000000     15.000000   1983.000000     11.000000        35.000000     42.000000
-75%        9.000000     23.000000   1987.000000     17.000000        37.000000     53.000000
-max       12.000000     31.000000   1989.000000     24.000000        70.000000    278.000000
+           record_id 	       month           day          year       plot_id  hindfoot_length        weight
+count 	16878.000000  16878.000000  16878.000000  16878.000000  16878.000000     14145.000000  15186.000000
+mean     8439.500000      6.382214     15.595805   1983.582119     11.471442        31.982114     53.216647
+std      4872.403257      3.411215      8.428180      3.492428      6.865875        10.709841     44.265878
+min         1.000000      1.000000      1.000000   1977.000000      1.000000         6.000000      4.000000
+25%      4220.250000      3.000000      9.000000   1981.000000      5.000000        21.000000     24.000000
+50%      8439.500000      6.000000     15.000000   1983.000000     11.000000        35.000000     42.000000
+75%     12658.750000      9.000000     23.000000   1987.000000     17.000000        37.000000     53.000000
+max     16878.000000     12.000000     31.000000   1989.000000     24.000000        70.000000    278.000000
 ```
 
 These summary statistics give an immediate impression of the distribution of the data.
 It is always worth performing an initial "sniff test" with these: if there are major issues with the data or its formatting, they may become apparent at this stage.
 
-`info` provides an overview of the columns included in the dataframe:
+One property of the data that we might notice at this stage is that the `record_id` column contains a sequence of integers from 1 to 16878, the total number of rows in the dataframe.
+This tells us that the `record_id` column is an _index_ of the rows: it contains a unique identifier for each record.
+We can specify that this column should be used as the index of the dataframe, which has several benefits including making it easier for us to keep track of which rows we are looking at when we begin filtering the dataframe later.
 
 ```python
-complete_old.info()
+samples = samples.set_index('record_id')
+```
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::: spoiler
+
+### Specifying the index when loading the data
+If you know in advance which column you want to use as an index, you can also specify this when you load the data from the file:
+
+```python
+samples = pd.read_csv('../data/surveys_complete_77_89.csv', index_col=0)
+```
+
+We specify with the `index_col` argument that the first column in the CSV should be used as the index of the dataframe.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+Returning to the high-level exploration of our dataframe, the `info` method provides an overview of the columns:
+
+```python
+samples.info()
 ```
 
 ```output
@@ -97,6 +118,32 @@ First, we are told that we have a `DataFrame` of 16878 entries, or rows, and 12 
 
 Next, we get a bit of information on each variable, including its column title, a count of the _non-null_ values (that is, values that are not missing), and something called the `dtype` of the column.
 
+### Null values
+A value may be missing because it was not possible to make a complete observation, because data was lost, or for any number of other reasons.
+Depending on the type of data stored in the column (more on which in a moment), missing values may appear as `NaN` (_"Not a Number"_), `NA`, `<NA>`, or `NaT` (_"Not a Time"_).
+
+You may have noticed some during our initial exploration of the dataframe.
+(Note the `NaN` values in the first five rows of the `weight` column below.)
+
+```python
+samples.head()
+```
+
+```output
+           month  day  year  plot_id  species_id  sex  hindfoot_length  weight      genus   species    taxa                 plot_type
+record_id 												
+1              7   16  1977        2          NL    M             32.0     NaN    Neotoma  albigula  Rodent                   Control
+2              7   16  1977        3          NL    M             33.0     NaN    Neotoma  albigula  Rodent  Long-term Krat Exclosure
+3              7   16  1977        2          DM    F             37.0     NaN  Dipodomys  merriami  Rodent                   Control
+4              7   16  1977        7          DM    M             36.0     NaN  Dipodomys  merriami  Rodent          Rodent Exclosure
+5              7   16  1977        3          DM    M             35.0     NaN  Dipodomys  merriami  Rodent  Long-term Krat Exclosure
+```
+
+From the output of `samples.info()` above, we can tell that almost 1700 weight measurements and more than 2700 hindfoot length measurements are missing.
+Some of the other columns also have missing values.
+
+In the rest of this episode of the training, we will learn what we need to be able to fill in the missing weight values.
+
 ### Data types
 The `dtype` property of a dataframe column describes the _data type_ of the values stored in that column.
 There are three in the example above: 
@@ -115,13 +162,13 @@ Let's work with a couple of the columns independently to demonstrate this.
 To work with a single column of a dataframe, we can refer to it by name in two different ways:
 
 ```python
-complete_old["species_id"]
+samples["species_id"]
 ```
 
 or
 
 ```python
-complete_old.species_id # this only works if there are no spaces in the column name (note the underscore used here)
+samples.species_id # this only works if there are no spaces in the column name (note the underscore used here)
 ```
 
 ```output
@@ -155,7 +202,7 @@ Dataframe objects are collections of the series "glued together" with a shared _
 If we choose a different column of the dataframe, we get another series with a different data type:
 
 ```python
-complete_old['weight']
+samples['weight']
 ```
 
 ```output
@@ -178,7 +225,7 @@ The data type of the series influences the things that can be done with/to it.
 For example, sorting works differently for these two series, with the numeric values in the `weight` series sorted from largest to smallest and the character strings in `species_id` sorted alphabetically:
 
 ```python
-complete_old['weight'].sort_values()
+samples['weight'].sort_values()
 ```
 
 ```output
@@ -198,7 +245,7 @@ Name: weight, Length: 16878, dtype: float64
 ```
 
 ```python
-complete_old['species_id'].sort_values()
+samples['species_id'].sort_values()
 ```
 
 ```output
@@ -320,7 +367,7 @@ Especially when using functions from libraries you have imported into your progr
 For example, what happens if we try to access a column that does not exist in our dataframe?
 
 ```python
-complete_old["wegiht"] # misspelling the 'weight' column name
+samples["wegiht"] # misspelling the 'weight' column name
 ```
 
 ```error
@@ -345,7 +392,7 @@ The above exception was the direct cause of the following exception:
 
 KeyError                                  Traceback (most recent call last)
 Cell In[131], line 1
-----> 1 complete_old["wegiht"]
+----> 1 samples["wegiht"]
 
 File ~/miniforge3/envs/carpentries/lib/python3.11/site-packages/pandas/core/frame.py:4107, in DataFrame.__getitem__(self, key)
    4105 if self.columns.nlevels > 1:
@@ -685,8 +732,8 @@ A column can be manually coerced (or _recast_) into a different `dtype`, provide
 For example, the integer values in the `plot_id` column of our dataframe can be converted to floating point numbers:
 
 ```python
-complete_old['plot_id'] = complete_old['plot_id'].astype('float')
-complete_old['plot_id']
+samples['plot_id'] = samples['plot_id'].astype('float')
+samples['plot_id']
 ```
 
 ```output
@@ -709,14 +756,14 @@ Name: plot_id, Length: 16878, dtype: float64
 But the string values of `species_id` cannot be converted to numeric data:
 
 ```python
-complete_old.species_id = complete_old.species_id.astype('int')
+samples.species_id = samples.species_id.astype('int')
 ```
 
 ```error
 ---------------------------------------------------------------------------
 ValueError                                Traceback (most recent call last)
 Cell In[101], line 1
-----> 1 complete_old.species_id = complete_old.species_id.astype('int64')
+----> 1 samples.species_id = samples.species_id.astype('int64')
 
 File ~/miniforge3/envs/carpentries/lib/python3.11/site-packages/pandas/core/generic.py:6662, in NDFrame.astype(self, dtype, copy, errors)
    6656     results = [
@@ -753,7 +800,7 @@ ValueError: invalid literal for int() with base 10: 'NL'
 ::::::::::::::::::::::: solution
 
 ```python
-complete_old['plot_id'].astype("int")
+samples['plot_id'].astype("int")
 ```
 
 ```output
@@ -787,64 +834,12 @@ Pandas cannot convert types from float to int if the column contains missing val
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Missing Data
-In addition to data entry errors, it is common to encounter missing values in large volumns of data.
-A value may be missing because it was not possible to make a complete observation, because data was lost, or for any number of other reasons.
+In addition to data entry errors, it is common to encounter missing values in large volumes of data.
 It is important to consider missing values while processing data because they can influence downstream analysis -- that is, data analysis that will be done later -- in unwanted ways when not handled correctly.
-
-Depending on the `dtype` of the column/series, missing values may appear as `NaN` (_"Not a Number"_), `NA`, `<NA>`, or `NaT` (_"Not a Time"_).
-You may have noticed some during our initial exploration of the dataframe.
-(Note the `NaN` values in the first five rows of the `weight` column below.)
+pandas can distinguish missing values from the actual data and indeed they will be ignored for some tasks, such as calculation of the summary statistics provided by `describe`.
 
 ```python
-complete_old.head()
-```
-
-```output
-           month  day  year  plot_id  species_id  sex  hindfoot_length  weight      genus   species    taxa                 plot_type
-record_id 												
-1              7   16  1977        2          NL    M             32.0     NaN    Neotoma  albigula  Rodent                   Control
-2              7   16  1977        3          NL    M             33.0     NaN    Neotoma  albigula  Rodent  Long-term Krat Exclosure
-3              7   16  1977        2          DM    F             37.0     NaN  Dipodomys  merriami  Rodent                   Control
-4              7   16  1977        7          DM    M             36.0     NaN  Dipodomys  merriami  Rodent          Rodent Exclosure
-5              7   16  1977        3          DM    M             35.0     NaN  Dipodomys  merriami  Rodent  Long-term Krat Exclosure
-```
-
-The output of the `info` method includes a count of the _non-null_ values -- that is, the values that are _not_ missing -- for each column:
-
-
-```python
-complete_old.info()
-```
-
-```output
-<class 'pandas.core.frame.DataFrame'>
-Index: 16878 entries, 1 to 16878
-Data columns (total 12 columns):
- #   Column           Non-Null Count  Dtype  
----  ------           --------------  -----  
- 0   month            16878 non-null  int64  
- 1   day              16878 non-null  int64  
- 2   year             16878 non-null  int64  
- 3   plot_id          16878 non-null  int64  
- 4   species_id       16521 non-null  object 
- 5   sex              15578 non-null  object 
- 6   hindfoot_length  14145 non-null  float64
- 7   weight           15186 non-null  float64
- 8   genus            16521 non-null  object 
- 9   species          16521 non-null  object 
- 10  taxa             16521 non-null  object 
- 11  plot_type        16878 non-null  object 
-dtypes: float64(2), int64(4), object(6)
-memory usage: 1.7+ MB
-```
-
-From this output we can tell that almost 1700 weight measurements and more than 2700 hindfoot length measurements are missing.
-Many of the other columns also have missing values.
-
-The ouput above demonstrates that pandas can distinguish these `NaN` values from the actual data and indeed they will be ignored for some tasks, such as calculation of the summary statistics provided by `describe`.
-
-```python
-complete_old.describe()
+samples.describe()
 ```
 
 ```output
@@ -859,12 +854,12 @@ min        1.000000      1.000000   1977.000000      1.000000         6.000000  
 max       12.000000     31.000000   1989.000000     24.000000        70.000000    278.000000
 ```
 
-In some circumstances, like the recasting we attempted in the previous exercise, the missing values can cause trouble.
+In other circumstances, like the recasting we attempted in the previous exercise, the missing values can cause trouble.
 It is up to us to decide how best to handle those missing values.
 We could remove the rows containing missing data, accepting the loss of all data for that observation:
 
 ```python
-complete_old.dropna().head()
+samples.dropna().head()
 ```
 
 ```output
@@ -880,7 +875,7 @@ record_id
 But we should take note that this removes more than 3000 rows from the dataframe!
 
 ```python
-len(complete_old)
+len(samples)
 ```
 
 ```output
@@ -888,7 +883,7 @@ len(complete_old)
 ```
 
 ```python
-len(complete_old.dropna())
+len(samples.dropna())
 ```
 
 ```output
@@ -896,12 +891,12 @@ len(complete_old.dropna())
 ```
 
 Instead, we could _fill_ all of the missing values with something else.
-For example, let's make a copy of the `complete_old` dataframe then populate the missing values in the `weight` column of that copy with the mean of all the non-missing weights.
+For example, let's make a copy of the `samples` dataframe then populate the missing values in the `weight` column of that copy with the mean of all the non-missing weights.
 There are a few parts to that operation, which are tackled one at a time below.
 
 ```python
-mean_weight = complete_old['weight'].mean() # the 'mean' method calculates the mean of the non-null values in the column
-df1 = complete_old.copy() # making a copy to work with so that we do not edit our original data
+mean_weight = samples['weight'].mean() # the 'mean' method calculates the mean of the non-null values in the column
+df1 = samples.copy() # making a copy to work with so that we do not edit our original data
 df1["weight"] = df1['weight'].fillna(mean_weight) # the 'fillna' method fills all missing values with the provided value
 df1.head()
 ```
@@ -1026,7 +1021,7 @@ Why did we need to use the `copy` method to duplicate the dataframe above if var
 Why not assign a new variable with the value of the existing dataframe object?
 
 ```python
-df2 = complete_old
+df2 = samples
 ```
 
 This gets to _mutablity_: a feature of Python that has caused headaches for many novices in the past!
@@ -1069,7 +1064,7 @@ This takes practice and time to get used to.
 The key thing to remember is that **you should use the `copy` method to make a copy of your dataframes** to avoid accidentally modifying the data in the original.
 
 ```python
-df2 = complete_old.copy()
+df2 = samples.copy()
 ```
 
 
