@@ -88,8 +88,24 @@ We'll load the data in the csv into Python and name this new object `complete_ol
 For this, we can use the `pandas` library and its `.read_csv()` function, like shown here:
 
 ```python
-complete_old = pd.read_csv("surveys_complete_77_89.csv")
+complete_old = pd.read_csv("../data/raw/surveys_complete_77_89.csv")
 ```
+
+:::::::::::::::::::::::::::::::: instructor
+Warning, the line of code `pd.read_csv("../data/raw/surveys_complete_77_89.csv")` is prone to raise relative path errors for learners, for two main reasons:
+
+- *They may have not set the directory structure as described in the previous episode:*
+  For example, if they used capital letters, added whitespaces, or just typed it differently.
+  This would change their relative path to the file.
+  
+- *They didn't create the notebook inside their `scripts` directory:*
+  JupyterLab seems to set the working directory to the place where the notebook was created.
+  If a learner created the notebook at the root of their project folder then the relative path would change.
+  
+Additional to errors they may get, you would also need to spend some time talking about relative paths and why we need to use `'../'`.
+Prepare to spend 10 to 15 minutes successfully reading the csv file with your group.
+
+:::::::::::::::::::::::::::::::::::::::::::
 
 Here we have created a new object that we can reference later in our code.
 All objects in Python have a `type`, which determine what is possible to do with them.
