@@ -84,11 +84,11 @@ The data is stored as a `.csv` file: each row holds information for a single ani
 | taxa              | general taxonomic category                  |
 | plot_type         | type of experimental manipulation conducted |
 
-We'll load the data in the csv into Python and name this new object `complete_old`.
+We'll load the data in the csv into Python and name this new object `surveys`.
 For this, we can use the `pandas` library and its `.read_csv()` function, like shown here:
 
 ```python
-complete_old = pd.read_csv("../data/raw/surveys_complete_77_89.csv")
+surveys = pd.read_csv("../data/raw/surveys_complete_77_89.csv")
 ```
 
 :::::::::::::::::::::::::::::::: instructor
@@ -112,7 +112,7 @@ All objects in Python have a `type`, which determine what is possible to do with
 To know the type of an object, we can use the `type()` function.
 
 ```python
-type(complete_old)
+type(surveys)
 ```
 ```output
 pandas.core.frame.DataFrame
@@ -120,9 +120,9 @@ pandas.core.frame.DataFrame
 
 Notice how we didn't use the `=` operator in this case.
 This means we didn't create a new object, we just asked Python to show us the output of the function.
-When we created `complete_old` with the `=` operator it didn't print an output, but it stored the object in Python which we can later use. 
+When we created `surveys` with the `=` operator it didn't print an output, but it stored the object in Python which we can later use. 
 
-From the output we can read that `complete_old` is an object of pandas DataFrame type.
+From the output we can read that `surveys` is an object of pandas DataFrame type.
 We'll explore in depth what a DataFrame is in the next episode.
 For now, we only need to keep in mind that our data is now contained in a DataFrame.
 And this is important as the methods we'll cover now -`.head()`, `.info()`, and `.plot()`-
@@ -133,7 +133,7 @@ A good place to start is taking a look at the data.
 With the `.head()` method, we can see the first five rows of the data set.
 
 ```python
-complete_old.head()
+surveys.head()
 ```
 
 ```output
@@ -157,7 +157,7 @@ If we want to override this default and instead display the last two rows, we ca
 An **argument** is an input that a function or method takes to modify how it operates, and you set arguments using the `=` sign.
 
 ```python
-complete_old.tail(n=2)
+surveys.tail(n=2)
 ```
 
 ```output
@@ -174,7 +174,7 @@ Another useful method to get a glimpse of the data is `.info()`.
 This tells us how many rows the data set has (# of entries),  the number of columns, and for each of the columns it says its name, the number of non-null (or non-empty) rows it contains, and its data type.
 
 ```python
-complete_old.info()
+surveys.info()
 ```
 
 ```output
@@ -226,7 +226,7 @@ By passing arguments to this method, we can tell Pandas how we want the plot to 
 With the following code, we will make a scatter plot (argument `kind = "scatter"`) to analyze the relationship between the weight (which will plot in the x axis, argument `x = "weight"`) and the hindfoot length (in the y axis, argument `y = "hindfoot_length"`) of the animals sampled at the study site.
 
 ```python
-complete_old.plot(x = "weight", y = "hindfoot_length", kind = "scatter")
+surveys.plot(x = "weight", y = "hindfoot_length", kind = "scatter")
 ```
 
 :::::::::::::::::::::::::::::::::::::::::: spoiler
@@ -237,7 +237,7 @@ When coding, you'll often find the case where you can get to the same result usi
 In this case, the creators of pandas make it possible to make the previous plot with the`.plot.scatter` method, without having to specify the "kind" argument.
 
 ```python
-complete_old.plot.scatter(x = "weight", y = "hindfoot_length")
+surveys.plot.scatter(x = "weight", y = "hindfoot_length")
 ```
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -246,7 +246,7 @@ But you may have noticed that parts of our scatter plot have many overlapping po
 We can adjust the transparency of the points using the `alpha` argument, which takes a value between 0 and 1.
 
 ```python
-complete_old.plot(x = "weight", y = "hindfoot_length",
+surveys.plot(x = "weight", y = "hindfoot_length",
                   kind = "scatter", alpha = 0.2)
 ```
 
@@ -269,7 +269,7 @@ Here is the link to the documentation: [https://pandas.pydata.org/docs/reference
 Continuing from our last line of code where we added the "alpha" argument, we can add the argument `c = "green"` to achieve what we want.
 
 ```python
-complete_old.plot(x = "weight", y = "hindfoot_length",
+surveys.plot(x = "weight", y = "hindfoot_length",
                   kind="scatter", alpha = 0.2, c = "green")
 ```
 
@@ -283,7 +283,7 @@ In this case, pandas wants us to use different arguments.
 We'll use the `column` argument to specify what is the column we want to analyze.
 
 ```python
-complete_old.plot(column = "hindfoot_length", kind = "box")
+surveys.plot(column = "hindfoot_length", kind = "box")
 ```
 
 The box plot shows the median hindfoot length is around 32mm (represented by the line inside the box) and most values lie between 20 and 35 mm (which are the borders of the box, representing the 1st and 3rd quartile of the data, respectively).
@@ -292,7 +292,7 @@ We could further expand this analysis, and see the distribution of this variable
 We can add a `by` argument, saying by which variable we want do disaggregate the box plot.
 
 ```python
-complete_old.plot(column = "hindfoot_length", by = "plot_type", kind = "box")
+surveys.plot(column = "hindfoot_length", by = "plot_type", kind = "box")
 ```
 
 As shown in the previous image, the x-axis labels overlap with each other, which makes them unreadable.
@@ -324,7 +324,7 @@ This gives us a plot just as we had it before, but now onto an axis object that 
 
 ```python
 fig, axis = plt.subplots()
-complete_old.plot(column = "hindfoot_length", by = "plot_type",
+surveys.plot(column = "hindfoot_length", by = "plot_type",
                   kind = "box", ax = axis)
 ```
 
@@ -333,7 +333,7 @@ For this, we use the `.tick_params()` method on the `axis` object.
 
 ```python
 fig, axis = plt.subplots()
-complete_old.plot(column = "hindfoot_length", by = "plot_type",
+surveys.plot(column = "hindfoot_length", by = "plot_type",
                   kind = "box", ax = axis)
 axis.tick_params(axis = 'x', rotation = 90)
 ```
@@ -345,7 +345,7 @@ Some lines might only include subtle changes, so take care not to miss anything 
 
 ```python
 fig, axis = plt.subplots()
-complete_old.plot(column = "hindfoot_length", by = "plot_type",
+surveys.plot(column = "hindfoot_length", by = "plot_type",
                   kind = "box", ax = axis)
 axis.tick_params(axis='x', rotation = 90)
 axis.set_title("Distribution of hindfoot lenght across plot types")
@@ -373,9 +373,9 @@ Here is the code to have two subplots, one with the scatter plot (on `axes[0]`),
 
 ```python
 fig, axes = plt.subplots(nrows = 1, ncols = 2)
-complete_old.plot(x = "weight", y = "hindfoot_length", kind="scatter",
+surveys.plot(x = "weight", y = "hindfoot_length", kind="scatter",
                   alpha = 0.2, ax = axes[0])
-complete_old.plot(column = "hindfoot_length", by = "plot_type",
+surveys.plot(column = "hindfoot_length", by = "plot_type",
                   kind = "box", ax = axes[1])
 ```
 
@@ -387,12 +387,12 @@ We also use the `.tight_layout()` method, to automatically adjust the padding be
 
 ```python
 fig, axes = plt.subplots(nrows = 1, ncols = 2)
-complete_old.plot(x = "weight", y = "hindfoot_length", kind="scatter", alpha = 0.2, ax = axes[0])
+surveys.plot(x = "weight", y = "hindfoot_length", kind="scatter", alpha = 0.2, ax = axes[0])
 axes[0].set_title("Weight vs. Hindfoot Length")
 axes[0].set_xlabel("Weight (g)")
 axes[0].set_ylabel("Hindfoot Length (mm)")
 
-complete_old.plot(column = "hindfoot_length", by = "plot_type",
+surveys.plot(column = "hindfoot_length", by = "plot_type",
                   kind = "box", ax = axes[1])
 axes[1].tick_params(axis = "x", rotation = 90)
 axes[1].set_title("Hindfoot Length by Plot Type")
@@ -462,20 +462,20 @@ Notice what has changed from our previous code.
 
 ```python
 fig, axes = plt.subplots(nrows = 1, ncols = 3, figsize = (10,7), sharey = True)
-complete_old.plot(x = "weight", y = "hindfoot_length", kind="scatter",
+surveys.plot(x = "weight", y = "hindfoot_length", kind="scatter",
                   alpha = 0.2, ax = axes[0])
 axes[0].set_title("Weight vs. Hindfoot Length")
 axes[0].set_xlabel("Weight (g)")
 axes[0].set_ylabel("Hindfoot Length (mm)")
 
-complete_old.plot(column = "hindfoot_length", by = "plot_type",
+surveys.plot(column = "hindfoot_length", by = "plot_type",
                   kind = "box", ax = axes[1])
 axes[1].tick_params(axis =  "x", rotation = 90)
 axes[1].set_title("Hindfoot Length by Plot Type")
 axes[1].set_xlabel("Plot Types")
 axes[1].set_ylabel("Hindfoot Length (mm)2")
 
-complete_old.plot(column = "hindfoot_length", orientation="horizontal",
+surveys.plot(column = "hindfoot_length", orientation="horizontal",
                   legend = False, kind = "hist", ax = axes[2])
 axes[2].set_title("Hindfoot Length Histogram")
 
@@ -537,7 +537,7 @@ Refer to the [introduction to seaborn](https://seaborn.pydata.org/tutorial/intro
   
   ```python
   import seaborn as sns
-  sns.scatterplot(data = complete_old, x="weight", y="hindfoot_length",
+  sns.scatterplot(data = surveys, x="weight", y="hindfoot_length",
                 hue="sex", alpha = 0.2)
   ```
 

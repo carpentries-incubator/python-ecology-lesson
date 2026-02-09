@@ -23,15 +23,15 @@ exercises: 20
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## The pandas `DataFrame`
-We just spent quite a bit of time learning how to create visualisations from the `samples` data, but we did not talk much about what `samples` is.
+We just spent quite a bit of time learning how to create visualisations from the `surveys` data, but we did not talk much about what `surveys` is.
 You may remember that we loaded the data into Python with the `pandas.read_csv` function.
 The output of `read_csv` is a _data frame_: a common way of representing tabular data in a programming language.
-To be precise, `samples` is an _object_ of _type_ `DataFrame`.
+To be precise, `surveys` is an _object_ of _type_ `DataFrame`.
 In Python, pretty much everything you work with is an object of some type.
 The `type` function can be used to tell you the type of any object you pass to it.
 
 ```python
-type(samples)
+type(surveys)
 ```
 
 ```output
@@ -46,7 +46,7 @@ Dataframe objects carry many other methods, including some that are useful when 
 Consider the output of `describe`:
 
 ```python
-samples.describe()
+surveys.describe()
 ```
 
 ```output
@@ -69,7 +69,7 @@ This tells us that the `record_id` column is an _index_ of the rows: it contains
 We can specify that this column should be used as the index of the dataframe, which has several benefits including making it easier for us to keep track of which rows we are looking at when we begin filtering the dataframe later.
 
 ```python
-samples = samples.set_index('record_id')
+surveys = surveys.set_index('record_id')
 ```
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::: spoiler
@@ -78,7 +78,7 @@ samples = samples.set_index('record_id')
 If you know in advance which column you want to use as an index, you can also specify this when you load the data from the file:
 
 ```python
-samples = pd.read_csv('../data/surveys_complete_77_89.csv', index_col=0)
+surveys = pd.read_csv('../data/surveys_complete_77_89.csv', index_col=0)
 ```
 
 We specify with the `index_col` argument that the first column in the CSV should be used as the index of the dataframe.
@@ -88,7 +88,7 @@ We specify with the `index_col` argument that the first column in the CSV should
 Returning to the high-level exploration of our dataframe, the `info` method provides an overview of the columns:
 
 ```python
-samples.info()
+surveys.info()
 ```
 
 ```output
@@ -126,7 +126,7 @@ You may have noticed some during our initial exploration of the dataframe.
 (Note the `NaN` values in the first five rows of the `weight` column below.)
 
 ```python
-samples.head()
+surveys.head()
 ```
 
 ```output
@@ -139,7 +139,7 @@ record_id
 5              7   16  1977        3          DM    M             35.0     NaN  Dipodomys  merriami  Rodent  Long-term Krat Exclosure
 ```
 
-From the output of `samples.info()` above, we can tell that almost 1700 weight measurements and more than 2700 hindfoot length measurements are missing.
+From the output of `surveys.info()` above, we can tell that almost 1700 weight measurements and more than 2700 hindfoot length measurements are missing.
 Some of the other columns also have missing values.
 
 In the rest of this episode of the training, we will learn what we need to be able to fill in the missing weight values.
@@ -162,13 +162,13 @@ Let's work with a couple of the columns independently to demonstrate this.
 To work with a single column of a dataframe, we can refer to it by name in two different ways:
 
 ```python
-samples["species_id"]
+surveys["species_id"]
 ```
 
 or
 
 ```python
-samples.species_id # this only works if there are no spaces in the column name (note the underscore used here)
+surveys.species_id # this only works if there are no spaces in the column name (note the underscore used here)
 ```
 
 ```output
@@ -202,7 +202,7 @@ Dataframe objects are collections of the series "glued together" with a shared _
 If we choose a different column of the dataframe, we get another series with a different data type:
 
 ```python
-samples['weight']
+surveys['weight']
 ```
 
 ```output
@@ -225,7 +225,7 @@ The data type of the series influences the things that can be done with/to it.
 For example, sorting works differently for these two series, with the numeric values in the `weight` series sorted from largest to smallest and the character strings in `species_id` sorted alphabetically:
 
 ```python
-samples['weight'].sort_values()
+surveys['weight'].sort_values()
 ```
 
 ```output
@@ -245,7 +245,7 @@ Name: weight, Length: 16878, dtype: float64
 ```
 
 ```python
-samples['species_id'].sort_values()
+surveys['species_id'].sort_values()
 ```
 
 ```output
@@ -367,7 +367,7 @@ Especially when using functions from libraries you have imported into your progr
 For example, what happens if we try to access a column that does not exist in our dataframe?
 
 ```python
-samples["wegiht"] # misspelling the 'weight' column name
+surveys["wegiht"] # misspelling the 'weight' column name
 ```
 
 ```error
@@ -392,7 +392,7 @@ The above exception was the direct cause of the following exception:
 
 KeyError                                  Traceback (most recent call last)
 Cell In[131], line 1
-----> 1 samples["wegiht"]
+----> 1 surveys["wegiht"]
 
 File ~/miniforge3/envs/carpentries/lib/python3.11/site-packages/pandas/core/frame.py:4107, in DataFrame.__getitem__(self, key)
    4105 if self.columns.nlevels > 1:
@@ -732,8 +732,8 @@ A column can be manually coerced (or _recast_) into a different `dtype`, provide
 For example, the integer values in the `plot_id` column of our dataframe can be converted to floating point numbers:
 
 ```python
-samples['plot_id'] = samples['plot_id'].astype('float')
-samples['plot_id']
+surveys['plot_id'] = surveys['plot_id'].astype('float')
+surveys['plot_id']
 ```
 
 ```output
@@ -756,14 +756,14 @@ Name: plot_id, Length: 16878, dtype: float64
 But the string values of `species_id` cannot be converted to numeric data:
 
 ```python
-samples.species_id = samples.species_id.astype('int')
+surveys.species_id = surveys.species_id.astype('int')
 ```
 
 ```error
 ---------------------------------------------------------------------------
 ValueError                                Traceback (most recent call last)
 Cell In[101], line 1
-----> 1 samples.species_id = samples.species_id.astype('int64')
+----> 1 surveys.species_id = surveys.species_id.astype('int64')
 
 File ~/miniforge3/envs/carpentries/lib/python3.11/site-packages/pandas/core/generic.py:6662, in NDFrame.astype(self, dtype, copy, errors)
    6656     results = [
@@ -800,7 +800,7 @@ ValueError: invalid literal for int() with base 10: 'NL'
 ::::::::::::::::::::::: solution
 
 ```python
-samples['plot_id'].astype("int")
+surveys['plot_id'].astype("int")
 ```
 
 ```output
@@ -839,7 +839,7 @@ It is important to consider missing values while processing data because they ca
 pandas can distinguish missing values from the actual data and indeed they will be ignored for some tasks, such as calculation of the summary statistics provided by `describe`.
 
 ```python
-samples.describe()
+surveys.describe()
 ```
 
 ```output
@@ -859,7 +859,7 @@ It is up to us to decide how best to handle those missing values.
 We could remove the rows containing missing data, accepting the loss of all data for that observation:
 
 ```python
-samples.dropna().head()
+surveys.dropna().head()
 ```
 
 ```output
@@ -875,7 +875,7 @@ record_id
 But we should take note that this removes more than 3000 rows from the dataframe!
 
 ```python
-len(samples)
+len(surveys)
 ```
 
 ```output
@@ -883,7 +883,7 @@ len(samples)
 ```
 
 ```python
-len(samples.dropna())
+len(surveys.dropna())
 ```
 
 ```output
@@ -891,12 +891,12 @@ len(samples.dropna())
 ```
 
 Instead, we could _fill_ all of the missing values with something else.
-For example, let's make a copy of the `samples` dataframe then populate the missing values in the `weight` column of that copy with the mean of all the non-missing weights.
+For example, let's make a copy of the `surveys` dataframe then populate the missing values in the `weight` column of that copy with the mean of all the non-missing weights.
 There are a few parts to that operation, which are tackled one at a time below.
 
 ```python
-mean_weight = samples['weight'].mean() # the 'mean' method calculates the mean of the non-null values in the column
-df1 = samples.copy() # making a copy to work with so that we do not edit our original data
+mean_weight = surveys['weight'].mean() # the 'mean' method calculates the mean of the non-null values in the column
+df1 = surveys.copy() # making a copy to work with so that we do not edit our original data
 df1["weight"] = df1['weight'].fillna(mean_weight) # the 'fillna' method fills all missing values with the provided value
 df1.head()
 ```
@@ -1021,7 +1021,7 @@ Why did we need to use the `copy` method to duplicate the dataframe above if var
 Why not assign a new variable with the value of the existing dataframe object?
 
 ```python
-df2 = samples
+df2 = surveys
 ```
 
 This gets to _mutablity_: a feature of Python that has caused headaches for many novices in the past!
@@ -1064,7 +1064,7 @@ This takes practice and time to get used to.
 The key thing to remember is that **you should use the `copy` method to make a copy of your dataframes** to avoid accidentally modifying the data in the original.
 
 ```python
-df2 = samples.copy()
+df2 = surveys.copy()
 ```
 
 
