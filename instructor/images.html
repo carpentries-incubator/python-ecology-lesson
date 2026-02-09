@@ -34,8 +34,17 @@
   <div class="container-fluid top-nav-container">
     <div class="col-md-8">
       <div class="large-logo">
-        <img id="dc-logo" alt="Data Carpentry" src="../assets/images/data-logo.svg">
-</div>
+        <img id="dc-logo" alt="Data Carpentry" src="../assets/images/data-logo.svg"><span class="badge text-bg-danger">
+          <abbr title="This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught.">
+            <a href="https://docs.carpentries.org/resources/curriculum/lesson-life-cycle.html" class="external-link alert-link">
+              <i aria-hidden="true" class="icon" data-feather="alert-octagon" style="border-radius: 5px"></i>
+              Pre-Alpha
+            </a>
+            <span class="visually-hidden">This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught.</span>
+          </abbr>
+        </span>
+
+      </div>
     </div>
     <div class="selector-container">
       <div id="theme-selector">
@@ -240,7 +249,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="00-before-we-start.html">1. Before we start</a>
+        <a href="visualizing-matplotlib.html">1. Data visualization with Pandas and Matplotlib</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -252,115 +261,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="01-short-introduction-to-Python.html">2. Short Introduction to Programming in Python</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush4">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading4">
-        <a href="02-starting-with-data.html">3. Starting With Data</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush5">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading5">
-        <a href="03-index-slice-subset.html">4. Indexing, Slicing and Subsetting DataFrames in Python</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush6">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading6">
-        <a href="04-data-types-and-format.html">5. Data Types and Formats</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush7">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading7">
-        <a href="05-merging-data.html">6. Combining DataFrames with Pandas</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush8">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading8">
-        <a href="06-loops-and-functions.html">7. Data Workflows and Automation</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush9">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading9">
-        <a href="07-visualization-ggplot-python.html">8. Making Plots With plotnine</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush10">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading10">
-        <a href="08-putting-it-all-together.html">9. Data Ingest and Visualization - Matplotlib and Pandas</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush11">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading11">
-        <a href="09-working-with-sql.html">10. Accessing SQLite Databases Using Python and Pandas</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush12">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading12">
-        <a href="visualizing-matplotlib.html">11. Data visualization with Pandas and Matplotlib</a>
+        <a href="003-data-structures.html">2. Exploring and understanding data</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -428,147 +329,8 @@
     <main id="main-content" class="main-content"><div class="container lesson-content">
         
         
-<section id="00-before-we-start"><h2 class="section-heading"><a href="00-before-we-start.html">Before we start</a></h2>
-<hr class="half-width"></section><section id="01-short-introduction-to-Python"><h2 class="section-heading"><a href="01-short-introduction-to-Python.html">Short Introduction to Programming in Python</a></h2>
-<hr class="half-width"></section><section id="02-starting-with-data"><h2 class="section-heading"><a href="02-starting-with-data.html">Starting With Data</a></h2>
-<hr class="half-width">
-<h3 id="02-starting-with-data-figure-1">Figure 1</h3>
-<p aria-hidden="true">Image 1 of 1: ‘Weight by Species Site’</p>
-<p><img src="../fig/countPerSpecies.png" alt="Weight by Species Site" class="figure">
-Count per species site</p>
-<hr>
-<h3 id="02-starting-with-data-figure-2">Figure 2</h3>
-<p aria-hidden="true">Image 1 of 1: ‘average weight across all species for each plot’</p>
-<figure><img src="../fig/01_chall_bar_meanweight.png" alt="average weight across all species for each plot" class="figure mx-auto d-block"></figure><hr>
-<h3 id="02-starting-with-data-figure-3">Figure 3</h3>
-<p aria-hidden="true">Image 1 of 1: ‘total males versus total females for the entire dataset’</p>
-<figure><img src="../fig/01_chall_bar_totalsex.png" alt="total males versus total females for the entire dataset" class="figure mx-auto d-block"></figure><hr>
-<h3 id="02-starting-with-data-figure-4">Figure 4</h3>
-<p aria-hidden="true">Image 1 of 1: ‘Stacked Bar Plot’</p>
-<figure><img src="../fig/stackedBar1.png" alt="Stacked Bar Plot" class="figure mx-auto d-block"></figure><hr>
-<h3 id="02-starting-with-data-figure-5">Figure 5</h3>
-<p aria-hidden="true">Image 1 of 1: ‘Stacked Bar Plot’</p>
-<figure><img src="../fig/stackedBar.png" alt="Stacked Bar Plot" class="figure mx-auto d-block"></figure><hr></section><section id="03-index-slice-subset"><h2 class="section-heading"><a href="03-index-slice-subset.html">Indexing, Slicing and Subsetting DataFrames in Python</a></h2>
-<hr class="half-width">
-<h3 id="03-index-slice-subset-figure-1">Figure 1</h3>
-<p aria-hidden="true">Image 1 of 2: ‘indexing diagram’</p>
-<p aria-hidden="true">Image 2 of 2: ‘slicing diagram’</p>
-<p><img src="../fig/slicing-indexing.png" alt="indexing diagram" class="figure"><img src="../fig/slicing-slicing.png" alt="slicing diagram" class="figure"></p>
-<hr>
-<h3 id="03-index-slice-subset-figure-2">Figure 2</h3>
-<p aria-hidden="true">Image 1 of 1: ‘average weight for each plot per sex’</p>
-<figure><img src="../fig/02_chall_stack_levelissue.png" alt="average weight for each plot per sex" class="figure mx-auto d-block"></figure><hr>
-<h3 id="03-index-slice-subset-figure-3">Figure 3</h3>
-<p aria-hidden="true">Image 1 of 1: ‘average weight for each plot per sex’</p>
-<figure><img src="../fig/02_chall_stack_level.png" alt="average weight for each plot per sex" class="figure mx-auto d-block"></figure><hr></section><section id="04-data-types-and-format"><h2 class="section-heading"><a href="04-data-types-and-format.html">Data Types and Formats</a></h2>
-<hr class="half-width"></section><section id="05-merging-data"><h2 class="section-heading"><a href="05-merging-data.html">Combining DataFrames with Pandas</a></h2>
-<hr class="half-width">
-<h3 id="05-merging-data-figure-1">Figure 1</h3>
-<p aria-hidden="true">Image 1 of 1: ‘average weight for each year, grouped by sex’</p>
-<figure><img src="../fig/04_chall_weight_year.png" alt="average weight for each year, grouped by sex" class="figure mx-auto d-block"></figure><hr>
-<h3 id="05-merging-data-figure-2">Figure 2</h3>
-<p aria-hidden="true">Image 1 of 1: ‘Inner join -- courtesy of codinghorror.com’</p>
-<figure><img src="../fig/inner-join.png" alt="Inner join -- courtesy of codinghorror.com" class="figure mx-auto d-block"></figure><hr>
-<h3 id="05-merging-data-figure-3">Figure 3</h3>
-<p aria-hidden="true">Image 1 of 1: ‘Left Join’</p>
-<figure><img src="../fig/left-join.png" alt="Left Join" class="figure mx-auto d-block"></figure><hr>
-<h3 id="05-merging-data-figure-4">Figure 4</h3>
-<p aria-hidden="true">Image 1 of 1: ‘taxa per plot’</p>
-<figure><img src="../fig/04_chall_ntaxa_per_site.png" alt="taxa per plot" class="figure mx-auto d-block"></figure><hr>
-<h3 id="05-merging-data-figure-5">Figure 5</h3>
-<p aria-hidden="true">Image 1 of 1: ‘taxa per plot’</p>
-<figure><img src="../fig/04_chall_taxa_per_site.png" alt="taxa per plot" class="figure mx-auto d-block"></figure><hr>
-<h3 id="05-merging-data-figure-6">Figure 6</h3>
-<p aria-hidden="true">Image 1 of 1: ‘taxa per plot per sex’</p>
-<figure><img src="../fig/04_chall_ntaxa_per_site_sex.png" alt="taxa per plot per sex" class="figure mx-auto d-block"></figure><hr>
-<h3 id="05-merging-data-figure-7">Figure 7</h3>
-<p aria-hidden="true">Image 1 of 1: ‘taxa per plot per sex’</p>
-<figure><img src="../fig/04_chall_sex_taxa_site_intro.png" alt="taxa per plot per sex" class="figure mx-auto d-block"></figure><hr>
-<h3 id="05-merging-data-figure-8">Figure 8</h3>
-<p aria-hidden="true">Image 1 of 1: ‘taxa per plot per sex’</p>
-<figure><img src="../fig/04_chall_sex_taxa_site.png" alt="taxa per plot per sex" class="figure mx-auto d-block"></figure><hr>
-<h3 id="05-merging-data-figure-9">Figure 9</h3>
-<p aria-hidden="true">Image 1 of 1: ‘horizontal bar chart of diversity index by plot’</p>
-<figure><img src="../fig/04_chall_diversity_index.png" alt="horizontal bar chart of diversity index by plot" class="figure mx-auto d-block"></figure><hr></section><section id="06-loops-and-functions"><h2 class="section-heading"><a href="06-loops-and-functions.html">Data Workflows and Automation</a></h2>
-<hr class="half-width"></section><section id="07-visualization-ggplot-python"><h2 class="section-heading"><a href="07-visualization-ggplot-python.html">Making Plots With plotnine</a></h2>
-<hr class="half-width">
-<h3 id="07-visualization-ggplot-python-figure-1">Figure 1</h3>
-<p aria-hidden="true">Image 1 of 1: ‘scatter plot of hindfoot length vs weight with black dots denoting individual sampled animals, showing 4 main clusters of dots in the middle and left middle sides’</p>
-<figure><img src="../fig/06_first_plot.png" alt="scatter plot of hindfoot length vs weight with black dots denoting individual sampled animals, showing 4 main clusters of dots in the middle and left middle sides" class="figure mx-auto d-block"></figure><hr>
-<h3 id="07-visualization-ggplot-python-figure-2">Figure 2</h3>
-<p aria-hidden="true">Image 1 of 1: ‘bar chart of count of rodents caught at each plot site’</p>
-<figure><img src="../fig/06_challenge_bar.png" alt="bar chart of count of rodents caught at each plot site" class="figure mx-auto d-block"></figure><hr>
-<h3 id="07-visualization-ggplot-python-figure-3">Figure 3</h3>
-<p aria-hidden="true">Image 1 of 1: ‘scatter plot of hindfoot-length vs weight of rodents,  showing a curve increasing to a plateau’</p>
-<figure><img src="../fig/06_alpha_plot.png" alt="scatter plot of hindfoot-length vs weight of rodents,  showing a curve increasing to a plateau" class="figure mx-auto d-block"></figure><hr>
-<h3 id="07-visualization-ggplot-python-figure-4">Figure 4</h3>
-<p aria-hidden="true">Image 1 of 1: ‘scatter plot of hindfoot-length vs weight  of rodents, demonstrating overplotting’</p>
-<figure><img src="../fig/06_blue_plot.png" alt="scatter plot of hindfoot-length vs weight  of rodents, demonstrating overplotting" class="figure mx-auto d-block"></figure><hr>
-<h3 id="07-visualization-ggplot-python-figure-5">Figure 5</h3>
-<p aria-hidden="true">Image 1 of 1: ‘scatter plot of Hindfoot length vs weight with colors coordinating to specific species, showing abundance in the mid to lower left side of the plot’</p>
-<figure><img src="../fig/06_color_plot.png" alt="scatter plot of Hindfoot length vs weight with colors coordinating to specific species, showing abundance in the mid to lower left side of the plot" class="figure mx-auto d-block"></figure><hr>
-<h3 id="07-visualization-ggplot-python-figure-6">Figure 6</h3>
-<p aria-hidden="true">Image 1 of 1: ‘scatter plot of Hindfoot length vs weight (g) with colors coordinating to specific species, showing abundance in the mid to lower left side of the plot’</p>
-<figure><img src="../fig/06_color_label_plot.png" alt="scatter plot of Hindfoot length vs weight (g) with colors coordinating to specific species, showing abundance in the mid to lower left side of the plot" class="figure mx-auto d-block"></figure><hr>
-<h3 id="07-visualization-ggplot-python-figure-7">Figure 7</h3>
-<p aria-hidden="true">Image 1 of 1: ‘Scatterplot of hindfoot length versus weight where logarithmic x-axis is used to distribute lower numbers’</p>
-<figure><img src="../fig/06_log_plot.png" alt="Scatterplot of hindfoot length versus weight where logarithmic x-axis is used to distribute lower numbers" class="figure mx-auto d-block"></figure><hr>
-<h3 id="07-visualization-ggplot-python-figure-8">Figure 8</h3>
-<p aria-hidden="true">Image 1 of 1: ‘Scatterplot of hindfoot length versus weight on a logarithmic x-axis using a white background’</p>
-<figure><img src="../fig/06_white_plot.png" alt="Scatterplot of hindfoot length versus weight on a logarithmic x-axis using a white background" class="figure mx-auto d-block"></figure><hr>
-<h3 id="07-visualization-ggplot-python-figure-9">Figure 9</h3>
-<p aria-hidden="true">Image 1 of 1: ‘Bar chart of counts of males (yellow) and females (blue) vs plot id, showing the number of females to be higher in all plots’</p>
-<figure><img src="../fig/06_challenge_color_bar.png" alt="Bar chart of counts of males (yellow) and females (blue) vs plot id, showing the number of females to be higher in all plots" class="figure mx-auto d-block"></figure><hr>
-<h3 id="07-visualization-ggplot-python-figure-10">Figure 10</h3>
-<p aria-hidden="true">Image 1 of 1: ‘boxplot showing distribution of rodent weight for each species group’</p>
-<figure><img src="../fig/06_boxplot.png" alt="boxplot showing distribution of rodent weight for each species group" class="figure mx-auto d-block"></figure><hr>
-<h3 id="07-visualization-ggplot-python-figure-11">Figure 11</h3>
-<p aria-hidden="true">Image 1 of 1: ‘Boxplot of weight by species overlaying observation points to visualize the distribution’</p>
-<figure><img src="../fig/06_point_boxplot.png" alt="Boxplot of weight by species overlaying observation points to visualize the distribution" class="figure mx-auto d-block"></figure><hr>
-<h3 id="07-visualization-ggplot-python-figure-12">Figure 12</h3>
-<p aria-hidden="true">Image 1 of 1: ‘Violin plot of weight of species shown with weight scaled down and datapoints with color.’</p>
-<figure><img src="../fig/06_challenge_boxplot.png" alt="Violin plot of weight of species shown with weight scaled down and datapoints with color." class="figure mx-auto d-block"></figure><hr>
-<h3 id="07-visualization-ggplot-python-figure-13">Figure 13</h3>
-<p aria-hidden="true">Image 1 of 1: ‘Line graph of count per year where data for each species is indicated by a different color’</p>
-<figure><img src="../fig/06_time_plot.png" alt="Line graph of count per year where data for each species is indicated by a different color" class="figure mx-auto d-block"></figure><hr>
-<h3 id="07-visualization-ggplot-python-figure-14">Figure 14</h3>
-<p aria-hidden="true">Image 1 of 1: ‘2 scatter plots, one for males and the other for females, of hindfoot length vs weight with colored dots denoting specific species, showing the trend is the same between both male and females of multiple species’</p>
-<figure><img src="../fig/06_facet_plot.png" alt="2 scatter plots, one for males and the other for females, of hindfoot length vs weight with colored dots denoting specific species, showing the trend is the same between both male and females of multiple species" class="figure mx-auto d-block"></figure><hr>
-<h3 id="07-visualization-ggplot-python-figure-15">Figure 15</h3>
-<p aria-hidden="true">Image 1 of 1: ‘24 individual scatter plots of Hindfoot length vs weight of species with colors denoting species and numbers above plot representing 1 of the 24 plots, showing trends for each unique plot id studied’</p>
-<figure><img src="../fig/06_facet_all_plot.png" alt="24 individual scatter plots of Hindfoot length vs weight of species with colors denoting species and numbers above plot representing 1 of the 24 plots, showing trends for each unique plot id studied" class="figure mx-auto d-block"></figure><hr>
-<h3 id="07-visualization-ggplot-python-figure-16">Figure 16</h3>
-<p aria-hidden="true">Image 1 of 1: ‘Set of 4 color scatterplots showing the relationship between weight and hind foot length for 13 species, separated by sex and year’</p>
-<figure><img src="../fig/06_select_plot.png" alt="Set of 4 color scatterplots showing the relationship between weight and hind foot length for 13 species, separated by sex and year" class="figure mx-auto d-block"></figure><hr>
-<h3 id="07-visualization-ggplot-python-figure-17">Figure 17</h3>
-<p aria-hidden="true">Image 1 of 1: ‘Bar graph of count per year showing overlapping x-axis labels’</p>
-<figure><img src="../fig/06_overlap_bars.png" alt="Bar graph of count per year showing overlapping x-axis labels" class="figure mx-auto d-block"></figure><hr>
-<h3 id="07-visualization-ggplot-python-figure-18">Figure 18</h3>
-<p aria-hidden="true">Image 1 of 1: ‘Bar graph of count per year demonstrating how the theme function rotates the x-axis labels’</p>
-<figure><img src="../fig/06_good_bars.png" alt="Bar graph of count per year demonstrating how the theme function rotates the x-axis labels" class="figure mx-auto d-block"></figure><hr>
-<h3 id="07-visualization-ggplot-python-figure-19">Figure 19</h3>
-<p aria-hidden="true">Image 1 of 1: ‘Bar graph of count per year demonstrating the use of a customized theme’</p>
-<figure><img src="../fig/06_theme_plot.png" alt="Bar graph of count per year demonstrating the use of a customized theme" class="figure mx-auto d-block"></figure><hr></section><section id="08-putting-it-all-together"><h2 class="section-heading"><a href="08-putting-it-all-together.html">Data Ingest and Visualization - Matplotlib and Pandas</a></h2>
-<hr class="half-width">
-<h3 id="08-putting-it-all-together-figure-1">Figure 1</h3>
-<p aria-hidden="true">Image 1 of 1: ‘Scatter plot of survey data set’</p>
-<figure><img src="../fig/08_scatter_surveys.png" alt="Scatter plot of survey data set" class="figure mx-auto d-block"></figure><hr>
-<h3 id="08-putting-it-all-together-figure-2">Figure 2</h3>
-<p aria-hidden="true">Image 1 of 1: ‘Histogram of 1000 samples from normal distribution’</p>
-<figure><img src="../fig/08-normal-distribution.png" alt="Histogram of 1000 samples from normal distribution" class="figure mx-auto d-block"></figure><hr>
-<h3 id="08-putting-it-all-together-figure-3">Figure 3</h3>
-<p aria-hidden="true">Image 1 of 1: ‘Plot with additional axes’</p>
-<figure><img src="../fig/08-dualdistribution.png" alt="Plot with additional axes" class="figure mx-auto d-block"></figure><hr>
-<h3 id="08-putting-it-all-together-figure-4">Figure 4</h3>
-<p aria-hidden="true">Image 1 of 1: ‘Extended version of scatter plot surveys’</p>
-<figure><img src="../fig/08_scatter_surveys_extended.png" alt="Extended version of scatter plot surveys" class="figure mx-auto d-block"></figure><hr>
-<h3 id="08-putting-it-all-together-figure-5">Figure 5</h3>
-<p aria-hidden="true">Image 1 of 1: ‘Extended version of plotnine scatter plot’</p>
-<figure><img src="../fig/08_scatter_surveys_plotnine.png" alt="Extended version of plotnine scatter plot" class="figure mx-auto d-block"></figure><hr>
-<h3 id="08-putting-it-all-together-figure-6">Figure 6</h3>
-<p aria-hidden="true">Image 1 of 1: ‘Flood event plot’</p>
-<figure><img src="../fig/08_flood_event.png" alt="Flood event plot" class="figure mx-auto d-block"></figure><hr></section><section id="09-working-with-sql"><h2 class="section-heading"><a href="09-working-with-sql.html">Accessing SQLite Databases Using Python and Pandas</a></h2>
-<hr class="half-width"></section><section id="visualizing-matplotlib"><h2 class="section-heading"><a href="visualizing-matplotlib.html">Data visualization with Pandas and Matplotlib</a></h2>
+<section id="visualizing-matplotlib"><h2 class="section-heading"><a href="visualizing-matplotlib.html">Data visualization with Pandas and Matplotlib</a></h2>
+<hr class="half-width"></section><section id="003-data-structures"><h2 class="section-heading"><a href="003-data-structures.html">Exploring and understanding data</a></h2>
 <hr class="half-width"></section>
 </div>
     </main>
@@ -582,13 +344,13 @@ Count per species site</p>
         <p>This lesson is subject to the <a href="CODE_OF_CONDUCT.html">Code of Conduct</a></p>
         <p>
 
-        <a href="https://github.com/datacarpentry/python-ecology-lesson/edit/main/README.md" class="external-link">Edit on GitHub</a>
+        <a href="https://github.com/carpentries-incubator/python-ecology-lesson/edit/main/README.md" class="external-link">Edit on GitHub</a>
 
 	
-        | <a href="https://github.com/datacarpentry/python-ecology-lesson/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
-        | <a href="https://github.com/datacarpentry/python-ecology-lesson/" class="external-link">Source</a></p>
+        | <a href="https://github.com/carpentries-incubator/python-ecology-lesson/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
+        | <a href="https://github.com/carpentries-incubator/python-ecology-lesson/" class="external-link">Source</a></p>
         <p>
-        <a href="https://github.com/datacarpentry/python-ecology-lesson/blob/main/" class="external-link">Cite</a>
+        <a href="https://github.com/carpentries-incubator/python-ecology-lesson/blob/main/" class="external-link">Cite</a>
         | <a href="mailto:team@carpentries.org">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
 		</div>
 		<div class="col-md-6">
@@ -609,16 +371,16 @@ Count per species site</p>
     {
   "@context": "https://schema.org",
   "@type": "LearningResource",
-  "@id": "https://datacarpentry.github.io/python-ecology-lesson/instructor/images.html",
+  "@id": "https://carpentries-incubator.github.io/python-ecology-lesson/instructor/images.html",
   "inLanguage": "en",
   "dct:conformsTo": "https://bioschemas.org/profiles/LearningResource/1.0-RELEASE",
   "description": "A Carpentries Lesson teaching foundational data and coding skills to researchers worldwide",
   "keywords": "software, data, lesson, The Carpentries",
   "name": "All Images",
   "creativeWorkStatus": "active",
-  "url": "https://datacarpentry.github.io/python-ecology-lesson/instructor/images.html",
-  "identifier": "https://datacarpentry.github.io/python-ecology-lesson/instructor/images.html",
-  "dateCreated": "2015-03-19",
+  "url": "https://carpentries-incubator.github.io/python-ecology-lesson/instructor/images.html",
+  "identifier": "https://carpentries-incubator.github.io/python-ecology-lesson/instructor/images.html",
+  "dateCreated": "2025-08-08",
   "dateModified": "2026-02-09",
   "datePublished": "2026-02-09"
 }

@@ -34,8 +34,17 @@
   <div class="container-fluid top-nav-container">
     <div class="col-md-8">
       <div class="large-logo">
-        <img id="dc-logo" alt="Data Carpentry" src="../assets/images/data-logo.svg">
-</div>
+        <img id="dc-logo" alt="Data Carpentry" src="../assets/images/data-logo.svg"><span class="badge text-bg-danger">
+          <abbr title="This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught.">
+            <a href="https://docs.carpentries.org/resources/curriculum/lesson-life-cycle.html" class="external-link alert-link">
+              <i aria-hidden="true" class="icon" data-feather="alert-octagon" style="border-radius: 5px"></i>
+              Pre-Alpha
+            </a>
+            <span class="visually-hidden">This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught.</span>
+          </abbr>
+        </span>
+
+      </div>
     </div>
     <div class="selector-container">
       <div id="theme-selector">
@@ -240,7 +249,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="00-before-we-start.html">1. Before we start</a>
+        <a href="visualizing-matplotlib.html">1. Data visualization with Pandas and Matplotlib</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -252,115 +261,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="01-short-introduction-to-Python.html">2. Short Introduction to Programming in Python</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush4">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading4">
-        <a href="02-starting-with-data.html">3. Starting With Data</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush5">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading5">
-        <a href="03-index-slice-subset.html">4. Indexing, Slicing and Subsetting DataFrames in Python</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush6">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading6">
-        <a href="04-data-types-and-format.html">5. Data Types and Formats</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush7">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading7">
-        <a href="05-merging-data.html">6. Combining DataFrames with Pandas</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush8">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading8">
-        <a href="06-loops-and-functions.html">7. Data Workflows and Automation</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush9">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading9">
-        <a href="07-visualization-ggplot-python.html">8. Making Plots With plotnine</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush10">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading10">
-        <a href="08-putting-it-all-together.html">9. Data Ingest and Visualization - Matplotlib and Pandas</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush11">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading11">
-        <a href="09-working-with-sql.html">10. Accessing SQLite Databases Using Python and Pandas</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush12">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading12">
-        <a href="visualizing-matplotlib.html">11. Data visualization with Pandas and Matplotlib</a>
+        <a href="003-data-structures.html">2. Exploring and understanding data</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -495,198 +396,7 @@ LaTeX-related backslashes with two backslashes.</p>
 </div>
 <p><a href="https://matplotlib.org/users/mathtext.html" class="external-link">This page</a>
 contains more information.</p>
-</section><section id="aggregate-instructor-notes"><section id="00-before-we-start"><h2 class="section-heading"><a href="00-before-we-start.html">Before we start</a></h2>
-<hr class="half-width">
-<h3 id="00-before-we-start-headingInstructor1">
-<a href="00-before-we-start.html#headingInstructor1">Choose how to teach this section</a><a class="anchor" aria-label="anchor" href="#00-before-we-start-headingInstructor1"></a>
-</h3>
-<p>The section on generative AI is intended to be concise but
-Instructors may choose to devote more time to the topic in a workshop.
-Depending on your own level of experience and comfort with talking about
-and using these tools, you could choose to do any of the following:</p>
-<ul>
-<li>Explain how large language models work and are trained, and/or the
-difference between generative AI, other forms of AI that currently
-exist, and the limits of what LLMs can do (e.g., they can’t
-“reason”).</li>
-<li>Demonstrate how you recommend that learners use generative AI.</li>
-<li>Discuss the ethical concerns listed below, as well as others that
-you are aware of, to help learners make an informed choice about whether
-or not to use generative AI tools.</li>
-</ul>
-<p>This is a fast-moving technology. If you are preparing to teach this
-section and you feel it has become outdated, please open an issue on the
-lesson repository to let the Maintainers know and/or a pull request to
-suggest updates and improvements.</p>
-<hr>
-<br></section><section id="01-short-introduction-to-Python"><h2 class="section-heading"><a href="01-short-introduction-to-Python.html">Short Introduction to Programming in Python</a></h2>
-<hr class="half-width">
-<h3 id="01-short-introduction-to-Python-headingInstructor1">
-<a href="01-short-introduction-to-Python.html#headingInstructor1">Assigning to Dictionaries</a><a class="anchor" aria-label="anchor" href="#01-short-introduction-to-Python-headingInstructor1"></a>
-</h3>
-<p>It can help to further demonstrate the freedom the user has to define
-values to keys in a dictionary, by showing another example with a value
-completely unrelated to the current contents of the dictionary, e.g.</p>
-<div class="codewrapper sourceCode" id="cb71">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" tabindex="-1"></a>rev[<span class="dv">2</span>] <span class="op">=</span> <span class="st">"apple-sauce"</span></span>
-<span id="cb71-2"><a href="#cb71-2" tabindex="-1"></a><span class="bu">print</span>(rev)</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>{1: 'one', 2: 'apple-sauce', 3: 'three'}</code></pre>
-</div>
-<hr>
-<br></section><section id="02-starting-with-data"><h2 class="section-heading"><a href="02-starting-with-data.html">Starting With Data</a></h2>
-<hr class="half-width">
-<h3 id="02-starting-with-data-headingInstructor1">
-<a href="02-starting-with-data.html#headingInstructor1">Recapping object (im)mutability</a><a class="anchor" aria-label="anchor" href="#02-starting-with-data-headingInstructor1"></a>
-</h3>
-<p>Working through solutions to the challenge above can provide a good
-opportunity to recap about mutability and immutability of different
-objects. Show that the DataFrame index ( the <code>columns</code>
-attribute) is immutable, e.g. 
-<code>surveys_df.columns[4] = "plotid"</code> returns a
-<code>TypeError</code>.</p>
-<p>Adapting the name is done with the <code>rename</code> function:</p>
-<div class="codewrapper sourceCode" id="cb14">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>surveys_df.rename(columns<span class="op">=</span>{<span class="st">"plot_id"</span>: <span class="st">"plotid"</span>})`)</span></code></pre>
-</div>
-<hr>
-<br><h3 id="02-starting-with-data-headingInstructor2">
-<a href="02-starting-with-data.html#headingInstructor2">Important Bug Note</a><a class="anchor" aria-label="anchor" href="#02-starting-with-data-headingInstructor2"></a>
-</h3>
-<p>In pandas prior to version 0.18.1 there is a bug causing
-<code>surveys_df['weight'].describe()</code> to return a runtime
-error.</p>
-<hr>
-<br></section><section id="03-index-slice-subset"><h2 class="section-heading"><a href="03-index-slice-subset.html">Indexing, Slicing and Subsetting DataFrames in Python</a></h2>
-<hr class="half-width">
-<h3 id="03-index-slice-subset-headingInstructor1">
-<a href="03-index-slice-subset.html#headingInstructor1">Instructor Note</a><a class="anchor" aria-label="anchor" href="#03-index-slice-subset-headingInstructor1"></a>
-</h3>
-<p>Tip: use <code>.head()</code> method throughout this lesson to keep
-your display neater for students. Encourage students to try with and
-without <code>.head()</code> to reinforce this useful tool and then to
-use it or not at their preference.</p>
-<p>For example, if a student worries about keeping up in pace with
-typing, let them know they can skip the <code>.head()</code>, but that
-you’ll use it to keep more lines of previous steps visible.</p>
-<hr>
-<br><h3 id="03-index-slice-subset-headingInstructor2">
-<a href="03-index-slice-subset.html#headingInstructor2">Instructor Note</a><a class="anchor" aria-label="anchor" href="#03-index-slice-subset-headingInstructor2"></a>
-</h3>
-<p>When working through the solutions to the challenges above, you could
-introduce already that all these slice operations are actually based on
-a <em>Boolean indexing</em> operation (next section in the lesson). The
-filter provides for each record if it satisfies (True) or not (False).
-The slicing itself interprets the True/False of each record.</p>
-<hr>
-<br><h3 id="03-index-slice-subset-headingInstructor3">
-<a href="03-index-slice-subset.html#headingInstructor3">Instructor Note</a><a class="anchor" aria-label="anchor" href="#03-index-slice-subset-headingInstructor3"></a>
-</h3>
-<p>Referring to the challenge solution above, as we know the other
-values are all Nan values, we could also select all not null values:</p>
-<div class="codewrapper sourceCode" id="cb52">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a>stack_selection <span class="op">=</span> surveys_df[(surveys_df[<span class="st">'sex'</span>].notnull()) <span class="op">&amp;</span></span>
-<span id="cb52-2"><a href="#cb52-2" tabindex="-1"></a>          surveys_df[<span class="st">"weight"</span>] <span class="op">&gt;</span> <span class="fl">0.</span>][[<span class="st">"sex"</span>, <span class="st">"weight"</span>, <span class="st">"plot_id"</span>]]</span></code></pre>
-</div>
-<figure><img src="../fig/02_chall_stack_levelissue.png" alt="average weight for each plot per sex" class="figure mx-auto d-block"></figure><p>However, due to the <code>unstack</code> command, the legend header
-contains two levels. In order to remove this, the column naming needs to
-be simplified:</p>
-<div class="codewrapper sourceCode" id="cb53">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a>stack_selection.columns <span class="op">=</span> stack_selection.columns.droplevel()</span></code></pre>
-</div>
-<figure><img src="../fig/02_chall_stack_level.png" alt="average weight for each plot per sex" class="figure mx-auto d-block"></figure><p>This is just a preview, more in next episode.</p>
-<hr>
-<br></section><section id="04-data-types-and-format"><h2 class="section-heading"><a href="04-data-types-and-format.html">Data Types and Formats</a></h2>
-<hr class="half-width">
-<h3 id="04-data-types-and-format-headingInstructor1">
-<a href="04-data-types-and-format.html#headingInstructor1">Processed Data Checkpoint</a><a class="anchor" aria-label="anchor" href="#04-data-types-and-format-headingInstructor1"></a>
-</h3>
-<p>If learners have trouble generating the output, or anything happens
-with that, the folder <a href="https://github.com/datacarpentry/python-ecology-lesson/tree/main/sample_output" class="external-link"><code>sample_output</code></a>
-in this repository contains the file <code>surveys_complete.csv</code>
-with the data they should generate.</p>
-<hr>
-<br></section><section id="05-merging-data"><h2 class="section-heading"><a href="05-merging-data.html">Combining DataFrames with Pandas</a></h2>
-<hr class="half-width">
-<h3 id="05-merging-data-headingInstructor1">
-<a href="05-merging-data.html#headingInstructor1">Suggestion (for discussion only)</a><a class="anchor" aria-label="anchor" href="#05-merging-data-headingInstructor1"></a>
-</h3>
-<p>The number of individuals for each taxa in each plot per sex can be
-derived as well.</p>
-<div class="codewrapper sourceCode" id="cb29">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a>sex_taxa_site  <span class="op">=</span> merged_left.groupby([<span class="st">"plot_id"</span>, <span class="st">"taxa"</span>, <span class="st">"sex"</span>]).count()[<span class="st">'record_id'</span>]</span>
-<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>sex_taxa_site.unstack(level<span class="op">=</span>[<span class="dv">1</span>, <span class="dv">2</span>]).plot(kind<span class="op">=</span><span class="st">'bar'</span>, logy<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">'upper center'</span>, ncol<span class="op">=</span><span class="dv">3</span>, bbox_to_anchor<span class="op">=</span>(<span class="fl">0.5</span>, <span class="fl">1.15</span>),</span>
-<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a>           fontsize<span class="op">=</span><span class="st">'small'</span>, frameon<span class="op">=</span><span class="va">False</span>)</span></code></pre>
-</div>
-<figure><img src="../fig/04_chall_sex_taxa_site_intro.png" alt="taxa per plot per sex" class="figure mx-auto d-block"></figure><p>This is not really the best plot choice, e.g. it is not easily
-readable. A first option to make this better, is to make facets.
-However, pandas/matplotlib do not provide this by default. Just as a
-pure matplotlib example (<code>M|F</code> if for not-defined sex
-records):</p>
-<div class="codewrapper sourceCode" id="cb30">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">1</span>)</span>
-<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="cf">for</span> sex, ax <span class="kw">in</span> <span class="bu">zip</span>([<span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"M|F"</span>], axs):</span>
-<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a>    sex_taxa_site[sex_taxa_site[<span class="st">"sex"</span>] <span class="op">==</span> sex].plot(kind<span class="op">=</span><span class="st">'bar'</span>, ax<span class="op">=</span>ax, legend<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a>    ax.set_ylabel(sex)</span>
-<span id="cb30-5"><a href="#cb30-5" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> ax.is_last_row():</span>
-<span id="cb30-6"><a href="#cb30-6" tabindex="-1"></a>        ax.set_xticks([])</span>
-<span id="cb30-7"><a href="#cb30-7" tabindex="-1"></a>        ax.set_xlabel(<span class="st">""</span>)</span>
-<span id="cb30-8"><a href="#cb30-8" tabindex="-1"></a>axs[<span class="dv">0</span>].legend(loc<span class="op">=</span><span class="st">'upper center'</span>, ncol<span class="op">=</span><span class="dv">5</span>, bbox_to_anchor<span class="op">=</span>(<span class="fl">0.5</span>, <span class="fl">1.3</span>),</span>
-<span id="cb30-9"><a href="#cb30-9" tabindex="-1"></a>              fontsize<span class="op">=</span><span class="st">'small'</span>, frameon<span class="op">=</span><span class="va">False</span>)</span></code></pre>
-</div>
-<figure><img src="../fig/04_chall_sex_taxa_site.png" alt="taxa per plot per sex" class="figure mx-auto d-block"></figure><p>However, it would be better to link to <a href="https://stanford.edu/~mwaskom/software/seaborn" class="external-link">Seaborn</a> and <a href="https://github.com/ellisonbg/altair" class="external-link">Altair</a> for this kind of
-multivariate visualisation.</p>
-<hr>
-<br></section><section id="06-loops-and-functions"><h2 class="section-heading"><a href="06-loops-and-functions.html">Data Workflows and Automation</a></h2>
-<hr class="half-width">
-<h3 id="06-loops-and-functions-headingInstructor1">
-<a href="06-loops-and-functions.html#headingInstructor1">Instructor Note</a><a class="anchor" aria-label="anchor" href="#06-loops-and-functions-headingInstructor1"></a>
-</h3>
-<p>When teaching the challenge below, demonstrating the results in a
-debugging environment can make function scope more clear.</p>
-<hr>
-<br></section><section id="07-visualization-ggplot-python"><h2 class="section-heading"><a href="07-visualization-ggplot-python.html">Making Plots With plotnine</a></h2>
-<hr class="half-width">
-<h3 id="07-visualization-ggplot-python-headingInstructor1">
-<a href="07-visualization-ggplot-python.html#headingInstructor1">Instructor Note</a><a class="anchor" aria-label="anchor" href="#07-visualization-ggplot-python-headingInstructor1"></a>
-</h3>
-<p>If learners have trouble generating the output, or anything happens
-with that, the folder <a href="https://github.com/datacarpentry/python-ecology-lesson/tree/main/sample_output" class="external-link"><code>sample_output</code></a>
-in this repository contains the file <code>surveys_complete.csv</code>
-with the data they should generate.</p>
-<hr>
-<br><h3 id="07-visualization-ggplot-python-headingInstructor2">
-<a href="07-visualization-ggplot-python.html#headingInstructor2">Instructor Note</a><a class="anchor" aria-label="anchor" href="#07-visualization-ggplot-python-headingInstructor2"></a>
-</h3>
-<p>Note <code>plotnine</code> contains a <em>lot</em> of deprecation
-warnings in some versions of python/matplotlib, warnings may need to be
-suppressed with</p>
-<div class="codewrapper sourceCode" id="cb4">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="im">import</span> warnings</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>warnings.filterwarnings(action<span class="op">=</span><span class="st">'once'</span>)</span></code></pre>
-</div>
-<hr>
-<br></section><section id="08-putting-it-all-together"><h2 class="section-heading"><a href="08-putting-it-all-together.html">Data Ingest and Visualization - Matplotlib and Pandas</a></h2>
-<hr class="half-width"></section><section id="09-working-with-sql"><h2 class="section-heading"><a href="09-working-with-sql.html">Accessing SQLite Databases Using Python and Pandas</a></h2>
-<hr class="half-width"></section><section id="visualizing-matplotlib"><h2 class="section-heading"><a href="visualizing-matplotlib.html">Data visualization with Pandas and Matplotlib</a></h2>
+</section><section id="aggregate-instructor-notes"><section id="visualizing-matplotlib"><h2 class="section-heading"><a href="visualizing-matplotlib.html">Data visualization with Pandas and Matplotlib</a></h2>
 <hr class="half-width">
 <h3 id="visualizing-matplotlib-headingInstructor1">
 <a href="visualizing-matplotlib.html#headingInstructor1">Instructor Note</a><a class="anchor" aria-label="anchor" href="#visualizing-matplotlib-headingInstructor1"></a>
@@ -711,6 +421,30 @@ time talking about relative paths and why we need to use
 <code>'../'</code>. Prepare to spend 10 to 15 minutes successfully
 reading the csv file with your group.</p>
 <hr>
+<br></section><section id="003-data-structures"><h2 class="section-heading"><a href="003-data-structures.html">Exploring and understanding data</a></h2>
+<hr class="half-width">
+<h3 id="003-data-structures-headingInstructor1">
+<a href="003-data-structures.html#headingInstructor1">Choose how to teach this section</a><a class="anchor" aria-label="anchor" href="#003-data-structures-headingInstructor1"></a>
+</h3>
+<p>The section on generative AI is intended to be concise but
+Instructors may choose to devote more time to the topic in a workshop.
+Depending on your own level of experience and comfort with talking about
+and using these tools, you could choose to do any of the following:</p>
+<ul>
+<li>Explain how large language models work and are trained, and/or the
+difference between generative AI, other forms of AI that currently
+exist, and the limits of what LLMs can do (e.g., they can’t
+“reason”).</li>
+<li>Demonstrate how you recommend that learners use generative AI.</li>
+<li>Discuss the ethical concerns listed below, as well as others that
+you are aware of, to help learners make an informed choice about whether
+or not to use generative AI tools.</li>
+</ul>
+<p>This is a fast-moving technology. If you are preparing to teach this
+section and you feel it has become outdated, please open an issue on the
+lesson repository to let the Maintainers know and/or a pull request to
+suggest updates and improvements.</p>
+<hr>
 <br></section></section>
 </div>
     </main>
@@ -724,13 +458,13 @@ reading the csv file with your group.</p>
         <p>This lesson is subject to the <a href="CODE_OF_CONDUCT.html">Code of Conduct</a></p>
         <p>
 
-        <a href="https://github.com/datacarpentry/python-ecology-lesson/edit/main/README.md" class="external-link">Edit on GitHub</a>
+        <a href="https://github.com/carpentries-incubator/python-ecology-lesson/edit/main/README.md" class="external-link">Edit on GitHub</a>
 
 	
-        | <a href="https://github.com/datacarpentry/python-ecology-lesson/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
-        | <a href="https://github.com/datacarpentry/python-ecology-lesson/" class="external-link">Source</a></p>
+        | <a href="https://github.com/carpentries-incubator/python-ecology-lesson/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
+        | <a href="https://github.com/carpentries-incubator/python-ecology-lesson/" class="external-link">Source</a></p>
         <p>
-        <a href="https://github.com/datacarpentry/python-ecology-lesson/blob/main/" class="external-link">Cite</a>
+        <a href="https://github.com/carpentries-incubator/python-ecology-lesson/blob/main/" class="external-link">Cite</a>
         | <a href="mailto:team@carpentries.org">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
 		</div>
 		<div class="col-md-6">
@@ -751,16 +485,16 @@ reading the csv file with your group.</p>
     {
   "@context": "https://schema.org",
   "@type": "LearningResource",
-  "@id": "https://datacarpentry.github.io/python-ecology-lesson/instructor/instructor-notes.html",
+  "@id": "https://carpentries-incubator.github.io/python-ecology-lesson/instructor/instructor-notes.html",
   "inLanguage": "en",
   "dct:conformsTo": "https://bioschemas.org/profiles/LearningResource/1.0-RELEASE",
   "description": "A Carpentries Lesson teaching foundational data and coding skills to researchers worldwide",
   "keywords": "software, data, lesson, The Carpentries",
   "name": "Instructor Notes",
   "creativeWorkStatus": "active",
-  "url": "https://datacarpentry.github.io/python-ecology-lesson/instructor/instructor-notes.html",
-  "identifier": "https://datacarpentry.github.io/python-ecology-lesson/instructor/instructor-notes.html",
-  "dateCreated": "2015-03-19",
+  "url": "https://carpentries-incubator.github.io/python-ecology-lesson/instructor/instructor-notes.html",
+  "identifier": "https://carpentries-incubator.github.io/python-ecology-lesson/instructor/instructor-notes.html",
+  "dateCreated": "2025-08-08",
   "dateModified": "2026-02-09",
   "datePublished": "2026-02-09"
 }
