@@ -357,6 +357,18 @@
 </div>
 <!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush12">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading12">
+        <a href="visualizing-matplotlib.html">11. Data visualization with Pandas and Matplotlib</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
                 </div>
               </div>
             </div>
@@ -674,7 +686,32 @@ suppressed with</p>
 <hr>
 <br></section><section id="08-putting-it-all-together"><h2 class="section-heading"><a href="08-putting-it-all-together.html">Data Ingest and Visualization - Matplotlib and Pandas</a></h2>
 <hr class="half-width"></section><section id="09-working-with-sql"><h2 class="section-heading"><a href="09-working-with-sql.html">Accessing SQLite Databases Using Python and Pandas</a></h2>
-<hr class="half-width"></section></section>
+<hr class="half-width"></section><section id="visualizing-matplotlib"><h2 class="section-heading"><a href="visualizing-matplotlib.html">Data visualization with Pandas and Matplotlib</a></h2>
+<hr class="half-width">
+<h3 id="visualizing-matplotlib-headingInstructor1">
+<a href="visualizing-matplotlib.html#headingInstructor1">Instructor Note</a><a class="anchor" aria-label="anchor" href="#visualizing-matplotlib-headingInstructor1"></a>
+</h3>
+<p>Warning, the line of code
+<code>pd.read_csv("../data/raw/surveys_complete_77_89.csv")</code> is
+prone to raise relative path errors for learners, for two main
+reasons:</p>
+<ul>
+<li><p><em>They may have not set the directory structure as described in
+the previous episode:</em> For example, if they used capital letters,
+added whitespaces, or just typed it differently. This would change their
+relative path to the file.</p></li>
+<li><p><em>They didn’t create the notebook inside their
+<code>scripts</code> directory:</em> JupyterLab seems to set the working
+directory to the place where the notebook was created. If a learner
+created the notebook at the root of their project folder then the
+relative path would change.</p></li>
+</ul>
+<p>Additional to errors they may get, you would also need to spend some
+time talking about relative paths and why we need to use
+<code>'../'</code>. Prepare to spend 10 to 15 minutes successfully
+reading the csv file with your group.</p>
+<hr>
+<br></section></section>
 </div>
     </main>
 </div>
@@ -724,8 +761,8 @@ suppressed with</p>
   "url": "https://datacarpentry.github.io/python-ecology-lesson/instructor/instructor-notes.html",
   "identifier": "https://datacarpentry.github.io/python-ecology-lesson/instructor/instructor-notes.html",
   "dateCreated": "2015-03-19",
-  "dateModified": "2026-02-03",
-  "datePublished": "2026-02-03"
+  "dateModified": "2026-02-09",
+  "datePublished": "2026-02-09"
 }
 
   </script><script>

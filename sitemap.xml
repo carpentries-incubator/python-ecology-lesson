@@ -130,6 +130,9 @@
     <loc>https://datacarpentry.github.io/python-ecology-lesson/instructor/reference.html</loc>
   </url>
   <url>
+    <loc>https://datacarpentry.github.io/python-ecology-lesson/instructor/visualizing-matplotlib.html</loc>
+  </url>
+  <url>
     <loc>https://datacarpentry.github.io/python-ecology-lesson/instructor-notes.html</loc>
   </url>
   <url>
@@ -143,5 +146,8 @@
   </url>
   <url>
     <loc>https://datacarpentry.github.io/python-ecology-lesson/reference.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/python-ecology-lesson/visualizing-matplotlib.html</loc>
   </url>
 </urlset>
