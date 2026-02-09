@@ -339,19 +339,19 @@ Python</li>
 <section><h2 class="section-heading" id="the-pandas-dataframe">The pandas <code>DataFrame</code>
 <a class="anchor" aria-label="anchor" href="#the-pandas-dataframe"></a></h2>
 <hr class="half-width"><p>We just spent quite a bit of time learning how to create
-visualisations from the <code>samples</code> data, but we did not talk
-much about what <code>samples</code> is. You may remember that we loaded
+visualisations from the <code>surveys</code> data, but we did not talk
+much about what <code>surveys</code> is. You may remember that we loaded
 the data into Python with the <code>pandas.read_csv</code> function. The
 output of <code>read_csv</code> is a <em>data frame</em>: a common way
 of representing tabular data in a programming language. To be precise,
-<code>samples</code> is an <em>object</em> of <em>type</em>
+<code>surveys</code> is an <em>object</em> of <em>type</em>
 <code>DataFrame</code>. In Python, pretty much everything you work with
 is an object of some type. The <code>type</code> function can be used to
 tell you the type of any object you pass to it.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="bu">type</span>(samples)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="bu">type</span>(surveys)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -371,7 +371,7 @@ a dataset for the first time. Consider the output of
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>samples.describe()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>surveys.describe()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -401,7 +401,7 @@ we are looking at when we begin filtering the dataframe later.</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>samples <span class="op">=</span> samples.set_index(<span class="st">'record_id'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>surveys <span class="op">=</span> surveys.set_index(<span class="st">'record_id'</span>)</span></code></pre>
 </div>
 <div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
@@ -415,7 +415,7 @@ can also specify this when you load the data from the file:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>samples <span class="op">=</span> pd.read_csv(<span class="st">'../data/surveys_complete_77_89.csv'</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>surveys <span class="op">=</span> pd.read_csv(<span class="st">'../data/surveys_complete_77_89.csv'</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span></code></pre>
 </div>
 <p>We specify with the <code>index_col</code> argument that the first
 column in the CSV should be used as the index of the dataframe.</p>
@@ -428,7 +428,7 @@ column in the CSV should be used as the index of the dataframe.</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>samples.info()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>surveys.info()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -475,7 +475,7 @@ the <code>weight</code> column below.)</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>samples.head()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>surveys.head()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -488,7 +488,7 @@ record_id
 4              7   16  1977        7          DM    M             36.0     NaN  Dipodomys  merriami  Rodent          Rodent Exclosure
 5              7   16  1977        3          DM    M             35.0     NaN  Dipodomys  merriami  Rodent  Long-term Krat Exclosure</code></pre>
 </div>
-<p>From the output of <code>samples.info()</code> above, we can tell
+<p>From the output of <code>surveys.info()</code> above, we can tell
 that almost 1700 weight measurements and more than 2700 hindfoot length
 measurements are missing. Some of the other columns also have missing
 values.</p>
@@ -527,13 +527,13 @@ name in two different ways:</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>samples[<span class="st">"species_id"</span>]</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>surveys[<span class="st">"species_id"</span>]</span></code></pre>
 </div>
 <p>or</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>samples.species_id <span class="co"># this only works if there are no spaces in the column name (note the underscore used here)</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>surveys.species_id <span class="co"># this only works if there are no spaces in the column name (note the underscore used here)</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -581,7 +581,7 @@ series with a different data type:</p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>samples[<span class="st">'weight'</span>]</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>surveys[<span class="st">'weight'</span>]</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -608,7 +608,7 @@ sorted alphabetically:</p>
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>samples[<span class="st">'weight'</span>].sort_values()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>surveys[<span class="st">'weight'</span>].sort_values()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -630,7 +630,7 @@ Name: weight, Length: 16878, dtype: float64</code></pre>
 <div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>samples[<span class="st">'species_id'</span>].sort_values()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>surveys[<span class="st">'species_id'</span>].sort_values()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -784,7 +784,7 @@ try to access a column that does not exist in our dataframe?</p>
 <div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>samples[<span class="st">"wegiht"</span>] <span class="co"># misspelling the 'weight' column name</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>surveys[<span class="st">"wegiht"</span>] <span class="co"># misspelling the 'weight' column name</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -810,7 +810,7 @@ The above exception was the direct cause of the following exception:
 
 KeyError                                  Traceback (most recent call last)
 Cell In[131], line 1
-----&gt; 1 samples["wegiht"]
+----&gt; 1 surveys["wegiht"]
 
 File ~/miniforge3/envs/carpentries/lib/python3.11/site-packages/pandas/core/frame.py:4107, in DataFrame.__getitem__(self, key)
    4105 if self.columns.nlevels &gt; 1:
@@ -1258,8 +1258,8 @@ floating point numbers:</p>
 <div class="codewrapper sourceCode" id="cb57">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" tabindex="-1"></a>samples[<span class="st">'plot_id'</span>] <span class="op">=</span> samples[<span class="st">'plot_id'</span>].astype(<span class="st">'float'</span>)</span>
-<span id="cb57-2"><a href="#cb57-2" tabindex="-1"></a>samples[<span class="st">'plot_id'</span>]</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" tabindex="-1"></a>surveys[<span class="st">'plot_id'</span>] <span class="op">=</span> surveys[<span class="st">'plot_id'</span>].astype(<span class="st">'float'</span>)</span>
+<span id="cb57-2"><a href="#cb57-2" tabindex="-1"></a>surveys[<span class="st">'plot_id'</span>]</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1284,7 +1284,7 @@ to numeric data:</p>
 <div class="codewrapper sourceCode" id="cb59">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" tabindex="-1"></a>samples.species_id <span class="op">=</span> samples.species_id.astype(<span class="st">'int'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" tabindex="-1"></a>surveys.species_id <span class="op">=</span> surveys.species_id.astype(<span class="st">'int'</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1292,7 +1292,7 @@ to numeric data:</p>
 <pre class="error" tabindex="0"><code>---------------------------------------------------------------------------
 ValueError                                Traceback (most recent call last)
 Cell In[101], line 1
-----&gt; 1 samples.species_id = samples.species_id.astype('int64')
+----&gt; 1 surveys.species_id = surveys.species_id.astype('int64')
 
 File ~/miniforge3/envs/carpentries/lib/python3.11/site-packages/pandas/core/generic.py:6662, in NDFrame.astype(self, dtype, copy, errors)
    6656     results = [
@@ -1341,7 +1341,7 @@ solutions to this later.</li>
 <div class="codewrapper sourceCode" id="cb61">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" tabindex="-1"></a>samples[<span class="st">'plot_id'</span>].astype(<span class="st">"int"</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" tabindex="-1"></a>surveys[<span class="st">'plot_id'</span>].astype(<span class="st">"int"</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1390,7 +1390,7 @@ such as calculation of the summary statistics provided by
 <div class="codewrapper sourceCode" id="cb65">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" tabindex="-1"></a>samples.describe()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" tabindex="-1"></a>surveys.describe()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1413,7 +1413,7 @@ observation:</p>
 <div class="codewrapper sourceCode" id="cb67">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" tabindex="-1"></a>samples.dropna().head()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" tabindex="-1"></a>surveys.dropna().head()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1431,7 +1431,7 @@ the dataframe!</p>
 <div class="codewrapper sourceCode" id="cb69">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" tabindex="-1"></a><span class="bu">len</span>(samples)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" tabindex="-1"></a><span class="bu">len</span>(surveys)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1441,7 +1441,7 @@ the dataframe!</p>
 <div class="codewrapper sourceCode" id="cb71">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" tabindex="-1"></a><span class="bu">len</span>(samples.dropna())</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" tabindex="-1"></a><span class="bu">len</span>(surveys.dropna())</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1450,15 +1450,15 @@ the dataframe!</p>
 </div>
 <p>Instead, we could <em>fill</em> all of the missing values with
 something else. For example, let’s make a copy of the
-<code>samples</code> dataframe then populate the missing values in the
+<code>surveys</code> dataframe then populate the missing values in the
 <code>weight</code> column of that copy with the mean of all the
 non-missing weights. There are a few parts to that operation, which are
 tackled one at a time below.</p>
 <div class="codewrapper sourceCode" id="cb73">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" tabindex="-1"></a>mean_weight <span class="op">=</span> samples[<span class="st">'weight'</span>].mean() <span class="co"># the 'mean' method calculates the mean of the non-null values in the column</span></span>
-<span id="cb73-2"><a href="#cb73-2" tabindex="-1"></a>df1 <span class="op">=</span> samples.copy() <span class="co"># making a copy to work with so that we do not edit our original data</span></span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" tabindex="-1"></a>mean_weight <span class="op">=</span> surveys[<span class="st">'weight'</span>].mean() <span class="co"># the 'mean' method calculates the mean of the non-null values in the column</span></span>
+<span id="cb73-2"><a href="#cb73-2" tabindex="-1"></a>df1 <span class="op">=</span> surveys.copy() <span class="co"># making a copy to work with so that we do not edit our original data</span></span>
 <span id="cb73-3"><a href="#cb73-3" tabindex="-1"></a>df1[<span class="st">"weight"</span>] <span class="op">=</span> df1[<span class="st">'weight'</span>].fillna(mean_weight) <span class="co"># the 'fillna' method fills all missing values with the provided value</span></span>
 <span id="cb73-4"><a href="#cb73-4" tabindex="-1"></a>df1.head()</span></code></pre>
 </div>
@@ -1646,7 +1646,7 @@ object?</p>
 <div class="codewrapper sourceCode" id="cb81">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" tabindex="-1"></a>df2 <span class="op">=</span> samples</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" tabindex="-1"></a>df2 <span class="op">=</span> surveys</span></code></pre>
 </div>
 <p>This gets to <em>mutablity</em>: a feature of Python that has caused
 headaches for many novices in the past! In the interests of memory
@@ -1688,7 +1688,7 @@ the data in the original.</p>
 <div class="codewrapper sourceCode" id="cb86">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" tabindex="-1"></a>df2 <span class="op">=</span> samples.copy()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" tabindex="-1"></a>df2 <span class="op">=</span> surveys.copy()</span></code></pre>
 </div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">

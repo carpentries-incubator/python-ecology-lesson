@@ -434,12 +434,12 @@ and the columns represent:</p>
 </tr><tr class="odd"><td>plot_type</td>
 <td>type of experimental manipulation conducted</td>
 </tr></tbody></table><p>We’ll load the data in the csv into Python and name this new object
-<code>complete_old</code>. For this, we can use the <code>pandas</code>
+<code>surveys</code>. For this, we can use the <code>pandas</code>
 library and its <code>.read_csv()</code> function, like shown here:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>complete_old <span class="op">=</span> pd.read_csv(<span class="st">"../data/raw/surveys_complete_77_89.csv"</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>surveys <span class="op">=</span> pd.read_csv(<span class="st">"../data/raw/surveys_complete_77_89.csv"</span>)</span></code></pre>
 </div>
 
 <p>Here we have created a new object that we can reference later in our
@@ -449,7 +449,7 @@ use the <code>type()</code> function.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="bu">type</span>(complete_old)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="bu">type</span>(surveys)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -458,14 +458,14 @@ use the <code>type()</code> function.</p>
 </div>
 <p>Notice how we didn’t use the <code>=</code> operator in this case.
 This means we didn’t create a new object, we just asked Python to show
-us the output of the function. When we created <code>complete_old</code>
-with the <code>=</code> operator it didn’t print an output, but it
-stored the object in Python which we can later use.</p>
-<p>From the output we can read that <code>complete_old</code> is an
-object of pandas DataFrame type. We’ll explore in depth what a DataFrame
-is in the next episode. For now, we only need to keep in mind that our
-data is now contained in a DataFrame. And this is important as the
-methods we’ll cover now -<code>.head()</code>, <code>.info()</code>, and
+us the output of the function. When we created <code>surveys</code> with
+the <code>=</code> operator it didn’t print an output, but it stored the
+object in Python which we can later use.</p>
+<p>From the output we can read that <code>surveys</code> is an object of
+pandas DataFrame type. We’ll explore in depth what a DataFrame is in the
+next episode. For now, we only need to keep in mind that our data is now
+contained in a DataFrame. And this is important as the methods we’ll
+cover now -<code>.head()</code>, <code>.info()</code>, and
 <code>.plot()</code>- are only available to DataFrame objects.</p>
 <p>Now that our data is in Python, we can start working with it. A good
 place to start is taking a look at the data. With the
@@ -474,7 +474,7 @@ set.</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>complete_old.head()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>surveys.head()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -502,7 +502,7 @@ sign.</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>complete_old.tail(n<span class="op">=</span><span class="dv">2</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>surveys.tail(n<span class="op">=</span><span class="dv">2</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -523,7 +523,7 @@ data type.</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>complete_old.info()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>surveys.info()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -587,7 +587,7 @@ the study site.</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>complete_old.plot(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>, kind <span class="op">=</span> <span class="st">"scatter"</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>surveys.plot(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>, kind <span class="op">=</span> <span class="st">"scatter"</span>)</span></code></pre>
 </div>
 <div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
@@ -603,7 +603,7 @@ method, without having to specify the “kind” argument.</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>complete_old.plot.scatter(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>surveys.plot.scatter(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>)</span></code></pre>
 </div>
 </div>
 </div>
@@ -618,7 +618,7 @@ argument, which takes a value between 0 and 1.</p>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>complete_old.plot(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>,</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>surveys.plot(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>,</span>
 <span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>                  kind <span class="op">=</span> <span class="st">"scatter"</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>)</span></code></pre>
 </div>
 <p>With transparency added to the points, we can more clearly observe a
@@ -656,7 +656,7 @@ what we want.</p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>complete_old.plot(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>,</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>surveys.plot(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>,</span>
 <span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>                  kind<span class="op">=</span><span class="st">"scatter"</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, c <span class="op">=</span> <span class="st">"green"</span>)</span></code></pre>
 </div>
 </div>
@@ -671,7 +671,7 @@ analyze.</p>
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>complete_old.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, kind <span class="op">=</span> <span class="st">"box"</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>surveys.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, kind <span class="op">=</span> <span class="st">"box"</span>)</span></code></pre>
 </div>
 <p>The box plot shows the median hindfoot length is around 32mm
 (represented by the line inside the box) and most values lie between 20
@@ -684,7 +684,7 @@ plot.</p>
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>complete_old.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>, kind <span class="op">=</span> <span class="st">"box"</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>surveys.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>, kind <span class="op">=</span> <span class="st">"box"</span>)</span></code></pre>
 </div>
 <p>As shown in the previous image, the x-axis labels overlap with each
 other, which makes them unreadable. Furthermore, we’d like to start
@@ -722,7 +722,7 @@ axis object that we can start customizing.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>fig, axis <span class="op">=</span> plt.subplots()</span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>complete_old.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>,</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>surveys.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>,</span>
 <span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>                  kind <span class="op">=</span> <span class="st">"box"</span>, ax <span class="op">=</span> axis)</span></code></pre>
 </div>
 <p>To start, we can rotate the x-axis labels 90 degrees to make them
@@ -732,7 +732,7 @@ readable. For this, we use the <code>.tick_params()</code> method on the
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>fig, axis <span class="op">=</span> plt.subplots()</span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>complete_old.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>,</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>surveys.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>,</span>
 <span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>                  kind <span class="op">=</span> <span class="st">"box"</span>, ax <span class="op">=</span> axis)</span>
 <span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>axis.tick_params(axis <span class="op">=</span> <span class="st">'x'</span>, rotation <span class="op">=</span> <span class="dv">90</span>)</span></code></pre>
 </div>
@@ -749,7 +749,7 @@ important when reusing lines written previously.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>fig, axis <span class="op">=</span> plt.subplots()</span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>complete_old.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>,</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>surveys.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>,</span>
 <span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>                  kind <span class="op">=</span> <span class="st">"box"</span>, ax <span class="op">=</span> axis)</span>
 <span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>axis.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, rotation <span class="op">=</span> <span class="dv">90</span>)</span>
 <span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>axis.set_title(<span class="st">"Distribution of hindfoot lenght across plot types"</span>)</span>
@@ -785,9 +785,9 @@ is 2, and so forth.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(nrows <span class="op">=</span> <span class="dv">1</span>, ncols <span class="op">=</span> <span class="dv">2</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>complete_old.plot(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>, kind<span class="op">=</span><span class="st">"scatter"</span>,</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>surveys.plot(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>, kind<span class="op">=</span><span class="st">"scatter"</span>,</span>
 <span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>                  alpha <span class="op">=</span> <span class="fl">0.2</span>, ax <span class="op">=</span> axes[<span class="dv">0</span>])</span>
-<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>complete_old.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>,</span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>surveys.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>,</span>
 <span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a>                  kind <span class="op">=</span> <span class="st">"box"</span>, ax <span class="op">=</span> axes[<span class="dv">1</span>])</span></code></pre>
 </div>
 <p>As shown before, Matplotlib allows us to customize every aspect of
@@ -803,12 +803,12 @@ it makes.)</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(nrows <span class="op">=</span> <span class="dv">1</span>, ncols <span class="op">=</span> <span class="dv">2</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>complete_old.plot(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>, kind<span class="op">=</span><span class="st">"scatter"</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, ax <span class="op">=</span> axes[<span class="dv">0</span>])</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>surveys.plot(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>, kind<span class="op">=</span><span class="st">"scatter"</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, ax <span class="op">=</span> axes[<span class="dv">0</span>])</span>
 <span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"Weight vs. Hindfoot Length"</span>)</span>
 <span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">"Weight (g)"</span>)</span>
 <span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">"Hindfoot Length (mm)"</span>)</span>
 <span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a></span>
-<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a>complete_old.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>,</span>
+<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a>surveys.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>,</span>
 <span id="cb23-8"><a href="#cb23-8" tabindex="-1"></a>                  kind <span class="op">=</span> <span class="st">"box"</span>, ax <span class="op">=</span> axes[<span class="dv">1</span>])</span>
 <span id="cb23-9"><a href="#cb23-9" tabindex="-1"></a>axes[<span class="dv">1</span>].tick_params(axis <span class="op">=</span> <span class="st">"x"</span>, rotation <span class="op">=</span> <span class="dv">90</span>)</span>
 <span id="cb23-10"><a href="#cb23-10" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"Hindfoot Length by Plot Type"</span>)</span>
@@ -903,20 +903,20 @@ what has changed from our previous code.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(nrows <span class="op">=</span> <span class="dv">1</span>, ncols <span class="op">=</span> <span class="dv">3</span>, figsize <span class="op">=</span> (<span class="dv">10</span>,<span class="dv">7</span>), sharey <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>complete_old.plot(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>, kind<span class="op">=</span><span class="st">"scatter"</span>,</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>surveys.plot(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>, kind<span class="op">=</span><span class="st">"scatter"</span>,</span>
 <span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a>                  alpha <span class="op">=</span> <span class="fl">0.2</span>, ax <span class="op">=</span> axes[<span class="dv">0</span>])</span>
 <span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"Weight vs. Hindfoot Length"</span>)</span>
 <span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">"Weight (g)"</span>)</span>
 <span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">"Hindfoot Length (mm)"</span>)</span>
 <span id="cb25-7"><a href="#cb25-7" tabindex="-1"></a></span>
-<span id="cb25-8"><a href="#cb25-8" tabindex="-1"></a>complete_old.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>,</span>
+<span id="cb25-8"><a href="#cb25-8" tabindex="-1"></a>surveys.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>,</span>
 <span id="cb25-9"><a href="#cb25-9" tabindex="-1"></a>                  kind <span class="op">=</span> <span class="st">"box"</span>, ax <span class="op">=</span> axes[<span class="dv">1</span>])</span>
 <span id="cb25-10"><a href="#cb25-10" tabindex="-1"></a>axes[<span class="dv">1</span>].tick_params(axis <span class="op">=</span>  <span class="st">"x"</span>, rotation <span class="op">=</span> <span class="dv">90</span>)</span>
 <span id="cb25-11"><a href="#cb25-11" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"Hindfoot Length by Plot Type"</span>)</span>
 <span id="cb25-12"><a href="#cb25-12" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">"Plot Types"</span>)</span>
 <span id="cb25-13"><a href="#cb25-13" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">"Hindfoot Length (mm)2"</span>)</span>
 <span id="cb25-14"><a href="#cb25-14" tabindex="-1"></a></span>
-<span id="cb25-15"><a href="#cb25-15" tabindex="-1"></a>complete_old.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, orientation<span class="op">=</span><span class="st">"horizontal"</span>,</span>
+<span id="cb25-15"><a href="#cb25-15" tabindex="-1"></a>surveys.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, orientation<span class="op">=</span><span class="st">"horizontal"</span>,</span>
 <span id="cb25-16"><a href="#cb25-16" tabindex="-1"></a>                  legend <span class="op">=</span> <span class="va">False</span>, kind <span class="op">=</span> <span class="st">"hist"</span>, ax <span class="op">=</span> axes[<span class="dv">2</span>])</span>
 <span id="cb25-17"><a href="#cb25-17" tabindex="-1"></a>axes[<span class="dv">2</span>].set_title(<span class="st">"Hindfoot Length Histogram"</span>)</span>
 <span id="cb25-18"><a href="#cb25-18" tabindex="-1"></a></span>
@@ -995,7 +995,7 @@ Matplotlib alone.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>sns.scatterplot(data <span class="op">=</span> complete_old, x<span class="op">=</span><span class="st">"weight"</span>, y<span class="op">=</span><span class="st">"hindfoot_length"</span>,</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>sns.scatterplot(data <span class="op">=</span> surveys, x<span class="op">=</span><span class="st">"weight"</span>, y<span class="op">=</span><span class="st">"hindfoot_length"</span>,</span>
 <span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a>              hue<span class="op">=</span><span class="st">"sex"</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>)</span></code></pre>
 </div>
 </li>

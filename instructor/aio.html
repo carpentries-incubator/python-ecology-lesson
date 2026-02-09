@@ -505,12 +505,12 @@ and the columns represent:</p>
 </tbody>
 </table>
 <p>We’ll load the data in the csv into Python and name this new object
-<code>complete_old</code>. For this, we can use the <code>pandas</code>
+<code>surveys</code>. For this, we can use the <code>pandas</code>
 library and its <code>.read_csv()</code> function, like shown here:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>complete_old <span class="op">=</span> pd.read_csv(<span class="st">"../data/raw/surveys_complete_77_89.csv"</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>surveys <span class="op">=</span> pd.read_csv(<span class="st">"../data/raw/surveys_complete_77_89.csv"</span>)</span></code></pre>
 </div>
 <div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
 <div class="accordion-item">
@@ -549,7 +549,7 @@ use the <code>type()</code> function.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="bu">type</span>(complete_old)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="bu">type</span>(surveys)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -558,14 +558,14 @@ use the <code>type()</code> function.</p>
 </div>
 <p>Notice how we didn’t use the <code>=</code> operator in this case.
 This means we didn’t create a new object, we just asked Python to show
-us the output of the function. When we created <code>complete_old</code>
-with the <code>=</code> operator it didn’t print an output, but it
-stored the object in Python which we can later use.</p>
-<p>From the output we can read that <code>complete_old</code> is an
-object of pandas DataFrame type. We’ll explore in depth what a DataFrame
-is in the next episode. For now, we only need to keep in mind that our
-data is now contained in a DataFrame. And this is important as the
-methods we’ll cover now -<code>.head()</code>, <code>.info()</code>, and
+us the output of the function. When we created <code>surveys</code> with
+the <code>=</code> operator it didn’t print an output, but it stored the
+object in Python which we can later use.</p>
+<p>From the output we can read that <code>surveys</code> is an object of
+pandas DataFrame type. We’ll explore in depth what a DataFrame is in the
+next episode. For now, we only need to keep in mind that our data is now
+contained in a DataFrame. And this is important as the methods we’ll
+cover now -<code>.head()</code>, <code>.info()</code>, and
 <code>.plot()</code>- are only available to DataFrame objects.</p>
 <p>Now that our data is in Python, we can start working with it. A good
 place to start is taking a look at the data. With the
@@ -574,7 +574,7 @@ set.</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>complete_old.head()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>surveys.head()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -602,7 +602,7 @@ sign.</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>complete_old.tail(n<span class="op">=</span><span class="dv">2</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>surveys.tail(n<span class="op">=</span><span class="dv">2</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -623,7 +623,7 @@ data type.</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>complete_old.info()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>surveys.info()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -689,7 +689,7 @@ the study site.</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>complete_old.plot(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>, kind <span class="op">=</span> <span class="st">"scatter"</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>surveys.plot(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>, kind <span class="op">=</span> <span class="st">"scatter"</span>)</span></code></pre>
 </div>
 <div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
@@ -705,7 +705,7 @@ method, without having to specify the “kind” argument.</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>complete_old.plot.scatter(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>surveys.plot.scatter(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>)</span></code></pre>
 </div>
 </div>
 </div>
@@ -720,7 +720,7 @@ argument, which takes a value between 0 and 1.</p>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>complete_old.plot(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>,</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>surveys.plot(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>,</span>
 <span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>                  kind <span class="op">=</span> <span class="st">"scatter"</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>)</span></code></pre>
 </div>
 <p>With transparency added to the points, we can more clearly observe a
@@ -758,7 +758,7 @@ what we want.</p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>complete_old.plot(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>,</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>surveys.plot(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>,</span>
 <span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>                  kind<span class="op">=</span><span class="st">"scatter"</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, c <span class="op">=</span> <span class="st">"green"</span>)</span></code></pre>
 </div>
 </div>
@@ -773,7 +773,7 @@ analyze.</p>
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>complete_old.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, kind <span class="op">=</span> <span class="st">"box"</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>surveys.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, kind <span class="op">=</span> <span class="st">"box"</span>)</span></code></pre>
 </div>
 <p>The box plot shows the median hindfoot length is around 32mm
 (represented by the line inside the box) and most values lie between 20
@@ -786,7 +786,7 @@ plot.</p>
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>complete_old.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>, kind <span class="op">=</span> <span class="st">"box"</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>surveys.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>, kind <span class="op">=</span> <span class="st">"box"</span>)</span></code></pre>
 </div>
 <p>As shown in the previous image, the x-axis labels overlap with each
 other, which makes them unreadable. Furthermore, we’d like to start
@@ -826,7 +826,7 @@ axis object that we can start customizing.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>fig, axis <span class="op">=</span> plt.subplots()</span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>complete_old.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>,</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>surveys.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>,</span>
 <span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>                  kind <span class="op">=</span> <span class="st">"box"</span>, ax <span class="op">=</span> axis)</span></code></pre>
 </div>
 <p>To start, we can rotate the x-axis labels 90 degrees to make them
@@ -836,7 +836,7 @@ readable. For this, we use the <code>.tick_params()</code> method on the
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>fig, axis <span class="op">=</span> plt.subplots()</span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>complete_old.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>,</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>surveys.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>,</span>
 <span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>                  kind <span class="op">=</span> <span class="st">"box"</span>, ax <span class="op">=</span> axis)</span>
 <span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>axis.tick_params(axis <span class="op">=</span> <span class="st">'x'</span>, rotation <span class="op">=</span> <span class="dv">90</span>)</span></code></pre>
 </div>
@@ -853,7 +853,7 @@ important when reusing lines written previously.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>fig, axis <span class="op">=</span> plt.subplots()</span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>complete_old.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>,</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>surveys.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>,</span>
 <span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>                  kind <span class="op">=</span> <span class="st">"box"</span>, ax <span class="op">=</span> axis)</span>
 <span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>axis.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, rotation <span class="op">=</span> <span class="dv">90</span>)</span>
 <span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>axis.set_title(<span class="st">"Distribution of hindfoot lenght across plot types"</span>)</span>
@@ -890,9 +890,9 @@ is 2, and so forth.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(nrows <span class="op">=</span> <span class="dv">1</span>, ncols <span class="op">=</span> <span class="dv">2</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>complete_old.plot(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>, kind<span class="op">=</span><span class="st">"scatter"</span>,</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>surveys.plot(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>, kind<span class="op">=</span><span class="st">"scatter"</span>,</span>
 <span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>                  alpha <span class="op">=</span> <span class="fl">0.2</span>, ax <span class="op">=</span> axes[<span class="dv">0</span>])</span>
-<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>complete_old.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>,</span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>surveys.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>,</span>
 <span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a>                  kind <span class="op">=</span> <span class="st">"box"</span>, ax <span class="op">=</span> axes[<span class="dv">1</span>])</span></code></pre>
 </div>
 <p>As shown before, Matplotlib allows us to customize every aspect of
@@ -908,12 +908,12 @@ it makes.)</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(nrows <span class="op">=</span> <span class="dv">1</span>, ncols <span class="op">=</span> <span class="dv">2</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>complete_old.plot(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>, kind<span class="op">=</span><span class="st">"scatter"</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, ax <span class="op">=</span> axes[<span class="dv">0</span>])</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>surveys.plot(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>, kind<span class="op">=</span><span class="st">"scatter"</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, ax <span class="op">=</span> axes[<span class="dv">0</span>])</span>
 <span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"Weight vs. Hindfoot Length"</span>)</span>
 <span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">"Weight (g)"</span>)</span>
 <span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">"Hindfoot Length (mm)"</span>)</span>
 <span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a></span>
-<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a>complete_old.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>,</span>
+<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a>surveys.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>,</span>
 <span id="cb23-8"><a href="#cb23-8" tabindex="-1"></a>                  kind <span class="op">=</span> <span class="st">"box"</span>, ax <span class="op">=</span> axes[<span class="dv">1</span>])</span>
 <span id="cb23-9"><a href="#cb23-9" tabindex="-1"></a>axes[<span class="dv">1</span>].tick_params(axis <span class="op">=</span> <span class="st">"x"</span>, rotation <span class="op">=</span> <span class="dv">90</span>)</span>
 <span id="cb23-10"><a href="#cb23-10" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"Hindfoot Length by Plot Type"</span>)</span>
@@ -1014,20 +1014,20 @@ what has changed from our previous code.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(nrows <span class="op">=</span> <span class="dv">1</span>, ncols <span class="op">=</span> <span class="dv">3</span>, figsize <span class="op">=</span> (<span class="dv">10</span>,<span class="dv">7</span>), sharey <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>complete_old.plot(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>, kind<span class="op">=</span><span class="st">"scatter"</span>,</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>surveys.plot(x <span class="op">=</span> <span class="st">"weight"</span>, y <span class="op">=</span> <span class="st">"hindfoot_length"</span>, kind<span class="op">=</span><span class="st">"scatter"</span>,</span>
 <span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a>                  alpha <span class="op">=</span> <span class="fl">0.2</span>, ax <span class="op">=</span> axes[<span class="dv">0</span>])</span>
 <span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"Weight vs. Hindfoot Length"</span>)</span>
 <span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">"Weight (g)"</span>)</span>
 <span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">"Hindfoot Length (mm)"</span>)</span>
 <span id="cb25-7"><a href="#cb25-7" tabindex="-1"></a></span>
-<span id="cb25-8"><a href="#cb25-8" tabindex="-1"></a>complete_old.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>,</span>
+<span id="cb25-8"><a href="#cb25-8" tabindex="-1"></a>surveys.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, by <span class="op">=</span> <span class="st">"plot_type"</span>,</span>
 <span id="cb25-9"><a href="#cb25-9" tabindex="-1"></a>                  kind <span class="op">=</span> <span class="st">"box"</span>, ax <span class="op">=</span> axes[<span class="dv">1</span>])</span>
 <span id="cb25-10"><a href="#cb25-10" tabindex="-1"></a>axes[<span class="dv">1</span>].tick_params(axis <span class="op">=</span>  <span class="st">"x"</span>, rotation <span class="op">=</span> <span class="dv">90</span>)</span>
 <span id="cb25-11"><a href="#cb25-11" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"Hindfoot Length by Plot Type"</span>)</span>
 <span id="cb25-12"><a href="#cb25-12" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">"Plot Types"</span>)</span>
 <span id="cb25-13"><a href="#cb25-13" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">"Hindfoot Length (mm)2"</span>)</span>
 <span id="cb25-14"><a href="#cb25-14" tabindex="-1"></a></span>
-<span id="cb25-15"><a href="#cb25-15" tabindex="-1"></a>complete_old.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, orientation<span class="op">=</span><span class="st">"horizontal"</span>,</span>
+<span id="cb25-15"><a href="#cb25-15" tabindex="-1"></a>surveys.plot(column <span class="op">=</span> <span class="st">"hindfoot_length"</span>, orientation<span class="op">=</span><span class="st">"horizontal"</span>,</span>
 <span id="cb25-16"><a href="#cb25-16" tabindex="-1"></a>                  legend <span class="op">=</span> <span class="va">False</span>, kind <span class="op">=</span> <span class="st">"hist"</span>, ax <span class="op">=</span> axes[<span class="dv">2</span>])</span>
 <span id="cb25-17"><a href="#cb25-17" tabindex="-1"></a>axes[<span class="dv">2</span>].set_title(<span class="st">"Hindfoot Length Histogram"</span>)</span>
 <span id="cb25-18"><a href="#cb25-18" tabindex="-1"></a></span>
@@ -1110,7 +1110,7 @@ Matplotlib alone.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>sns.scatterplot(data <span class="op">=</span> complete_old, x<span class="op">=</span><span class="st">"weight"</span>, y<span class="op">=</span><span class="st">"hindfoot_length"</span>,</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>sns.scatterplot(data <span class="op">=</span> surveys, x<span class="op">=</span><span class="st">"weight"</span>, y<span class="op">=</span><span class="st">"hindfoot_length"</span>,</span>
 <span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a>              hue<span class="op">=</span><span class="st">"sex"</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>)</span></code></pre>
 </div>
 </li>
@@ -1191,19 +1191,19 @@ Python</li>
 </h2>
 <hr class="half-width">
 <p>We just spent quite a bit of time learning how to create
-visualisations from the <code>samples</code> data, but we did not talk
-much about what <code>samples</code> is. You may remember that we loaded
+visualisations from the <code>surveys</code> data, but we did not talk
+much about what <code>surveys</code> is. You may remember that we loaded
 the data into Python with the <code>pandas.read_csv</code> function. The
 output of <code>read_csv</code> is a <em>data frame</em>: a common way
 of representing tabular data in a programming language. To be precise,
-<code>samples</code> is an <em>object</em> of <em>type</em>
+<code>surveys</code> is an <em>object</em> of <em>type</em>
 <code>DataFrame</code>. In Python, pretty much everything you work with
 is an object of some type. The <code>type</code> function can be used to
 tell you the type of any object you pass to it.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="bu">type</span>(samples)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="bu">type</span>(surveys)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1224,7 +1224,7 @@ a dataset for the first time. Consider the output of
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>samples.describe()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>surveys.describe()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1254,7 +1254,7 @@ we are looking at when we begin filtering the dataframe later.</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>samples <span class="op">=</span> samples.set_index(<span class="st">'record_id'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>surveys <span class="op">=</span> surveys.set_index(<span class="st">'record_id'</span>)</span></code></pre>
 </div>
 <div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
@@ -1268,7 +1268,7 @@ can also specify this when you load the data from the file:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>samples <span class="op">=</span> pd.read_csv(<span class="st">'../data/surveys_complete_77_89.csv'</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>surveys <span class="op">=</span> pd.read_csv(<span class="st">'../data/surveys_complete_77_89.csv'</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span></code></pre>
 </div>
 <p>We specify with the <code>index_col</code> argument that the first
 column in the CSV should be used as the index of the dataframe.</p>
@@ -1281,7 +1281,7 @@ column in the CSV should be used as the index of the dataframe.</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>samples.info()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>surveys.info()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1329,7 +1329,7 @@ the <code>weight</code> column below.)</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>samples.head()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>surveys.head()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1342,7 +1342,7 @@ record_id
 4              7   16  1977        7          DM    M             36.0     NaN  Dipodomys  merriami  Rodent          Rodent Exclosure
 5              7   16  1977        3          DM    M             35.0     NaN  Dipodomys  merriami  Rodent  Long-term Krat Exclosure</code></pre>
 </div>
-<p>From the output of <code>samples.info()</code> above, we can tell
+<p>From the output of <code>surveys.info()</code> above, we can tell
 that almost 1700 weight measurements and more than 2700 hindfoot length
 measurements are missing. Some of the other columns also have missing
 values.</p>
@@ -1385,13 +1385,13 @@ name in two different ways:</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>samples[<span class="st">"species_id"</span>]</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>surveys[<span class="st">"species_id"</span>]</span></code></pre>
 </div>
 <p>or</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>samples.species_id <span class="co"># this only works if there are no spaces in the column name (note the underscore used here)</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>surveys.species_id <span class="co"># this only works if there are no spaces in the column name (note the underscore used here)</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1439,7 +1439,7 @@ series with a different data type:</p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>samples[<span class="st">'weight'</span>]</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>surveys[<span class="st">'weight'</span>]</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1466,7 +1466,7 @@ sorted alphabetically:</p>
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>samples[<span class="st">'weight'</span>].sort_values()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>surveys[<span class="st">'weight'</span>].sort_values()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1488,7 +1488,7 @@ Name: weight, Length: 16878, dtype: float64</code></pre>
 <div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>samples[<span class="st">'species_id'</span>].sort_values()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>surveys[<span class="st">'species_id'</span>].sort_values()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1652,7 +1652,7 @@ try to access a column that does not exist in our dataframe?</p>
 <div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>samples[<span class="st">"wegiht"</span>] <span class="co"># misspelling the 'weight' column name</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>surveys[<span class="st">"wegiht"</span>] <span class="co"># misspelling the 'weight' column name</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1678,7 +1678,7 @@ The above exception was the direct cause of the following exception:
 
 KeyError                                  Traceback (most recent call last)
 Cell In[131], line 1
-----&gt; 1 samples["wegiht"]
+----&gt; 1 surveys["wegiht"]
 
 File ~/miniforge3/envs/carpentries/lib/python3.11/site-packages/pandas/core/frame.py:4107, in DataFrame.__getitem__(self, key)
    4105 if self.columns.nlevels &gt; 1:
@@ -2168,8 +2168,8 @@ floating point numbers:</p>
 <div class="codewrapper sourceCode" id="cb57">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" tabindex="-1"></a>samples[<span class="st">'plot_id'</span>] <span class="op">=</span> samples[<span class="st">'plot_id'</span>].astype(<span class="st">'float'</span>)</span>
-<span id="cb57-2"><a href="#cb57-2" tabindex="-1"></a>samples[<span class="st">'plot_id'</span>]</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" tabindex="-1"></a>surveys[<span class="st">'plot_id'</span>] <span class="op">=</span> surveys[<span class="st">'plot_id'</span>].astype(<span class="st">'float'</span>)</span>
+<span id="cb57-2"><a href="#cb57-2" tabindex="-1"></a>surveys[<span class="st">'plot_id'</span>]</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2194,7 +2194,7 @@ to numeric data:</p>
 <div class="codewrapper sourceCode" id="cb59">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" tabindex="-1"></a>samples.species_id <span class="op">=</span> samples.species_id.astype(<span class="st">'int'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" tabindex="-1"></a>surveys.species_id <span class="op">=</span> surveys.species_id.astype(<span class="st">'int'</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2202,7 +2202,7 @@ to numeric data:</p>
 <pre class="error" tabindex="0"><code>---------------------------------------------------------------------------
 ValueError                                Traceback (most recent call last)
 Cell In[101], line 1
-----&gt; 1 samples.species_id = samples.species_id.astype('int64')
+----&gt; 1 surveys.species_id = surveys.species_id.astype('int64')
 
 File ~/miniforge3/envs/carpentries/lib/python3.11/site-packages/pandas/core/generic.py:6662, in NDFrame.astype(self, dtype, copy, errors)
    6656     results = [
@@ -2253,7 +2253,7 @@ solutions to this later.</li>
 <div class="codewrapper sourceCode" id="cb61">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" tabindex="-1"></a>samples[<span class="st">'plot_id'</span>].astype(<span class="st">"int"</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" tabindex="-1"></a>surveys[<span class="st">'plot_id'</span>].astype(<span class="st">"int"</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2303,7 +2303,7 @@ such as calculation of the summary statistics provided by
 <div class="codewrapper sourceCode" id="cb65">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" tabindex="-1"></a>samples.describe()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" tabindex="-1"></a>surveys.describe()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2326,7 +2326,7 @@ observation:</p>
 <div class="codewrapper sourceCode" id="cb67">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" tabindex="-1"></a>samples.dropna().head()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" tabindex="-1"></a>surveys.dropna().head()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2344,7 +2344,7 @@ the dataframe!</p>
 <div class="codewrapper sourceCode" id="cb69">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" tabindex="-1"></a><span class="bu">len</span>(samples)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" tabindex="-1"></a><span class="bu">len</span>(surveys)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2354,7 +2354,7 @@ the dataframe!</p>
 <div class="codewrapper sourceCode" id="cb71">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" tabindex="-1"></a><span class="bu">len</span>(samples.dropna())</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" tabindex="-1"></a><span class="bu">len</span>(surveys.dropna())</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2363,15 +2363,15 @@ the dataframe!</p>
 </div>
 <p>Instead, we could <em>fill</em> all of the missing values with
 something else. For example, let’s make a copy of the
-<code>samples</code> dataframe then populate the missing values in the
+<code>surveys</code> dataframe then populate the missing values in the
 <code>weight</code> column of that copy with the mean of all the
 non-missing weights. There are a few parts to that operation, which are
 tackled one at a time below.</p>
 <div class="codewrapper sourceCode" id="cb73">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" tabindex="-1"></a>mean_weight <span class="op">=</span> samples[<span class="st">'weight'</span>].mean() <span class="co"># the 'mean' method calculates the mean of the non-null values in the column</span></span>
-<span id="cb73-2"><a href="#cb73-2" tabindex="-1"></a>df1 <span class="op">=</span> samples.copy() <span class="co"># making a copy to work with so that we do not edit our original data</span></span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" tabindex="-1"></a>mean_weight <span class="op">=</span> surveys[<span class="st">'weight'</span>].mean() <span class="co"># the 'mean' method calculates the mean of the non-null values in the column</span></span>
+<span id="cb73-2"><a href="#cb73-2" tabindex="-1"></a>df1 <span class="op">=</span> surveys.copy() <span class="co"># making a copy to work with so that we do not edit our original data</span></span>
 <span id="cb73-3"><a href="#cb73-3" tabindex="-1"></a>df1[<span class="st">"weight"</span>] <span class="op">=</span> df1[<span class="st">'weight'</span>].fillna(mean_weight) <span class="co"># the 'fillna' method fills all missing values with the provided value</span></span>
 <span id="cb73-4"><a href="#cb73-4" tabindex="-1"></a>df1.head()</span></code></pre>
 </div>
@@ -2567,7 +2567,7 @@ object?</p>
 <div class="codewrapper sourceCode" id="cb81">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" tabindex="-1"></a>df2 <span class="op">=</span> samples</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" tabindex="-1"></a>df2 <span class="op">=</span> surveys</span></code></pre>
 </div>
 <p>This gets to <em>mutablity</em>: a feature of Python that has caused
 headaches for many novices in the past! In the interests of memory
@@ -2609,7 +2609,7 @@ the data in the original.</p>
 <div class="codewrapper sourceCode" id="cb86">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" tabindex="-1"></a>df2 <span class="op">=</span> samples.copy()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" tabindex="-1"></a>df2 <span class="op">=</span> surveys.copy()</span></code></pre>
 </div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
